@@ -1,0 +1,6 @@
+{
+  "LiteBuildConfig": {
+    "apps": ["tree", "notebooks"],
+    "no_sourcemaps": true
+  }
+}

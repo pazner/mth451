@@ -1,0 +1,23 @@
+[project]
+name = "mth451-notebooks"
+version = "0.1.0"
+description = "Python notebooks for MTH 451/551"
+requires-python = ">=3.12"
+# Packages used inside the notebooks (also available in JupyterLite and Colab)
+dependencies = [
+    "numpy",
+    "matplotlib",
+]
+
+[dependency-groups]
+# Tools for building the course website: static HTML and JupyterLite
+dev = [
+    "ipykernel",
+    "nbconvert",
+    "jupyterlite-core",
+    "jupyterlite-pyodide-kernel",
+    "jupyter-server>=2.21.1",
+]
+
+[tool.uv]
+package = false
