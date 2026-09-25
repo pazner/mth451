@@ -1,0 +1,66 @@
+# Build and deploy the MTH 451 course website to GitHub Pages, including the
+# JupyterLite site, which is built here rather than committed to this repo.
+# Based on https://github.com/jupyterlite/demo/blob/main/.github/workflows/deploy.yml
+name: Build and deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v10.2.0
+
+      # site/ holds the course website (lectures, syllabus, notebook HTML)
+      - name: Assemble the website
+        run: |
+          mkdir -p _site
+          rsync -a site/ _site/
+
+      # Same options as the local build (notebooks/makefile in the course
+      # sources): they come from the config files here (jupyter_lite_config.json,
+      # jupyter-lite.json, overrides.json), which jupyter lite build reads
+      - name: Build the JupyterLite site
+        run: |
+          shopt -s nullglob
+          contents=()
+          for f in *.ipynb; do contents+=(--contents "$f"); done
+          uv run --frozen jupyter lite build \
+            --output-dir _site/notebooks/jupyter \
+            "${contents[@]}"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ./_site
+
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
