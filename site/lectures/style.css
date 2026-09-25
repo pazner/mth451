@@ -111,3 +111,38 @@ a.back-link {
   color: revert;
   text-decoration: revert;
 }
+
+/* Long words and URLs wrap instead of widening the page */
+body {
+  overflow-wrap: break-word;
+}
+
+/* LaTeXML pictures (plots) shrink to fit narrow screens (the site makefile
+   adds the viewBox this needs) */
+svg.ltx_picture {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Text in LaTeXML pictures (plot labels, legends): LaTeXML sizes each label's
+   box for LaTeX's font (about 10pt here), so use that size, in the picture's
+   own units so it scales with the picture, instead of inheriting the larger
+   page font; and never wrap a label mid-word */
+svg.ltx_picture foreignObject {
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+/* Narrow screens: wide tables, including LaTeXML display equations, scroll on
+   their own instead of widening the whole page. This replaces LaTeXML's
+   table-based centering, so equations are left-aligned on narrow screens. The
+   LaTeXML selectors are needed to override its own display rules. */
+@media (max-width: 600px) {
+  table,
+  table.ltx_eqn_table,
+  table.ltx_tabular.ltx_centering {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
