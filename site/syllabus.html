@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>MTH 451/551 Syllabus</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<a class="back-link" href="index.html">[Back to main course page]</a>
+<h1 id="syllabus-mth-451551-numerical-calculus-1">Syllabus: MTH 451/551:
+Numerical Calculus 1</h1>
+<h2 id="section-001-crn-11572-fall-2026">Section 001, CRN 11572, Fall
+2026</h2>
+<p><strong>Meeting Schedule:</strong> Tuesdays, Thursdays 11:00 am -
+12:15 pm</p>
+<p><strong>Location:</strong> Fariborz Maseeh Hall (FMH) 419</p>
+<p><strong>Instructor:</strong> Will Pazner</p>
+<p><strong>Email:</strong> pazner@pdx.edu</p>
+<p><strong>Office:</strong> FMH 462B</p>
+<p><strong>Office hours:</strong> Tuesdays 12:30 pm - 1:30 pm, Thursdays
+3:00 pm - 4:00 pm (FMH 462B), and by appointment.</p>
+<p><strong>Course Description:</strong> Computer arithmetic. Solution of
+nonlinear equations. Interpolation. Numerical integration and
+differentiation. Solution of linear equation systems. Eigenvalue
+problem, least square, Chebyshev, trigonometric and rational function
+approximation. Numerical solution of differential equations. This is the
+first course in a sequence of three: MTH 451/551, MTH 452/552, and MTH
+453/553 which must be taken in sequence.</p>
+<p>The goal of this course is to provide a solid foundation in numerical
+analysis, which concerns the design and analysis of algorithms for
+efficiently and accurately approximating solutions of mathematical
+problems arising in science and engineering.</p>
+<p><strong>Credits:</strong> 3</p>
+<p><strong>Prerequisites:</strong> knowledge of a programming language
+such as MATLAB, Python, or C/C++, MTH 253Z and MTH 261.</p>
+<h3 id="learning-outcomes">Learning Outcomes</h3>
+<p>In this course, students will learn to identify the types of problems
+that require numerical techniques for the solution, see examples of the
+error propagation that can occur when numerical methods are applied and
+learn typical techniques for estimating error bounds for the
+approximations.</p>
+<h3 id="topics">Topics</h3>
+<ol type="1">
+<li>Floating Point Arithmetic</li>
+<li>Polynomials</li>
+<li>Taylor&#x2019;s Theorem</li>
+<li>Sequences</li>
+<li>Orders of Convergence</li>
+<li>Bisection Method</li>
+<li>Newton&#x2019;s Method</li>
+<li>Secant Method</li>
+<li>Fixed Point Iteration</li>
+<li>Lagrange Interpolation</li>
+<li>Divided Differences</li>
+<li>Numerical Differentiation</li>
+<li>Interpolatory Quadrature</li>
+<li>Composite Quadrature</li>
+<li>Gaussian Quadrature</li>
+</ol>
+<h3 id="required-materials">Required Materials</h3>
+<p><strong>Textbook:</strong> <em>Numerical Mathematics</em> by Jeffrey
+S. Ovall, published by SIAM.</p>
+<p>The book is available at <a
+href="https://epubs.siam.org/doi/10.1137/1.9781611978070">https://epubs.siam.org/doi/10.1137/1.9781611978070</a>.
+<strong>A 20% discount can be applied using the code
+BKOVAD.</strong></p>
+<h3 id="assessment-and-grading">Assessment and Grading</h3>
+<p>The course grade will be based on assignments (30%), quizzes (10%),
+one midterm exam (30%), and the comprehensive final exam (30%).</p>
+<p>There is one midterm exam (Thursday 10/29), which take place at the
+regular class time and room.</p>
+<p>The final exam is cumulative, and will take place during exam week,
+on Thursday 12/10, from 11:10 am - 1 pm in the normal classroom (FMH
+419).</p>
+<h4 id="homework">Homework</h4>
+<p>There will be four homework assignments. These will be selected
+questions from the textbook. Students enrolled in MTH 551 will have some
+extra questions.</p>
+<p>You are welcome (and encouraged) to discuss the assignments with
+other students, but your write-ups should reflect your own work and
+understanding. <strong>Use of AI for homework assignments is
+prohibited.</strong></p>
+<h4 id="quizzes">Quizzes</h4>
+<p>There will be four in-class quizzes, listed on the lecture schedule.
+Each quiz will cover material from recent lectures and homework.
+Solutions will be presented in class, and there will be an opportunity
+to correct your quiz answers.</p>
+<h3 id="course-calendar-and-lecture-schedule">Course Calendar and
+Lecture Schedule</h3>
+<!-- Background colors:
+     Blue:  #e0e0ff
+     Green: #e0ffe0 -->
+<table cellspacing="0" cellpadding="3" border="1">
+<tr style="text-align: left;">
+<th scope="col">
+Lecture
+</th>
+<th scope="col">
+Date
+</th>
+<th scope="col">
+Topic
+</th>
+<th scope="col">
+Textbook Reference
+</th>
+</tr>
+<!-- begin-lecture-schedule -->
+<tr>
+<td>
+1
+</td>
+<td>
+Tue 9/29
+</td>
+<td>
+Taylor&#x2019;s Theorem
+</td>
+<td>
+1.1
+</td>
+</tr>
+<tr>
+<td>
+2
+</td>
+<td>
+Thu 10/1
+</td>
+<td>
+Taylor&#x2019;s Theorem; Orders of convergence
+</td>
+<td>
+1.1, 1.2
+</td>
+</tr>
+<tr>
+<td>
+3
+</td>
+<td>
+Tue 10/6
+</td>
+<td>
+<b>(Quiz 1, &#xA7;1.1)</b> Orders of convergence
+</td>
+<td>
+1.2, 1.3
+</td>
+</tr>
+<tr>
+<td>
+4
+</td>
+<td>
+Thu 10/8
+</td>
+<td>
+Floating-point arithmetic
+</td>
+<td>
+1.4
+</td>
+</tr>
+<tr>
+<td>
+5
+</td>
+<td>
+Tue 10/13
+</td>
+<td>
+Root bracketing methods
+</td>
+<td>
+2.1
+</td>
+</tr>
+<tr>
+<td>
+6
+</td>
+<td>
+Thu 10/15
+</td>
+<td>
+Newton and secant methods
+</td>
+<td>
+2.2
+</td>
+</tr>
+<tr>
+<td>
+7
+</td>
+<td>
+Tue 10/20
+</td>
+<td>
+<b>(Quiz 2, &#xA7;2.1, 2.2)</b> Functional iteration and fixed points
+</td>
+<td>
+2.3
+</td>
+</tr>
+<tr>
+<td>
+8
+</td>
+<td>
+Thu 10/22
+</td>
+<td>
+Building polynomials
+</td>
+<td>
+3.1
+</td>
+</tr>
+<tr>
+<td>
+9
+</td>
+<td>
+Tue 10/27
+</td>
+<td>
+<b>Midterm Review</b>
+</td>
+<td>
+-
+</td>
+</tr>
+<tr style="background-color: #e0ffe0;">
+<td>
+-
+</td>
+<td>
+Thu 10/29
+</td>
+<td>
+Midterm Exam
+</td>
+<td>
+-
+</td>
+</tr>
+<tr>
+<td>
+10
+</td>
+<td>
+Tue 11/3
+</td>
+<td>
+Building polynomials
+</td>
+<td>
+3.1
+</td>
+</tr>
+<tr>
+<td>
+11
+</td>
+<td>
+Thu 11/5
+</td>
+<td>
+Lagrange interpolation in Lagrange and barycentric forms
+</td>
+<td>
+3.2
+</td>
+</tr>
+<tr>
+<td>
+12
+</td>
+<td>
+Tue 11/10
+</td>
+<td>
+<b>(Quiz 3, &#xA7;3.1, 3.2)</b> Lagrange interpolation: error estimates
+</td>
+<td>
+3.2
+</td>
+</tr>
+<tr>
+<td>
+13
+</td>
+<td>
+Thu 11/12
+</td>
+<td>
+Basic quadrature
+</td>
+<td>
+4.1
+</td>
+</tr>
+<tr>
+<td>
+14
+</td>
+<td>
+Tue 11/17
+</td>
+<td>
+Basic quadrature
+</td>
+<td>
+4.1
+</td>
+</tr>
+<tr>
+<td>
+15
+</td>
+<td>
+Thu 11/19
+</td>
+<td>
+Finite difference approximations of derivatives
+</td>
+<td>
+4.2
+</td>
+</tr>
+<tr>
+<td>
+16
+</td>
+<td>
+Tue 11/24
+</td>
+<td>
+<b>(Quiz 4, &#xA7;4.1, 4.2)</b> Finite difference approximations of
+derivatives
+</td>
+<td>
+4.2
+</td>
+</tr>
+<tr style="background-color: #e0e0ff;">
+<td>
+-
+</td>
+<td>
+Thu 11/26
+</td>
+<td>
+Thanksgiving Day: No Class
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+17
+</td>
+<td>
+Tue 12/1
+</td>
+<td>
+Gaussian quadrature
+</td>
+<td>
+4.3
+</td>
+</tr>
+<tr>
+<td>
+18
+</td>
+<td>
+Thu 12/3
+</td>
+<td>
+<b>Exam Review</b>
+</td>
+<td>
+-
+</td>
+</tr>
+<tr style="background-color: #e0ffe0;">
+<td>
+-
+</td>
+<td>
+Thu 12/10
+</td>
+<td>
+Final Exam, <b>11:10 am-1 pm</b>, FMH 419
+</td>
+<td>
+-
+</td>
+</tr>
+<!-- end-lecture-schedule -->
+</table>
+<h3 id="psu-policies-and-resources">PSU Policies and Resources</h3>
+<h4 id="accessibility">Accessibility</h4>
+<p>I am committed to creating an accessible and inclusive learning
+environment for all students. If you encounter any accessibility
+barriers or challenges in this course, please reach out to me via email
+(pazner@pdx.edu). I will work with you and our campus partners to
+evaluate the issue and find solutions.</p>
+<h4 id="academic-integrity-grading-policies">Academic Integrity &amp;
+Grading Policies</h4>
+<ul>
+<li><a href="https://www.pdx.edu/registration/academic-calendar">PSU
+Academic Calendar</a></li>
+<li><a href="https://www.pdx.edu/registration/grading-system">PSU
+Grading System</a></li>
+<li><a
+href="https://www.pdx.edu/dos/psu-student-code-conduct#AcademicDishonesty">Student
+Code of Conduct</a></li>
+<li><a
+href="https://www.pdx.edu/registration/incomplete-grades">Incomplete
+Grades Policy</a></li>
+</ul>
+<h4 id="student-support-resources">Student Support Resources</h4>
+<ul>
+<li><a
+href="https://sites.google.com/pdx.edu/how-to-find-help-at-psu/home">How
+to Find Help at PSU</a></li>
+<li><a
+href="https://www.pdx.edu/disability-resource-center/information-students">Access
+and Inclusion for Students with Disabilities</a></li>
+<li><a href="https://www.pdx.edu/sexual-assault/">Understanding Sexual
+Misconduct</a></li>
+<li><a href="https://www.pdx.edu/diversity/title-ix">Title IX
+Reporting</a></li>
+<li><a href="https://www.pdx.edu/diversity/accommodations">Religious
+Accommodations</a></li>
+</ul>
+</body>
+</html>
