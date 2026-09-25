@@ -117,20 +117,29 @@ body {
   overflow-wrap: break-word;
 }
 
-/* LaTeXML pictures (plots) shrink to fit narrow screens (the site makefile
+/* LaTeXML pictures (plots) shrink to fit narrow screens (lectures/fix_svg.pl
    adds the viewBox this needs) */
 svg.ltx_picture {
   max-width: 100%;
   height: auto;
 }
 
-/* Text in LaTeXML pictures (plot labels, legends): LaTeXML sizes each label's
-   box for LaTeX's font (about 10pt here), so use that size, in the picture's
-   own units so it scales with the picture, instead of inheriting the larger
-   page font; and never wrap a label mid-word */
+/* Text in LaTeXML pictures (plot labels, legends): never wrap a label
+   mid-word. (Its font size is set on each picture by lectures/fix_svg.pl.) */
 svg.ltx_picture foreignObject {
-  font-size: 10px;
   white-space: nowrap;
+}
+
+/* Plot math in the same sans-serif font. Browsers italicize single-letter
+   variables using mathematical italic characters, which sans-serif text fonts
+   lack (they would fall back to a serif math font), so use plain italics */
+svg.ltx_picture math {
+  font-family: inherit;
+}
+
+svg.ltx_picture mi:not([mathvariant]):not([class]) {
+  text-transform: none;
+  font-style: italic;
 }
 
 /* Narrow screens: wide tables, including LaTeXML display equations, scroll on
