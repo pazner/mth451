@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>MTH 451/551 Lecture 3</title>
+<!--Generated on Fri Sep 25 20:42:57 2026 by LaTeXML (version 0.8.8) http://dlmf.nist.gov/LaTeXML/.-->
+
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+<a class="back-link" href="../index.html">[Back to main course page]</a>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">MTH 451/551 
+<br class="ltx_break">Lecture 3</h1>
+<div class="ltx_authors">
+<span class="ltx_creator ltx_role_author">
+<span class="ltx_personname">Prof. W. Pazner
+</span></span>
+</div>
+
+<section id="S1" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">1 </span>Floating Point Arithmetic</h2>
+
+<div id="S1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">[Textbook reference: §1.4]</p>
+</div>
+<div id="S1.p2" class="ltx_para">
+<p class="ltx_p">As discussed in the first lecture, the point of numerical analysis is <span class="ltx_text ltx_font_bold">to use computer algorithms to solve mathematics problems</span>.
+Therefore, it is supremely important to understand how numbers are represented by the computer.</p>
+</div>
+<section id="S1.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">1.1 </span>Prelude: Integer Representations</h3>
+
+<div id="S1.SS1.p1" class="ltx_para">
+<p class="ltx_p">For integers, there is no real ambiguity.
+Integers are represented by the computer using their representation in binary.
+Typically, integers are stored using a fixed number of bits (for example, 32 or 64), which allows us to represent all integers in a finite range.
+A <span class="ltx_text ltx_font_bold">bit</span> is simply a placeholder that can take the value 0 or 1.
+Representing integers beyond that range (i.e. with larger magnitude) simply requires using more bits.
+As an example, if we are encoding non-negative integers, we can represent the numbers 0, 1, 2, …, 7 using three bits.
+This is a total of <math id="S1.SS1.p1.m1" class="ltx_Math" alttext="8=2^{3}" display="inline"><mrow><mn>8</mn><mo>=</mo><msup><mn>2</mn><mn>3</mn></msup></mrow></math> representable numbers, corresponding to ways to choose from <math id="S1.SS1.p1.m2" class="ltx_Math" alttext="\{0,1\}" display="inline"><mrow><mo stretchy="false">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">}</mo></mrow></math> three times.</p>
+<table class="ltx_tabular ltx_centering ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r">Number</td>
+<td class="ltx_td ltx_align_center">Binary Representation</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">0</td>
+<td class="ltx_td ltx_align_center ltx_border_t">000</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r">1</td>
+<td class="ltx_td ltx_align_center">001</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r">2</td>
+<td class="ltx_td ltx_align_center">010</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r">3</td>
+<td class="ltx_td ltx_align_center">011</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r">4</td>
+<td class="ltx_td ltx_align_center">100</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r">5</td>
+<td class="ltx_td ltx_align_center">101</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r">6</td>
+<td class="ltx_td ltx_align_center">110</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r">7</td>
+<td class="ltx_td ltx_align_center">111</td>
+</tr>
+</tbody>
+</table>
+<p class="ltx_p">The number associated with the binary representation <math id="S1.SS1.p1.m3" class="ltx_Math" alttext="b_{2}b_{1}b_{0}" display="inline"><mrow><msub><mi>b</mi><mn>2</mn></msub><mo>⁢</mo><msub><mi>b</mi><mn>1</mn></msub><mo>⁢</mo><msub><mi>b</mi><mn>0</mn></msub></mrow></math> is <math id="S1.SS1.p1.m4" class="ltx_Math" alttext="\sum_{k=0}^{2}b_{k}2^{k}" display="inline"><mrow><msubsup><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mn>2</mn></msubsup><mrow><msub><mi>b</mi><mi>k</mi></msub><mo>⁢</mo><msup><mn>2</mn><mi>k</mi></msup></mrow></mrow></math>.
+If we wished to represent <span class="ltx_text ltx_font_italic">signed</span> numbers (positive or negative), we would use one bit of information to encode the sign (there are various ways of doing this).
+The upshot of this discussion is that it is relatively straightforward and uncontroversial how to represent integers on the computer.</p>
+</div>
+</section>
+<section id="S1.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">1.2 </span>Floating Point Numbers</h3>
+
+<div id="S1.SS2.p1" class="ltx_para">
+<p class="ltx_p">As soon as we want to represent <span class="ltx_text ltx_font_italic">real numbers</span> (or even just <span class="ltx_text ltx_font_italic">rational numbers</span>), the situation becomes more complicated.
+As opposed to the integer case, where a given number of bits can represent all possible integers within a range, the same is fundamentally impossible for real numbers, because every interval contains infinitely many of them, and so they cannot all be representable with finite information.
+This means that, even when representing numbers within a given range, we need to consider issues of precision and rounding.
+<span class="ltx_text ltx_font_bold">Floating point numbers</span> are the most commonly (almost universally) used method to represent these kinds of numbers on the computer.</p>
+</div>
+<div id="S1.SS2.p2" class="ltx_para">
+<p class="ltx_p">Before we define floating point numbers, it is useful to contrast them with the conceptually simpler but generally less useful <span class="ltx_text ltx_font_italic">fixed point numbers</span>.
+We can think of fixed point numbers as “fixing the decimal point” in an integer number, allowing us to represent fractional numbers.
+Essentially, this is the same as fixing a denominator <math id="S1.SS2.p2.m1" class="ltx_Math" alttext="d" display="inline"><mi>d</mi></math>, and then just representing integers, which get multiplied by <math id="S1.SS2.p2.m2" class="ltx_Math" alttext="1/d" display="inline"><mrow><mn>1</mn><mo>/</mo><mi>d</mi></mrow></math>.
+These types of numbers are often used in financial calculations, where quantities in dollars are represented using a denominator of <math id="S1.SS2.p2.m3" class="ltx_Math" alttext="d=100" display="inline"><mrow><mi>d</mi><mo>=</mo><mn>100</mn></mrow></math>, allowing the exact representation of all dollars-and-cents quantities within a range.
+However, outside of this and some other niche applications, fixed point numbers are relatively rarely used, in favor of the much more flexible <span class="ltx_text ltx_font_italic">floating point numbers</span>.
+The key advantage of floating point numbers is that, essentially, the fractional multiplier is also encoded as part of the number.
+This way, rather than “fixing” the position of the decimal point, it is allowed to “float”.</p>
+</div>
+<div id="S1.SS2.p3" class="ltx_para">
+<p class="ltx_p">Floating point numbers divide up the bits to represent three parts of the number: the sign, the mantissa, and the exponent.
+These terms correspond to representing a number as</p>
+<table id="S1.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex1.m1" class="ltx_Math" alttext="x=(-1)^{s}\times m\times b^{e}," display="block"><mrow><mrow><mi>x</mi><mo>=</mo><mrow><msup><mrow><mo stretchy="false">(</mo><mrow><mo>−</mo><mn>1</mn></mrow><mo rspace="0.055em" stretchy="false">)</mo></mrow><mi>s</mi></msup><mo rspace="0.222em">×</mo><mi>m</mi><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mi>b</mi><mi>e</mi></msup></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">where <math id="S1.SS2.p3.m1" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math> encodes the <span class="ltx_text ltx_font_bold">sign</span> (either 0 or 1), <math id="S1.SS2.p3.m2" class="ltx_Math" alttext="m\in[1,b)" display="inline"><mrow><mi>m</mi><mo>∈</mo><mrow><mo stretchy="false">[</mo><mn>1</mn><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math> is the <span class="ltx_text ltx_font_bold">mantissa</span>, and <math id="S1.SS2.p3.m3" class="ltx_Math" alttext="e" display="inline"><mi>e</mi></math> is the <span class="ltx_text ltx_font_bold">exponent</span>; here, <math id="S1.SS2.p3.m4" class="ltx_Math" alttext="b" display="inline"><mi>b</mi></math> is called the <span class="ltx_text ltx_font_bold">base</span> of the representation.
+This is essentially the same as “scientific notation” for numbers, which you may be familiar with.
+So, to represent a floating point number, we need to encode <math id="S1.SS2.p3.m5" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math>, <math id="S1.SS2.p3.m6" class="ltx_Math" alttext="m" display="inline"><mi>m</mi></math>, and <math id="S1.SS2.p3.m7" class="ltx_Math" alttext="e" display="inline"><mi>e</mi></math>.
+On the computer, it is natural to use <span class="ltx_text ltx_font_bold">binary</span> (base two) representation, and we take <math id="S1.SS2.p3.m8" class="ltx_Math" alttext="b=2" display="inline"><mrow><mi>b</mi><mo>=</mo><mn>2</mn></mrow></math>.</p>
+</div>
+<div id="S1.SS2.p4" class="ltx_para">
+<p class="ltx_p">The sign <math id="S1.SS2.p4.m1" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math> is represented using a single bit.
+The number of bits used to represent the mantissa and exponent depends on the exact choice of representation.
+Luckily, these representations have been standardized in a standard called IEEE 754 that is basically universal among all computers.
+This standard defines how to represent floating point numbers with 32, 64, or 128 bits.</p>
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r">Total Bits</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r">Sign</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r">Mantissa</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column">Exponent</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">32</td>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">1</td>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">23</td>
+<td class="ltx_td ltx_align_left ltx_border_t">8</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_r">64</td>
+<td class="ltx_td ltx_align_left ltx_border_r">1</td>
+<td class="ltx_td ltx_align_left ltx_border_r">52</td>
+<td class="ltx_td ltx_align_left">11</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_r">128</td>
+<td class="ltx_td ltx_align_left ltx_border_r">1</td>
+<td class="ltx_td ltx_align_left ltx_border_r">112</td>
+<td class="ltx_td ltx_align_left">15</td>
+</tr>
+</tbody>
+</table>
+<p class="ltx_p">32-bit floating point numbers are called <span class="ltx_text ltx_font_bold">single precision</span>.
+Likewise, 64-bit floating point numbers are called <span class="ltx_text ltx_font_bold">double precision</span>, and 128-bit floating point numbers are called <span class="ltx_text ltx_font_bold">quadruple precision</span>.
+In numerical analysis, double precision is the most widely used.
+In other fields, such as machine learning, single precision (or even half precision, using 16 bits) is more widely used; similarly for computer graphics.
+In this course, we will focus on <span class="ltx_text ltx_font_bold">64-bit double-precision floating point numbers</span>.</p>
+</div>
+<div id="S1.SS2.p5" class="ltx_para">
+<p class="ltx_p">The exponent <math id="S1.SS2.p5.m1" class="ltx_Math" alttext="e" display="inline"><mi>e</mi></math> is represented by 11 bits, so it can take on a total of <math id="S1.SS2.p5.m2" class="ltx_Math" alttext="2^{11}=2{,}048" display="inline"><mrow><msup><mn>2</mn><mn>11</mn></msup><mo>=</mo><mrow><mn>2</mn><mo>,</mo><mn>048</mn></mrow></mrow></math> possible values; these give the range <math id="S1.SS2.p5.m3" class="ltx_Math" alttext="-1022\leq e\leq 1023" display="inline"><mrow><mrow><mo>−</mo><mn>1022</mn></mrow><mo>≤</mo><mi>e</mi><mo>≤</mo><mn>1023</mn></mrow></math>, along with two reserved values used for special numbers.
+The 52-bit mantissa <math id="S1.SS2.p5.m4" class="ltx_Math" alttext="m\in[1,2)" display="inline"><mrow><mi>m</mi><mo>∈</mo><mrow><mo stretchy="false">[</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></mrow></math> is given by</p>
+<table id="S1.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex2.m1" class="ltx_Math" alttext="m=1+\sum_{k=1}^{52}d_{k}2^{-k}=1.d_{1}d_{2}\cdots d_{52}," display="block"><mrow><mrow><mrow><mi>m</mi><mo>=</mo><mrow><mn>1</mn><mo rspace="0.055em">+</mo><mrow><munderover><mo movablelimits="false">∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mn>52</mn></munderover><mrow><msub><mi>d</mi><mi>k</mi></msub><mo>⁢</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>k</mi></mrow></msup></mrow></mrow></mrow><mo>=</mo><mn>1</mn></mrow><mo lspace="0em" rspace="0.167em">.</mo><mrow><msub><mi>d</mi><mn>1</mn></msub><mo>⁢</mo><msub><mi>d</mi><mn>2</mn></msub><mo>⁢</mo><mi mathvariant="normal">⋯</mi><mo>⁢</mo><msub><mi>d</mi><mn>52</mn></msub></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">where <math id="S1.SS2.p5.m5" class="ltx_Math" alttext="d_{k}" display="inline"><msub><mi>d</mi><mi>k</mi></msub></math> is the value of the <math id="S1.SS2.p5.m6" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>th mantissa bit.
+The sign bit <math id="S1.SS2.p5.m7" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math> can be either 0 or 1.
+The number represented by these 64 bits is</p>
+<table id="S1.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex3.m1" class="ltx_math_unparsed" alttext="y=(-1)^{s}\times m\times 2^{e}=\pm(1.d_{1}d_{2}\cdots d_{52})\times 2^{e}." display="block"><mrow><mi>y</mi><mo>=</mo><msup><mrow><mo stretchy="false">(</mo><mo lspace="0em">−</mo><mn>1</mn><mo rspace="0.055em" stretchy="false">)</mo></mrow><mi>s</mi></msup><mo rspace="0.222em">×</mo><mi>m</mi><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>2</mn><mi>e</mi></msup><mo rspace="0em">=</mo><mo lspace="0em">±</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo lspace="0em" rspace="0.167em">.</mo><msub><mi>d</mi><mn>1</mn></msub><msub><mi>d</mi><mn>2</mn></msub><mi mathvariant="normal">⋯</mi><msub><mi>d</mi><mn>52</mn></msub><mo rspace="0.055em" stretchy="false">)</mo></mrow><mo rspace="0.222em">×</mo><msup><mn>2</mn><mi>e</mi></msup><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+</div>
+<div id="S1.SS2.p6" class="ltx_para">
+<p class="ltx_p">We use the symbol <math id="S1.SS2.p6.m1" class="ltx_Math" alttext="\mathbb{F}" display="inline"><mi>𝔽</mi></math> to denote the (finite) set of all such 64-bit numbers, together with the number zero.
+<span class="ltx_text ltx_font_italic">(Note: these are the <span class="ltx_text ltx_font_bold">normalized</span> floating-point numbers. Some special numbers, such as positive infinity and negative infinity, as well as so-called “subnormal” numbers, can also be represented in this format, but these are beyond the current scope).</span></p>
+</div>
+<div id="S1.SS2.p7" class="ltx_para">
+<p class="ltx_p">The mantissa is always in the interval <math id="S1.SS2.p7.m1" class="ltx_Math" alttext="[1,b)" display="inline"><mrow><mo stretchy="false">[</mo><mn>1</mn><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></math>.
+We can be more precise.
+The smallest mantissa is when all its bits are zero, and is exactly equal to 1.
+The largest mantissa is when all its bits are one, and is equal to</p>
+<table id="S1.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex4.m1" class="ltx_Math" alttext="1+\sum_{k=1}^{52}2^{-k}=\sum_{k=0}^{52}(2^{-1})^{k}=\frac{1-2^{-53}}{1-2^{-1}}%
+=2-2^{-52}." display="block"><mrow><mrow><mrow><mn>1</mn><mo rspace="0.055em">+</mo><mrow><munderover><mo movablelimits="false">∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mn>52</mn></munderover><msup><mn>2</mn><mrow><mo>−</mo><mi>k</mi></mrow></msup></mrow></mrow><mo rspace="0.111em">=</mo><mrow><munderover><mo movablelimits="false" rspace="0em">∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mn>52</mn></munderover><msup><mrow><mo stretchy="false">(</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mrow><mi>k</mi></msup></mrow><mo>=</mo><mfrac><mrow><mn>1</mn><mo>−</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>53</mn></mrow></msup></mrow><mrow><mn>1</mn><mo>−</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow></mfrac><mo>=</mo><mrow><mn>2</mn><mo>−</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>52</mn></mrow></msup></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">The spacing between successive mantissa values, which is called <span class="ltx_text ltx_font_bold">machine epsilon</span>, is</p>
+<table id="S1.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex5.m1" class="ltx_Math" alttext="\epsilon=2^{-52}=2.220446049250313080847263336181640625\times 10^{-16}." display="block"><mrow><mrow><mi>ϵ</mi><mo>=</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>52</mn></mrow></msup><mo>=</mo><mrow><mn>2.220446049250313080847263336181640625</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>16</mn></mrow></msup></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">The spacing between consecutive floating point numbers in <math id="S1.SS2.p7.m2" class="ltx_Math" alttext="[2^{e},2^{e+1}]" display="inline"><mrow><mo stretchy="false">[</mo><msup><mn>2</mn><mi>e</mi></msup><mo>,</mo><msup><mn>2</mn><mrow><mi>e</mi><mo>+</mo><mn>1</mn></mrow></msup><mo stretchy="false">]</mo></mrow></math> is <math id="S1.SS2.p7.m3" class="ltx_Math" alttext="\epsilon\times 2^{e}" display="inline"><mrow><mi>ϵ</mi><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>2</mn><mi>e</mi></msup></mrow></math> (and likewise for <math id="S1.SS2.p7.m4" class="ltx_Math" alttext="[-2^{e+1},-2^{e}]" display="inline"><mrow><mo stretchy="false">[</mo><mrow><mo>−</mo><msup><mn>2</mn><mrow><mi>e</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow><mo>,</mo><mrow><mo>−</mo><msup><mn>2</mn><mi>e</mi></msup></mrow><mo stretchy="false">]</mo></mrow></math>).
+For this reason, and as the next theorem will demonstrate, it is often said that double precision has (approximately) <span class="ltx_text ltx_font_bold">16 (decimal) digits of precision</span>.</p>
+</div>
+<div id="S1.SS2.p8" class="ltx_para">
+<p class="ltx_p">Another special value in <math id="S1.SS2.p8.m1" class="ltx_Math" alttext="\mathbb{F}" display="inline"><mi>𝔽</mi></math> is called <span class="ltx_text ltx_font_bold">unit roundoff</span>, and is given by</p>
+<table id="S1.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex6.m1" class="ltx_Math" alttext="u=2^{-53}=1.1102230246251565404236316680908203125\times 10^{-16}." display="block"><mrow><mrow><mi>u</mi><mo>=</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>53</mn></mrow></msup><mo>=</mo><mrow><mn>1.1102230246251565404236316680908203125</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>16</mn></mrow></msup></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">This number features in error analysis of rounding and floating point arithmetic.
+The smallest and largest positive numbers in <math id="S1.SS2.p8.m2" class="ltx_Math" alttext="\mathbb{F}" display="inline"><mi>𝔽</mi></math> are</p>
+<table id="S1.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S1.Ex7"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S1.Ex7.m1" class="ltx_Math" alttext="\displaystyle F_{\min}" display="inline"><msub><mi>F</mi><mi>min</mi></msub></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S1.Ex7.m2" class="ltx_Math" alttext="\displaystyle=2^{-1022}\approx 2.2250738585072013830902327173324040642\times 1%
+0^{-308}," display="inline"><mrow><mrow><mi></mi><mo>=</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>1022</mn></mrow></msup><mo>≈</mo><mrow><mn>2.2250738585072013830902327173324040642</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>308</mn></mrow></msup></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S1.Ex8"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S1.Ex8.m1" class="ltx_Math" alttext="\displaystyle F_{\max}" display="inline"><msub><mi>F</mi><mi>max</mi></msub></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S1.Ex8.m2" class="ltx_Math" alttext="\displaystyle=(1-u)2^{1024}\approx 1.7976931348623157081452742373170435680%
+\times 10^{308}." display="inline"><mrow><mrow><mi></mi><mo>=</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><mo>−</mo><mi>u</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><msup><mn>2</mn><mn>1024</mn></msup></mrow><mo>≈</mo><mrow><mn>1.7976931348623157081452742373170435680</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mn>308</mn></msup></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+</div>
+<div id="S1.SS2.p9" class="ltx_para">
+<p class="ltx_p">We say that a real number <math id="S1.SS2.p9.m1" class="ltx_Math" alttext="x\in\mathbb{R}" display="inline"><mrow><mi>x</mi><mo>∈</mo><mi>ℝ</mi></mrow></math> is <span class="ltx_text ltx_font_bold">in the range of <math id="S1.SS2.p9.m2" class="ltx_Math" alttext="\mathbb{F}" display="inline"><mi>𝔽</mi></math></span> if <math id="S1.SS2.p9.m3" class="ltx_Math" alttext="F_{\min}\leq|x|\leq F_{\max}" display="inline"><mrow><msub><mi>F</mi><mi>min</mi></msub><mo>≤</mo><mrow><mo stretchy="false">|</mo><mi>x</mi><mo stretchy="false">|</mo></mrow><mo>≤</mo><msub><mi>F</mi><mi>max</mi></msub></mrow></math> or if <math id="S1.SS2.p9.m4" class="ltx_Math" alttext="x=0" display="inline"><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math>.
+For such an <math id="S1.SS2.p9.m5" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>, we define the <span class="ltx_text ltx_font_bold">rounded value</span> of <math id="S1.SS2.p9.m6" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> to be the number <math id="S1.SS2.p9.m7" class="ltx_Math" alttext="\operatorname{fl}(x)\in\mathbb{F}" display="inline"><mrow><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∈</mo><mi>𝔽</mi></mrow></math> nearest to <math id="S1.SS2.p9.m8" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>.
+In case of a tie, we round to the nearest element of <math id="S1.SS2.p9.m9" class="ltx_Math" alttext="\mathbb{F}" display="inline"><mi>𝔽</mi></math> with <math id="S1.SS2.p9.m10" class="ltx_Math" alttext="d_{52}=0" display="inline"><mrow><msub><mi>d</mi><mn>52</mn></msub><mo>=</mo><mn>0</mn></mrow></math> (we say that <span class="ltx_text ltx_font_bold">ties round to even</span>; this is an unbiased rounding method).</p>
+</div>
+<div id="S1.SS2.p10" class="ltx_para">
+<p class="ltx_p">The following theorem bounds the relative error between a number <math id="S1.SS2.p10.m1" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> in the range of <math id="S1.SS2.p10.m2" class="ltx_Math" alttext="\mathbb{F}" display="inline"><mi>𝔽</mi></math> and its rounded value <math id="S1.SS2.p10.m3" class="ltx_Math" alttext="\operatorname{fl}(x)" display="inline"><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>, in terms of the unit roundoff <math id="S1.SS2.p10.m4" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math>.</p>
+</div>
+<div id="Thmtheorem1" class="ltx_theorem ltx_theorem_theorem">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Theorem 1</span></span><span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmtheorem1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If <math id="Thmtheorem1.p1.m1" class="ltx_Math" alttext="x\in\mathbb{R}" display="inline"><mrow><mi>x</mi><mo>∈</mo><mi>ℝ</mi></mrow></math> is in the range of <math id="Thmtheorem1.p1.m2" class="ltx_Math" alttext="\mathbb{F}" display="inline"><mi>𝔽</mi></math>, then <math id="Thmtheorem1.p1.m3" class="ltx_Math" alttext="\operatorname{fl}(x)=(1+\delta)x" display="inline"><mrow><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><mo>+</mo><mi>δ</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>x</mi></mrow></mrow></math> for some <math id="Thmtheorem1.p1.m4" class="ltx_Math" alttext="|\delta|&lt;u" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mi>δ</mi><mo stretchy="false">|</mo></mrow><mo>&lt;</mo><mi>u</mi></mrow></math>.
+In other words, for non-zero <math id="Thmtheorem1.p1.m5" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>, the relative error in rounding is smaller than <math id="Thmtheorem1.p1.m6" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math>,</span></p>
+<table id="S1.Ex9" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex9.m1" class="ltx_Math" alttext="\frac{|x-\operatorname{fl}(x)|}{|x|}=|\delta|&lt;u." display="block"><mrow><mrow><mfrac><mrow><mo stretchy="false">|</mo><mrow><mi>x</mi><mo>−</mo><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">|</mo></mrow><mrow><mo stretchy="false">|</mo><mi>x</mi><mo stretchy="false">|</mo></mrow></mfrac><mo>=</mo><mrow><mo stretchy="false">|</mo><mi>δ</mi><mo stretchy="false">|</mo></mrow><mo>&lt;</mo><mi>u</mi></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Fri Sep 25 20:42:57 2026 by <a href="http://dlmf.nist.gov/LaTeXML/" class="ltx_LaTeXML_logo"><span style="letter-spacing:-0.2em; margin-right:0.1em;">L<span class="ltx_font_smallcaps" style="position:relative; bottom:2.2pt;">a</span>T<span class="ltx_font_smallcaps" style="font-size:120%;position:relative; bottom:-0.2ex;">e</span></span><span style="font-size:90%; position:relative; bottom:-0.2ex;">XML</span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="Mascot Sammy"></a>
+</div></footer>
+</div>
+</body>
+</html>
