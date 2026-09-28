@@ -2,7 +2,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>MTH 451/551 Lecture 3</title>
-<!--Generated on Fri Sep 25 20:42:57 2026 by LaTeXML (version 0.8.8) http://dlmf.nist.gov/LaTeXML/.-->
+<!--Generated on Mon Sep 28 15:06:32 2026 by LaTeXML (version 0.8.8) http://dlmf.nist.gov/LaTeXML/.-->
 
 <link rel="stylesheet" href="LaTeXML.css" type="text/css">
 <link rel="stylesheet" href="ltx-article.css" type="text/css">
@@ -24,7 +24,7 @@
 
 <section id="S1" class="ltx_section">
 <h2 class="ltx_title ltx_title_section">
-<span class="ltx_tag ltx_tag_section">1 </span>Floating Point Arithmetic</h2>
+<span class="ltx_tag ltx_tag_section">1 </span>Floating Point Numbers and Arithmetic</h2>
 
 <div id="S1.p1" class="ltx_para ltx_noindent">
 <p class="ltx_p">[Textbook reference: §1.4]</p>
@@ -173,18 +173,19 @@ The 52-bit mantissa <math id="S1.SS2.p5.m4" class="ltx_Math" alttext="m\in[1,2)"
 
 <tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
 <td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
-<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex2.m1" class="ltx_Math" alttext="m=1+\sum_{k=1}^{52}d_{k}2^{-k}=1.d_{1}d_{2}\cdots d_{52}," display="block"><mrow><mrow><mrow><mi>m</mi><mo>=</mo><mrow><mn>1</mn><mo rspace="0.055em">+</mo><mrow><munderover><mo movablelimits="false">∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mn>52</mn></munderover><mrow><msub><mi>d</mi><mi>k</mi></msub><mo>⁢</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>k</mi></mrow></msup></mrow></mrow></mrow><mo>=</mo><mn>1</mn></mrow><mo lspace="0em" rspace="0.167em">.</mo><mrow><msub><mi>d</mi><mn>1</mn></msub><mo>⁢</mo><msub><mi>d</mi><mn>2</mn></msub><mo>⁢</mo><mi mathvariant="normal">⋯</mi><mo>⁢</mo><msub><mi>d</mi><mn>52</mn></msub></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex2.m1" class="ltx_math_unparsed" alttext="m=1+\sum_{k=1}^{52}d_{k}2^{-k}=(1.d_{1}d_{2}\cdots d_{52})_{2}," display="block"><mrow><mi>m</mi><mo>=</mo><mn>1</mn><mo rspace="0.055em">+</mo><munderover><mo movablelimits="false">∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mn>52</mn></munderover><msub><mi>d</mi><mi>k</mi></msub><msup><mn>2</mn><mrow><mo>−</mo><mi>k</mi></mrow></msup><mo>=</mo><msub><mrow><mo stretchy="false">(</mo><mn>1</mn><mo lspace="0em" rspace="0.167em">.</mo><msub><mi>d</mi><mn>1</mn></msub><msub><mi>d</mi><mn>2</mn></msub><mi mathvariant="normal">⋯</mi><msub><mi>d</mi><mn>52</mn></msub><mo stretchy="false">)</mo></mrow><mn>2</mn></msub><mo>,</mo></mrow></math></td>
 <td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
 </tr></tbody>
 </table>
 <p class="ltx_p">where <math id="S1.SS2.p5.m5" class="ltx_Math" alttext="d_{k}" display="inline"><msub><mi>d</mi><mi>k</mi></msub></math> is the value of the <math id="S1.SS2.p5.m6" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>th mantissa bit.
-The sign bit <math id="S1.SS2.p5.m7" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math> can be either 0 or 1.
+The subscript “2” in the expression <math id="S1.SS2.p5.m7" class="ltx_math_unparsed" alttext="(1.d_{1}d_{2}\cdots d_{52})_{2}" display="inline"><msub><mrow><mo stretchy="false">(</mo><mn>1</mn><mo lspace="0em" rspace="0.167em">.</mo><msub><mi>d</mi><mn>1</mn></msub><msub><mi>d</mi><mn>2</mn></msub><mi mathvariant="normal">⋯</mi><msub><mi>d</mi><mn>52</mn></msub><mo stretchy="false">)</mo></mrow><mn>2</mn></msub></math> indicates that the digits after the “point” are interpreted in base 2.
+The sign bit <math id="S1.SS2.p5.m8" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math> can be either 0 or 1.
 The number represented by these 64 bits is</p>
 <table id="S1.Ex3" class="ltx_equation ltx_eqn_table">
 
 <tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
 <td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
-<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex3.m1" class="ltx_math_unparsed" alttext="y=(-1)^{s}\times m\times 2^{e}=\pm(1.d_{1}d_{2}\cdots d_{52})\times 2^{e}." display="block"><mrow><mi>y</mi><mo>=</mo><msup><mrow><mo stretchy="false">(</mo><mo lspace="0em">−</mo><mn>1</mn><mo rspace="0.055em" stretchy="false">)</mo></mrow><mi>s</mi></msup><mo rspace="0.222em">×</mo><mi>m</mi><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>2</mn><mi>e</mi></msup><mo rspace="0em">=</mo><mo lspace="0em">±</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo lspace="0em" rspace="0.167em">.</mo><msub><mi>d</mi><mn>1</mn></msub><msub><mi>d</mi><mn>2</mn></msub><mi mathvariant="normal">⋯</mi><msub><mi>d</mi><mn>52</mn></msub><mo rspace="0.055em" stretchy="false">)</mo></mrow><mo rspace="0.222em">×</mo><msup><mn>2</mn><mi>e</mi></msup><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex3.m1" class="ltx_math_unparsed" alttext="y=(-1)^{s}\times m\times 2^{e}=\pm(1.d_{1}d_{2}\cdots d_{52})_{2}\times 2^{e}." display="block"><mrow><mi>y</mi><mo>=</mo><msup><mrow><mo stretchy="false">(</mo><mo lspace="0em">−</mo><mn>1</mn><mo rspace="0.055em" stretchy="false">)</mo></mrow><mi>s</mi></msup><mo rspace="0.222em">×</mo><mi>m</mi><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>2</mn><mi>e</mi></msup><mo rspace="0em">=</mo><mo lspace="0em">±</mo><msub><mrow><mo stretchy="false">(</mo><mn>1</mn><mo lspace="0em" rspace="0.167em">.</mo><msub><mi>d</mi><mn>1</mn></msub><msub><mi>d</mi><mn>2</mn></msub><mi mathvariant="normal">⋯</mi><msub><mi>d</mi><mn>52</mn></msub><mo rspace="0.055em" stretchy="false">)</mo></mrow><mn>2</mn></msub><mo rspace="0.222em">×</mo><msup><mn>2</mn><mi>e</mi></msup><mo lspace="0em">.</mo></mrow></math></td>
 <td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
 </tr></tbody>
 </table>
@@ -225,7 +226,8 @@ For this reason, and as the next theorem will demonstrate, it is often said that
 
 <tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
 <td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
-<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex6.m1" class="ltx_Math" alttext="u=2^{-53}=1.1102230246251565404236316680908203125\times 10^{-16}." display="block"><mrow><mrow><mi>u</mi><mo>=</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>53</mn></mrow></msup><mo>=</mo><mrow><mn>1.1102230246251565404236316680908203125</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>16</mn></mrow></msup></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex6.m1" class="ltx_Math" alttext="u=\frac{1}{2}\epsilon=2^{-53}=1.1102230246251565404236316680908203125\times 10%
+^{-16}." display="block"><mrow><mrow><mi>u</mi><mo>=</mo><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>⁢</mo><mi>ϵ</mi></mrow><mo>=</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>53</mn></mrow></msup><mo>=</mo><mrow><mn>1.1102230246251565404236316680908203125</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>16</mn></mrow></msup></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
 <td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
 </tr></tbody>
 </table>
@@ -274,12 +276,866 @@ In other words, for non-zero <math id="Thmtheorem1.p1.m5" class="ltx_Math" altte
 </table>
 </div>
 </div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="S1.SS2.p11" class="ltx_para">
+<p class="ltx_p">Without loss of generality, we may assume <math id="S1.SS2.p11.m1" class="ltx_Math" alttext="x\neq 0" display="inline"><mrow><mi>x</mi><mo>≠</mo><mn>0</mn></mrow></math> since if <math id="S1.SS2.p11.m2" class="ltx_Math" alttext="x=0" display="inline"><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math> then <math id="S1.SS2.p11.m3" class="ltx_Math" alttext="\operatorname{fl}(x)=x" display="inline"><mrow><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>x</mi></mrow></math> and we may take <math id="S1.SS2.p11.m4" class="ltx_Math" alttext="\delta=0" display="inline"><mrow><mi>δ</mi><mo>=</mo><mn>0</mn></mrow></math>.
+The first step is to write <math id="S1.SS2.p11.m5" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> as</p>
+<table id="S1.Ex10" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex10.m1" class="ltx_Math" alttext="x=\pm m\times 2^{e}," display="block"><mrow><mrow><mi>x</mi><mo>=</mo><mrow><mo>±</mo><mrow><mi>m</mi><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>2</mn><mi>e</mi></msup></mrow></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">where <math id="S1.SS2.p11.m6" class="ltx_Math" alttext="m\in[1,2)" display="inline"><mrow><mi>m</mi><mo>∈</mo><mrow><mo stretchy="false">[</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></mrow></math> is the mantissa and <math id="S1.SS2.p11.m7" class="ltx_Math" alttext="e\in\mathbb{Z}" display="inline"><mrow><mi>e</mi><mo>∈</mo><mi>ℤ</mi></mrow></math> is the exponent.
+All nonzero real numbers can be written this way.
+If <math id="S1.SS2.p11.m8" class="ltx_Math" alttext="m=1" display="inline"><mrow><mi>m</mi><mo>=</mo><mn>1</mn></mrow></math>, then again <math id="S1.SS2.p11.m9" class="ltx_Math" alttext="\operatorname{fl}(x)=x" display="inline"><mrow><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>x</mi></mrow></math> and <math id="S1.SS2.p11.m10" class="ltx_Math" alttext="\delta=0" display="inline"><mrow><mi>δ</mi><mo>=</mo><mn>0</mn></mrow></math>, so we now consider only the case that <math id="S1.SS2.p11.m11" class="ltx_Math" alttext="m&gt;1" display="inline"><mrow><mi>m</mi><mo>&gt;</mo><mn>1</mn></mrow></math>.
+As remarked above, the floating point numbers between <math id="S1.SS2.p11.m12" class="ltx_Math" alttext="2^{e}" display="inline"><msup><mn>2</mn><mi>e</mi></msup></math> and <math id="S1.SS2.p11.m13" class="ltx_Math" alttext="2^{e+1}" display="inline"><msup><mn>2</mn><mrow><mi>e</mi><mo>+</mo><mn>1</mn></mrow></msup></math> are evenly spaced, with spacing <math id="S1.SS2.p11.m14" class="ltx_Math" alttext="\epsilon\times 2^{e}" display="inline"><mrow><mi>ϵ</mi><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>2</mn><mi>e</mi></msup></mrow></math> (and the same for the floating point numbers between <math id="S1.SS2.p11.m15" class="ltx_Math" alttext="-2^{e}" display="inline"><mrow><mo>−</mo><msup><mn>2</mn><mi>e</mi></msup></mrow></math> and <math id="S1.SS2.p11.m16" class="ltx_Math" alttext="-2^{e+1}" display="inline"><mrow><mo>−</mo><msup><mn>2</mn><mrow><mi>e</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow></math>).
+So, <math id="S1.SS2.p11.m17" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> lies in some interval <math id="S1.SS2.p11.m18" class="ltx_Math" alttext="[a,a+\epsilon 2^{e}]" display="inline"><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mrow><mi>a</mi><mo>+</mo><mrow><mi>ϵ</mi><mo>⁢</mo><msup><mn>2</mn><mi>e</mi></msup></mrow></mrow><mo stretchy="false">]</mo></mrow></math>, where both endpoints are in <math id="S1.SS2.p11.m19" class="ltx_Math" alttext="\mathbb{F}" display="inline"><mi>𝔽</mi></math>.
+The closer of the two endpoints is <math id="S1.SS2.p11.m20" class="ltx_Math" alttext="\operatorname{fl}(x)" display="inline"><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> (and if there is a tie, apply the round-to-even rule).
+The distance from <math id="S1.SS2.p11.m21" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> to the closest of the endpoints is at most half the interval width, i.e. <math id="S1.SS2.p11.m22" class="ltx_Math" alttext="\frac{1}{2}\epsilon 2^{e}=u2^{e}" display="inline"><mrow><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>⁢</mo><mi>ϵ</mi><mo>⁢</mo><msup><mn>2</mn><mi>e</mi></msup></mrow><mo>=</mo><mrow><mi>u</mi><mo>⁢</mo><msup><mn>2</mn><mi>e</mi></msup></mrow></mrow></math>.
+Consequently, <math id="S1.SS2.p11.m23" class="ltx_Math" alttext="|x-\operatorname{fl}(x)|\leq u2^{e}" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><mi>x</mi><mo>−</mo><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mrow><mi>u</mi><mo>⁢</mo><msup><mn>2</mn><mi>e</mi></msup></mrow></mrow></math>.
+Since <math id="S1.SS2.p11.m24" class="ltx_Math" alttext="|x|&gt;2^{e}" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mi>x</mi><mo stretchy="false">|</mo></mrow><mo>&gt;</mo><msup><mn>2</mn><mi>e</mi></msup></mrow></math>, it follows that</p>
+<table id="S1.Ex11" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex11.m1" class="ltx_Math" alttext="\frac{|x-\operatorname{fl}(x)|}{|x|}\leq\frac{u2^{e}}{|x|}&lt;\frac{u2^{e}}{2^{e}%
+}=u." display="block"><mrow><mrow><mfrac><mrow><mo stretchy="false">|</mo><mrow><mi>x</mi><mo>−</mo><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">|</mo></mrow><mrow><mo stretchy="false">|</mo><mi>x</mi><mo stretchy="false">|</mo></mrow></mfrac><mo>≤</mo><mfrac><mrow><mi>u</mi><mo>⁢</mo><msup><mn>2</mn><mi>e</mi></msup></mrow><mrow><mo stretchy="false">|</mo><mi>x</mi><mo stretchy="false">|</mo></mrow></mfrac><mo>&lt;</mo><mfrac><mrow><mi>u</mi><mo>⁢</mo><msup><mn>2</mn><mi>e</mi></msup></mrow><msup><mn>2</mn><mi>e</mi></msup></mfrac><mo>=</mo><mi>u</mi></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">Let <math id="S1.SS2.p11.m25" class="ltx_Math" alttext="\delta=(\operatorname{fl}(x)-x)/x" display="inline"><mrow><mi>δ</mi><mo>=</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow><mo>/</mo><mi>x</mi></mrow></mrow></math>.
+It can be seen immediately that <math id="S1.SS2.p11.m26" class="ltx_Math" alttext="\operatorname{fl}(x)=(1+\delta)x" display="inline"><mrow><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><mo>+</mo><mi>δ</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>x</mi></mrow></mrow></math>.
+The above inequality implies that <math id="S1.SS2.p11.m27" class="ltx_Math" alttext="|\delta|&lt;u" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mi>δ</mi><mo stretchy="false">|</mo></mrow><mo>&lt;</mo><mi>u</mi></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="S1.SS2.p12" class="ltx_para">
+<p class="ltx_p">Note that even some simple rational numbers such as <math id="S1.SS2.p12.m1" class="ltx_Math" alttext="4/3" display="inline"><mrow><mn>4</mn><mo>/</mo><mn>3</mn></mrow></math> are not in <math id="S1.SS2.p12.m2" class="ltx_Math" alttext="\mathbb{F}" display="inline"><mi>𝔽</mi></math>.
+To see this, recall that for <math id="S1.SS2.p12.m3" class="ltx_Math" alttext="0&lt;r&lt;1" display="inline"><mrow><mn>0</mn><mo>&lt;</mo><mi>r</mi><mo>&lt;</mo><mn>1</mn></mrow></math>, we can compute the limit of the geometric series,</p>
+<table id="S1.Ex12" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex12.m1" class="ltx_Math" alttext="\sum_{k=0}^{\infty}r^{k}=\frac{1}{1-r}." display="block"><mrow><mrow><mrow><munderover><mo movablelimits="false">∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mi mathvariant="normal">∞</mi></munderover><msup><mi>r</mi><mi>k</mi></msup></mrow><mo>=</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo>−</mo><mi>r</mi></mrow></mfrac></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">Let <math id="S1.SS2.p12.m4" class="ltx_Math" alttext="r=2^{-m}" display="inline"><mrow><mi>r</mi><mo>=</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>m</mi></mrow></msup></mrow></math> for natural number <math id="S1.SS2.p12.m5" class="ltx_Math" alttext="m" display="inline"><mi>m</mi></math>.
+Then,</p>
+<table id="S1.Ex13" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex13.m1" class="ltx_math_unparsed" alttext="\frac{1}{1-2^{-m}}=\sum_{k=0}^{\infty}2^{-km}=(1.\underbrace{0\ldots 01}_{m}%
+\underbrace{0\ldots 01}_{m}\cdots)_{2}." display="block"><mrow><mfrac><mn>1</mn><mrow><mn>1</mn><mo>−</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>m</mi></mrow></msup></mrow></mfrac><mo rspace="0.111em">=</mo><munderover><mo movablelimits="false">∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mi mathvariant="normal">∞</mi></munderover><msup><mn>2</mn><mrow><mo>−</mo><mrow><mi>k</mi><mo>⁢</mo><mi>m</mi></mrow></mrow></msup><mo>=</mo><msub><mrow><mo stretchy="false">(</mo><mn>1</mn><mo lspace="0em" rspace="0.167em">.</mo><munder><munder accentunder="true"><mrow><mn>0</mn><mo>⁢</mo><mi mathvariant="normal">…</mi><mo>⁢</mo><mn>01</mn></mrow><mo>⏟</mo></munder><mi>m</mi></munder><munder><munder accentunder="true"><mrow><mn>0</mn><mo>⁢</mo><mi mathvariant="normal">…</mi><mo>⁢</mo><mn>01</mn></mrow><mo>⏟</mo></munder><mi>m</mi></munder><mi mathvariant="normal">⋯</mi><mo stretchy="false">)</mo></mrow><mn>2</mn></msub><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">This is an infinitely repeating pattern of digits after the point.
+If <math id="S1.SS2.p12.m6" class="ltx_Math" alttext="m\geq 2" display="inline"><mrow><mi>m</mi><mo>≥</mo><mn>2</mn></mrow></math>, then the digits are not all 1.
+Since every number in <math id="S1.SS2.p12.m7" class="ltx_Math" alttext="\mathbb{F}" display="inline"><mi>𝔽</mi></math> has a finite binary expansion, this implies that <math id="S1.SS2.p12.m8" class="ltx_Math" alttext="\frac{1}{1-2^{-m}}\notin\mathbb{F}" display="inline"><mrow><mfrac><mn>1</mn><mrow><mn>1</mn><mo>−</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>m</mi></mrow></msup></mrow></mfrac><mo>∉</mo><mi>𝔽</mi></mrow></math>.
+As an example,</p>
+<table id="S1.Ex14" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex14.m1" class="ltx_math_unparsed" alttext="\frac{4}{3}=\frac{1}{1-2^{-2}}=({\bf 1{.}}\mathord{\underbrace{\bf 0101\cdots 0%
+1}_{52}}01\cdots)_{2}=\left(\sum_{k=0}^{26}2^{-2k}\right)+\sum_{k=27}^{\infty}%
+2^{-2k}." display="block"><mrow><mfrac><mn>4</mn><mn>3</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo>−</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>2</mn></mrow></msup></mrow></mfrac><mo>=</mo><msub><mrow><mo stretchy="false">(</mo><mn>𝟏</mn><mo lspace="0em" rspace="0.167em">.</mo><munder><munder accentunder="true"><mrow><mn>𝟎𝟏𝟎𝟏</mn><mo>⁢</mo><mi mathvariant="normal">⋯</mi><mo>⁢</mo><mn>𝟎𝟏</mn></mrow><mo>⏟</mo></munder><mn>52</mn></munder><mn>01</mn><mi mathvariant="normal">⋯</mi><mo stretchy="false">)</mo></mrow><mn>2</mn></msub><mo>=</mo><mrow><mo>(</mo><munderover><mo lspace="0em" movablelimits="false">∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mn>26</mn></munderover><msup><mn>2</mn><mrow><mo>−</mo><mrow><mn>2</mn><mo>⁢</mo><mi>k</mi></mrow></mrow></msup><mo>)</mo></mrow><mo rspace="0.055em">+</mo><munderover><mo movablelimits="false">∑</mo><mrow><mi>k</mi><mo>=</mo><mn>27</mn></mrow><mi mathvariant="normal">∞</mi></munderover><msup><mn>2</mn><mrow><mo>−</mo><mrow><mn>2</mn><mo>⁢</mo><mi>k</mi></mrow></mrow></msup><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">The bolded number (which is equal to the sum in parentheses) is the largest number in <math id="S1.SS2.p12.m9" class="ltx_Math" alttext="\mathbb{F}" display="inline"><mi>𝔽</mi></math> that is less than <math id="S1.SS2.p12.m10" class="ltx_Math" alttext="4/3" display="inline"><mrow><mn>4</mn><mo>/</mo><mn>3</mn></mrow></math>.
+The closest two floating point numbers above and below <math id="S1.SS2.p12.m11" class="ltx_Math" alttext="4/3" display="inline"><mrow><mn>4</mn><mo>/</mo><mn>3</mn></mrow></math> are</p>
+<table id="S1.EGx2" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S1.Ex15"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S1.Ex15.m1" class="ltx_Math" alttext="\displaystyle a" display="inline"><mi>a</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S1.Ex15.m2" class="ltx_Math" alttext="\displaystyle=(1.0101\cdots 0101)_{2}=\sum_{k=0}^{26}2^{-2k}," display="inline"><mrow><mrow><mi></mi><mo>=</mo><msub><mrow><mo stretchy="false">(</mo><mrow><mn>1.0101</mn><mo>⁢</mo><mi mathvariant="normal">⋯</mi><mo>⁢</mo><mn>0101</mn></mrow><mo stretchy="false">)</mo></mrow><mn>2</mn></msub><mo>=</mo><mrow><mstyle displaystyle="true"><munderover><mo movablelimits="false">∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mn>26</mn></munderover></mstyle><msup><mn>2</mn><mrow><mo>−</mo><mrow><mn>2</mn><mo>⁢</mo><mi>k</mi></mrow></mrow></msup></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S1.Ex16"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S1.Ex16.m1" class="ltx_Math" alttext="\displaystyle b" display="inline"><mi>b</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S1.Ex16.m2" class="ltx_Math" alttext="\displaystyle=(1.0101\cdots 0110)_{2}=\sum_{k=0}^{25}2^{-2k}+2^{-51}=a+2^{-52}." display="inline"><mrow><mrow><mi></mi><mo>=</mo><msub><mrow><mo stretchy="false">(</mo><mrow><mn>1.0101</mn><mo>⁢</mo><mi mathvariant="normal">⋯</mi><mo>⁢</mo><mn>0110</mn></mrow><mo stretchy="false">)</mo></mrow><mn>2</mn></msub><mo>=</mo><mrow><mrow><mstyle displaystyle="true"><munderover><mo movablelimits="false">∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mn>25</mn></munderover></mstyle><msup><mn>2</mn><mrow><mo>−</mo><mrow><mn>2</mn><mo>⁢</mo><mi>k</mi></mrow></mrow></msup></mrow><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>51</mn></mrow></msup></mrow><mo>=</mo><mrow><mi>a</mi><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>52</mn></mrow></msup></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">We can see that</p>
+<table id="S1.EGx3" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S1.Ex17"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S1.Ex17.m1" class="ltx_math_unparsed" alttext="\displaystyle|4/3-a|=(0.\underbrace{\bf 00\cdots 00}_{52}0101\cdots)_{2}," display="inline"><mrow><mo fence="false" rspace="0.167em" stretchy="false">|</mo><mn>4</mn><mo>/</mo><mn>3</mn><mo>−</mo><mi>a</mi><mo fence="false" stretchy="false">|</mo><mo lspace="0.167em">=</mo><msub><mrow><mo stretchy="false">(</mo><mn>0</mn><mo lspace="0em" rspace="0.167em">.</mo><munder><munder accentunder="true"><mrow><mn>𝟎𝟎</mn><mo>⁢</mo><mi mathvariant="normal">⋯</mi><mo>⁢</mo><mn>𝟎𝟎</mn></mrow><mo>⏟</mo></munder><mn>52</mn></munder><mn>0101</mn><mi mathvariant="normal">⋯</mi><mo stretchy="false">)</mo></mrow><mn>2</mn></msub><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S1.Ex18"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S1.Ex18.m1" class="ltx_math_unparsed" alttext="\displaystyle|4/3-b|=(0.\underbrace{\bf 00\cdots 00}_{52}1010\cdots)_{2}," display="inline"><mrow><mo fence="false" rspace="0.167em" stretchy="false">|</mo><mn>4</mn><mo>/</mo><mn>3</mn><mo>−</mo><mi>b</mi><mo fence="false" stretchy="false">|</mo><mo lspace="0.167em">=</mo><msub><mrow><mo stretchy="false">(</mo><mn>0</mn><mo lspace="0em" rspace="0.167em">.</mo><munder><munder accentunder="true"><mrow><mn>𝟎𝟎</mn><mo>⁢</mo><mi mathvariant="normal">⋯</mi><mo>⁢</mo><mn>𝟎𝟎</mn></mrow><mo>⏟</mo></munder><mn>52</mn></munder><mn>1010</mn><mi mathvariant="normal">⋯</mi><mo stretchy="false">)</mo></mrow><mn>2</mn></msub><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">and so <math id="S1.SS2.p12.m12" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> is twice as close to <math id="S1.SS2.p12.m13" class="ltx_Math" alttext="4/3" display="inline"><mrow><mn>4</mn><mo>/</mo><mn>3</mn></mrow></math> as <math id="S1.SS2.p12.m14" class="ltx_Math" alttext="b" display="inline"><mi>b</mi></math> is.
+Therefore,</p>
+<table id="S1.EGx4" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S1.Ex19"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S1.Ex19.m1" class="ltx_Math" alttext="\displaystyle\operatorname{fl}(4/3)=a" display="inline"><mrow><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mn>4</mn><mo>/</mo><mn>3</mn></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>a</mi></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S1.Ex19.m2" class="ltx_Math" alttext="\displaystyle=(1.0101\cdots 0101)_{2}" display="inline"><mrow><mi></mi><mo>=</mo><msub><mrow><mo stretchy="false">(</mo><mrow><mn>1.0101</mn><mo>⁢</mo><mi mathvariant="normal">⋯</mi><mo>⁢</mo><mn>0101</mn></mrow><mo stretchy="false">)</mo></mrow><mn>2</mn></msub></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S1.Ex20"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S1.Ex20.m1" class="ltx_Math" alttext="\displaystyle=\underbrace{\bf 1.333333333333333}_{\text{16 digits}}25931846502%
+49895639717578887939453125." display="inline"><mrow><mrow><mi></mi><mo>=</mo><mrow><munder><munder accentunder="true"><mn class="ltx_mathvariant_bold" mathvariant="bold">1.333333333333333</mn><mo>⏟</mo></munder><mtext>16 digits</mtext></munder><mo>⁢</mo><mn>2593184650249895639717578887939453125</mn></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">Note that every number in <math id="S1.SS2.p12.m15" class="ltx_Math" alttext="\mathbb{F}" display="inline"><mi>𝔽</mi></math> has an <span class="ltx_text ltx_font_italic">exact</span> decimal representation, but it may take many decimal places to write it out in full.
+In general, only the first <math id="S1.SS2.p12.m16" class="ltx_Math" alttext="{\sim}16" display="inline"><mrow><mi></mi><mo>∼</mo><mn>16</mn></mrow></math> of those digits will be meaningful.</p>
+</div>
+</section>
+<section id="S1.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">1.3 </span>Floating Point Arithmetic</h3>
+
+<div id="S1.SS3.p1" class="ltx_para">
+<p class="ltx_p">We have now defined which numbers we can represent on the computer: those in <math id="S1.SS3.p1.m1" class="ltx_Math" alttext="\mathbb{F}" display="inline"><mi>𝔽</mi></math> (as well as some “special” numbers mentioned above, which we will not discuss further).
+We now need to define how to perform arithmetic on these numbers.
+The four fundamental arithmetic operations are <math id="S1.SS3.p1.m2" class="ltx_Math" alttext="+" display="inline"><mo>+</mo></math>, <math id="S1.SS3.p1.m3" class="ltx_Math" alttext="-" display="inline"><mo>−</mo></math>, <math id="S1.SS3.p1.m4" class="ltx_Math" alttext="\times" display="inline"><mo>×</mo></math>, <math id="S1.SS3.p1.m5" class="ltx_Math" alttext="\div" display="inline"><mo>÷</mo></math>.
+In this section, we will use <math id="S1.SS3.p1.m6" class="ltx_Math" alttext="\bigcirc" display="inline"><mo>○</mo></math> to generically denote one of these operations, i.e. to serve as a stand-in for any of them.</p>
+</div>
+<div id="S1.SS3.p2" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Even if <math id="S1.SS3.p2.m1" class="ltx_Math" alttext="x,y\in\mathbb{F}" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>∈</mo><mi>𝔽</mi></mrow></math>, it may be that <math id="S1.SS3.p2.m2" class="ltx_Math" alttext="x\bigcirc y\notin\mathbb{F}" display="inline"><mrow><mrow><mi>x</mi><mo lspace="0.222em" rspace="0.222em">○</mo><mi>y</mi></mrow><mo>∉</mo><mi>𝔽</mi></mrow></math></span>.
+This is clear for division.
+Even though <math id="S1.SS3.p2.m3" class="ltx_Math" alttext="3\in\mathbb{F}" display="inline"><mrow><mn>3</mn><mo>∈</mo><mi>𝔽</mi></mrow></math> and <math id="S1.SS3.p2.m4" class="ltx_Math" alttext="4\in\mathbb{F}" display="inline"><mrow><mn>4</mn><mo>∈</mo><mi>𝔽</mi></mrow></math>, we saw earlier that <math id="S1.SS3.p2.m5" class="ltx_Math" alttext="4\div 3\notin\mathbb{F}" display="inline"><mrow><mrow><mn>4</mn><mo>÷</mo><mn>3</mn></mrow><mo>∉</mo><mi>𝔽</mi></mrow></math>.
+It is also true for the other three operations.
+For example, <math id="S1.SS3.p2.m6" class="ltx_Math" alttext="1\in\mathbb{F}" display="inline"><mrow><mn>1</mn><mo>∈</mo><mi>𝔽</mi></mrow></math> and <math id="S1.SS3.p2.m7" class="ltx_Math" alttext="2^{-53}\in\mathbb{F}" display="inline"><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>53</mn></mrow></msup><mo>∈</mo><mi>𝔽</mi></mrow></math>, but <math id="S1.SS3.p2.m8" class="ltx_Math" alttext="1+2^{-53}\notin\mathbb{F}" display="inline"><mrow><mrow><mn>1</mn><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>53</mn></mrow></msup></mrow><mo>∉</mo><mi>𝔽</mi></mrow></math>.</p>
+</div>
+<div id="S1.SS3.p3" class="ltx_para">
+<p class="ltx_p">Let <math id="S1.SS3.p3.m1" class="ltx_Math" alttext="+_{\operatorname{fl}},-_{\operatorname{fl}},\times_{\operatorname{fl}},\div_{%
+\operatorname{fl}}" display="inline"><mrow><msub><mo>+</mo><mi>fl</mi></msub><mo lspace="0em" rspace="0em">,</mo><msub><mo lspace="0em" rspace="0em">−</mo><mi>fl</mi></msub><mo rspace="0em">,</mo><msub><mo lspace="0em" rspace="0em">×</mo><mi>fl</mi></msub><mo rspace="0em">,</mo><msub><mo lspace="0em">÷</mo><mi>fl</mi></msub></mrow></math> denote the <span class="ltx_text ltx_font_italic">floating point</span> versions of each of the operations, denoted generically by <math id="S1.SS3.p3.m2" class="ltx_Math" alttext="\bigcirc_{\operatorname{fl}}" display="inline"><msub><mo>○</mo><mi>fl</mi></msub></math>.
+These are functions <math id="S1.SS3.p3.m3" class="ltx_math_unparsed" alttext="\bigcirc_{\operatorname{fl}}:\mathbb{F}\times\mathbb{F}\to\mathbb{F}" display="inline"><mrow><msub><mo>○</mo><mi>fl</mi></msub><mo lspace="0em" rspace="0.278em">:</mo><mi>𝔽</mi><mo lspace="0.222em" rspace="0.222em">×</mo><mi>𝔽</mi><mo stretchy="false">→</mo><mi>𝔽</mi></mrow></math>.
+(Division by zero requires a special definition; we avoid discussing this case).
+For <math id="S1.SS3.p3.m4" class="ltx_Math" alttext="x,y\in\mathbb{F}" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>∈</mo><mi>𝔽</mi></mrow></math>, we define</p>
+<table id="S1.Ex21" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex21.m1" class="ltx_Math" alttext="x\bigcirc_{\operatorname{fl}}y=\operatorname{fl}(x\bigcirc y)\in\mathbb{F}." display="block"><mrow><mrow><mrow><mi>x</mi><msub><mo lspace="0.222em" rspace="0.222em">○</mo><mi>fl</mi></msub><mi>y</mi></mrow><mo>=</mo><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo lspace="0.222em" rspace="0.222em">○</mo><mi>y</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>∈</mo><mi>𝔽</mi></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">This means that the computed value <math id="S1.SS3.p3.m5" class="ltx_Math" alttext="x\bigcirc_{\operatorname{fl}}y" display="inline"><mrow><mi>x</mi><msub><mo lspace="0.222em" rspace="0.222em">○</mo><mi>fl</mi></msub><mi>y</mi></mrow></math> is given by rounding the exact value <math id="S1.SS3.p3.m6" class="ltx_Math" alttext="x\bigcirc y" display="inline"><mrow><mi>x</mi><mo lspace="0.222em" rspace="0.222em">○</mo><mi>y</mi></mrow></math> to the nearest floating point number.
+This same property is required or suggested for other operations, such as <math id="S1.SS3.p3.m7" class="ltx_Math" alttext="\sqrt{x}" display="inline"><msqrt><mi>x</mi></msqrt></math>.
+Function such as <math id="S1.SS3.p3.m8" class="ltx_Math" alttext="\exp,\sin,\cos,\log,\tan," display="inline"><mrow><mrow><mi>exp</mi><mo>,</mo><mi>sin</mi><mo>,</mo><mi>cos</mi><mo>,</mo><mi>log</mi><mo>,</mo><mi>tan</mi></mrow><mo>,</mo></mrow></math> etc. are <span class="ltx_text ltx_font_bold">not</span> required to give the rounded version of the exact value.
+This will be evident in some of the examples we consider.</p>
+</div>
+<div id="S1.SS3.p4" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">While some familiar properties of standard arithmetic operations still hold for their floating point equivalents, other properties <span class="ltx_text ltx_font_italic">do not</span> hold</span>.
+For example, addition and multiplication are commutative in both exact arithmetic and in floating point arithmetic:</p>
+<table id="S1.EGx5" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S1.Ex22"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S1.Ex22.m1" class="ltx_Math" alttext="\displaystyle x+_{\operatorname{fl}}y" display="inline"><mrow><mi>x</mi><msub><mo>+</mo><mi>fl</mi></msub><mi>y</mi></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S1.Ex22.m2" class="ltx_Math" alttext="\displaystyle=\operatorname{fl}(x+y)=\operatorname{fl}(y+x)=y+_{\operatorname{%
+fl}}x," display="inline"><mrow><mrow><mi></mi><mo>=</mo><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>y</mi><mo>+</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>y</mi><msub><mo>+</mo><mi>fl</mi></msub><mi>x</mi></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S1.Ex23"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S1.Ex23.m1" class="ltx_Math" alttext="\displaystyle x\times_{\operatorname{fl}}y" display="inline"><mrow><mi>x</mi><msub><mo lspace="0.222em" rspace="0.222em">×</mo><mi>fl</mi></msub><mi>y</mi></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S1.Ex23.m2" class="ltx_Math" alttext="\displaystyle=\operatorname{fl}(x\times y)=\operatorname{fl}(y\times x)=y%
+\times_{\operatorname{fl}}x." display="inline"><mrow><mrow><mi></mi><mo>=</mo><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo lspace="0.222em" rspace="0.222em">×</mo><mi>y</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>y</mi><mo lspace="0.222em" rspace="0.222em">×</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>y</mi><msub><mo lspace="0.222em" rspace="0.222em">×</mo><mi>fl</mi></msub><mi>x</mi></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">However, floating point operations are <span class="ltx_text ltx_font_italic">not</span> generally associative.</span>
+To illustrate this, consider (in exact arithmetic),</p>
+<table id="S1.Ex24" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex24.m1" class="ltx_Math" alttext="x=1+\epsilon=1+2u=(1+u)+u=1+(u+u)." display="block"><mrow><mrow><mi>x</mi><mo>=</mo><mrow><mn>1</mn><mo>+</mo><mi>ϵ</mi></mrow><mo>=</mo><mrow><mn>1</mn><mo>+</mo><mrow><mn>2</mn><mo>⁢</mo><mi>u</mi></mrow></mrow><mo>=</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><mo>+</mo><mi>u</mi></mrow><mo stretchy="false">)</mo></mrow><mo>+</mo><mi>u</mi></mrow><mo>=</mo><mrow><mn>1</mn><mo>+</mo><mrow><mo stretchy="false">(</mo><mrow><mi>u</mi><mo>+</mo><mi>u</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">However, in floating point arithmetic, note that</p>
+<table id="S1.Ex25" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex25.m1" class="ltx_Math" alttext="1+_{\operatorname{fl}}u=1,\qquad\text{and}\qquad u+_{\operatorname{fl}}u=\epsilon," display="block"><mrow><mrow><mrow><mrow><mn>1</mn><msub><mo>+</mo><mi>fl</mi></msub><mi>u</mi></mrow><mo>=</mo><mrow><mn>1</mn><mo rspace="2.167em">,</mo><mtext>and</mtext></mrow></mrow><mspace width="2em"></mspace><mrow><mrow><mi>u</mi><msub><mo>+</mo><mi>fl</mi></msub><mi>u</mi></mrow><mo>=</mo><mi>ϵ</mi></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">and so</p>
+<table id="S1.Ex26" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex26.m1" class="ltx_Math" alttext="(1+_{\operatorname{fl}}u)+_{\operatorname{fl}}u=1+_{\operatorname{fl}}u=1\neq x," display="block"><mrow><mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><msub><mo>+</mo><mi>fl</mi></msub><mi>u</mi></mrow><mo stretchy="false">)</mo></mrow><msub><mo>+</mo><mi>fl</mi></msub><mi>u</mi></mrow><mo>=</mo><mrow><mn>1</mn><msub><mo>+</mo><mi>fl</mi></msub><mi>u</mi></mrow><mo>=</mo><mn>1</mn><mo>≠</mo><mi>x</mi></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">but</p>
+<table id="S1.Ex27" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex27.m1" class="ltx_Math" alttext="1+_{\operatorname{fl}}(u+_{\operatorname{fl}}u)=1+_{\operatorname{fl}}\epsilon%
+=1+\epsilon=x." display="block"><mrow><mrow><mrow><mn>1</mn><msub><mo>+</mo><mi>fl</mi></msub><mrow><mo stretchy="false">(</mo><mrow><mi>u</mi><msub><mo>+</mo><mi>fl</mi></msub><mi>u</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mn>1</mn><msub><mo>+</mo><mi>fl</mi></msub><mi>ϵ</mi></mrow><mo>=</mo><mrow><mn>1</mn><mo>+</mo><mi>ϵ</mi></mrow><mo>=</mo><mi>x</mi></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+</div>
+<div id="S1.SS3.p5" class="ltx_para">
+<p class="ltx_p">Note that <math id="S1.SS3.p5.m1" class="ltx_Math" alttext="\operatorname{fl}(x)" display="inline"><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> is expected to have <math id="S1.SS3.p5.m2" class="ltx_Math" alttext="{\sim}16" display="inline"><mrow><mi></mi><mo>∼</mo><mn>16</mn></mrow></math> correct digits, and so the basic arithmetic operations are expected to be computed with a high degree of accuracy, since <math id="S1.SS3.p5.m3" class="ltx_Math" alttext="x+_{\operatorname{fl}}y=\operatorname{fl}(x+y)" display="inline"><mrow><mrow><mi>x</mi><msub><mo>+</mo><mi>fl</mi></msub><mi>y</mi></mrow><mo>=</mo><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+However, these small errors can accumulate, sometimes in quite significant ways, leading to calculations that have much larger relative errors.
+This is often the result of subtracting two distinct but very close numbers.</p>
+</div>
+<div id="Thmexamplex1" class="ltx_theorem ltx_theorem_examplex">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Example 1</span></span><span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmexamplex1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmexamplex1.p1.m1" class="ltx_Math" alttext="x=\exp(2^{-n})" display="inline"><mrow><mi>x</mi><mo>=</mo><mrow><mi>exp</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>n</mi></mrow></msup><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+For large <math id="Thmexamplex1.p1.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>, the exponent is very close to zero, and so <math id="Thmexamplex1.p1.m3" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> is very close to one.
+Let <math id="Thmexamplex1.p1.m4" class="ltx_Math" alttext="y=1" display="inline"><mrow><mi>y</mi><mo>=</mo><mn>1</mn></mrow></math>.
+We compute <math id="Thmexamplex1.p1.m5" class="ltx_Math" alttext="\operatorname{fl}(x)-_{\operatorname{fl}}y" display="inline"><mrow><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><msub><mo>−</mo><mi>fl</mi></msub><mi>y</mi></mrow></math> for various values of <math id="Thmexamplex1.p1.m6" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>, and show the result in the table below.</span></p>
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_th_row ltx_border_r"><math id="Thmexamplex1.p1.m7" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r"><math id="Thmexamplex1.p1.m8" class="ltx_Math" alttext="\operatorname{fl}(x)" display="inline"><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r"><math id="Thmexamplex1.p1.m9" class="ltx_Math" alttext="\operatorname{fl}(x)-_{\operatorname{fl}}y" display="inline"><mrow><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><msub><mo>−</mo><mi>fl</mi></msub><mi>y</mi></mrow></math></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column"><math id="Thmexamplex1.p1.m10" class="ltx_Math" alttext="\operatorname{fl}(x-y)" display="inline"><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mi>y</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_italic">25</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t"><math id="Thmexamplex1.p1.m11" class="ltx_Math" alttext="1+2^{-25}+2^{-51}" display="inline"><mrow><mn>1</mn><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>25</mn></mrow></msup><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>51</mn></mrow></msup></mrow></math></td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t"><math id="Thmexamplex1.p1.m12" class="ltx_Math" alttext="2^{-25}+2^{-51}" display="inline"><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>25</mn></mrow></msup><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>51</mn></mrow></msup></mrow></math></td>
+<td class="ltx_td ltx_align_center ltx_border_t"><math id="Thmexamplex1.p1.m13" class="ltx_Math" alttext="2^{-25}+2^{-51}+2^{-77}" display="inline"><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>25</mn></mrow></msup><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>51</mn></mrow></msup><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>77</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">26</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex1.p1.m14" class="ltx_Math" alttext="1+2^{-26}+2^{-52}" display="inline"><mrow><mn>1</mn><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>26</mn></mrow></msup><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>52</mn></mrow></msup></mrow></math></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex1.p1.m15" class="ltx_Math" alttext="2^{-26}+2^{-52}" display="inline"><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>26</mn></mrow></msup><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>52</mn></mrow></msup></mrow></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex1.p1.m16" class="ltx_Math" alttext="2^{-26}+2^{-53}" display="inline"><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>26</mn></mrow></msup><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>53</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">27</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex1.p1.m17" class="ltx_Math" alttext="1+2^{-27}" display="inline"><mrow><mn>1</mn><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>27</mn></mrow></msup></mrow></math></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex1.p1.m18" class="ltx_Math" alttext="2^{-27}" display="inline"><msup><mn>2</mn><mrow><mo>−</mo><mn>27</mn></mrow></msup></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex1.p1.m19" class="ltx_Math" alttext="2^{-27}+2^{-55}" display="inline"><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>27</mn></mrow></msup><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>55</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><math id="Thmexamplex1.p1.m20" class="ltx_Math" alttext="\vdots" display="inline"><mi mathvariant="normal">⋮</mi></math></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex1.p1.m21" class="ltx_Math" alttext="\vdots" display="inline"><mi mathvariant="normal">⋮</mi></math></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex1.p1.m22" class="ltx_Math" alttext="\vdots" display="inline"><mi mathvariant="normal">⋮</mi></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex1.p1.m23" class="ltx_Math" alttext="\vdots" display="inline"><mi mathvariant="normal">⋮</mi></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">51</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex1.p1.m24" class="ltx_Math" alttext="1+2^{-51}" display="inline"><mrow><mn>1</mn><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>51</mn></mrow></msup></mrow></math></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex1.p1.m25" class="ltx_Math" alttext="2^{-51}" display="inline"><msup><mn>2</mn><mrow><mo>−</mo><mn>51</mn></mrow></msup></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex1.p1.m26" class="ltx_Math" alttext="2^{-51}+2^{-103}" display="inline"><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>51</mn></mrow></msup><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>103</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">52</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex1.p1.m27" class="ltx_Math" alttext="1+2^{-52}" display="inline"><mrow><mn>1</mn><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>52</mn></mrow></msup></mrow></math></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex1.p1.m28" class="ltx_Math" alttext="2^{-52}" display="inline"><msup><mn>2</mn><mrow><mo>−</mo><mn>52</mn></mrow></msup></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex1.p1.m29" class="ltx_Math" alttext="2^{-52}+2^{-104}" display="inline"><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>52</mn></mrow></msup><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>104</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">53</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex1.p1.m30" class="ltx_Math" alttext="1+2^{-52}" display="inline"><mrow><mn>1</mn><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>52</mn></mrow></msup></mrow></math></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex1.p1.m31" class="ltx_Math" alttext="2^{-52}" display="inline"><msup><mn>2</mn><mrow><mo>−</mo><mn>52</mn></mrow></msup></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex1.p1.m32" class="ltx_Math" alttext="2^{-53}" display="inline"><msup><mn>2</mn><mrow><mo>−</mo><mn>53</mn></mrow></msup></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">54</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex1.p1.m33" class="ltx_Math" alttext="1" display="inline"><mn>1</mn></math></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex1.p1.m34" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex1.p1.m35" class="ltx_Math" alttext="2^{-54}" display="inline"><msup><mn>2</mn><mrow><mo>−</mo><mn>54</mn></mrow></msup></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><math id="Thmexamplex1.p1.m36" class="ltx_Math" alttext="\vdots" display="inline"><mi mathvariant="normal">⋮</mi></math></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex1.p1.m37" class="ltx_Math" alttext="\vdots" display="inline"><mi mathvariant="normal">⋮</mi></math></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex1.p1.m38" class="ltx_Math" alttext="\vdots" display="inline"><mi mathvariant="normal">⋮</mi></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex1.p1.m39" class="ltx_Math" alttext="\vdots" display="inline"><mi mathvariant="normal">⋮</mi></math></td>
+</tr>
+</tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">What we see from this table is that for <math id="Thmexamplex1.p1.m40" class="ltx_Math" alttext="n\geq 54" display="inline"><mrow><mi>n</mi><mo>≥</mo><mn>54</mn></mrow></math>,</span></p>
+<table id="S1.Ex28" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex28.m1" class="ltx_Math" alttext="\tilde{z}=\operatorname{fl}(x)-_{\operatorname{fl}}y=0,\qquad\text{but}\qquad z%
+=x-y&gt;0." display="block"><mrow><mrow><mrow><mover accent="true"><mi>z</mi><mo>~</mo></mover><mo>=</mo><mrow><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><msub><mo>−</mo><mi>fl</mi></msub><mi>y</mi></mrow><mo>=</mo><mn>0</mn></mrow><mo rspace="2.167em">,</mo><mrow><mrow><mtext class="ltx_mathvariant_italic">but</mtext><mspace width="2em"></mspace><mi>z</mi></mrow><mo>=</mo><mrow><mi>x</mi><mo>−</mo><mi>y</mi></mrow><mo>&gt;</mo><mn>0</mn></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">This means that the relative error is</span></p>
+<table id="S1.Ex29" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex29.m1" class="ltx_Math" alttext="\frac{|z-\tilde{z}|}{|z|}=\frac{|z|}{|z|}=100\%." display="block"><mrow><mrow><mfrac><mrow><mo stretchy="false">|</mo><mrow><mi>z</mi><mo>−</mo><mover accent="true"><mi>z</mi><mo>~</mo></mover></mrow><mo stretchy="false">|</mo></mrow><mrow><mo stretchy="false">|</mo><mi>z</mi><mo stretchy="false">|</mo></mrow></mfrac><mo>=</mo><mfrac><mrow><mo stretchy="false">|</mo><mi>z</mi><mo stretchy="false">|</mo></mrow><mrow><mo stretchy="false">|</mo><mi>z</mi><mo stretchy="false">|</mo></mrow></mfrac><mo>=</mo><mrow><mn>100</mn><mo>%</mo></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For this calculation, there are no correct significant digits.
+<math id="Thmexamplex1.p1.m41" class="ltx_Math" alttext="\blacklozenge" display="inline"><mi mathvariant="normal">◆</mi></math></span></p>
+</div>
+</div>
+<div id="S1.SS3.p6" class="ltx_para">
+<p class="ltx_p">The previous example may seem somewhat contrived.
+The next example shows that in practical situations, being aware of potential round-off errors can be extremely important.</p>
+</div>
+<div id="Thmexamplex2" class="ltx_theorem ltx_theorem_examplex">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Example 2</span></span><span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmexamplex2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Recall the forward difference approximation to the derivative,</span></p>
+<table id="S1.Ex30" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex30.m1" class="ltx_Math" alttext="f^{\prime}(c)=\frac{f(c+h)-f(c)}{h}+\mathcal{O}(h)." display="block"><mrow><mrow><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mfrac><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>c</mi><mo>+</mo><mi>h</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mi>h</mi></mfrac><mo>+</mo><mrow><mi class="ltx_font_mathcaligraphic">𝒪</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>h</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Take <math id="Thmexamplex2.p1.m1" class="ltx_Math" alttext="f(x)=\exp(x)" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>exp</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> and <math id="Thmexamplex2.p1.m2" class="ltx_Math" alttext="c=0" display="inline"><mrow><mi>c</mi><mo>=</mo><mn>0</mn></mrow></math>.
+We know that <math id="Thmexamplex2.p1.m3" class="ltx_Math" alttext="f^{\prime}(x)=f(x)=\exp(x)" display="inline"><mrow><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>exp</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, and so <math id="Thmexamplex2.p1.m4" class="ltx_Math" alttext="f^{\prime}(0)=1" display="inline"><mrow><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>1</mn></mrow></math>.
+We compute the difference quotient in floating point arithmetic.
+We expect that the error will go to zero linearly as <math id="Thmexamplex2.p1.m5" class="ltx_Math" alttext="h\to 0" display="inline"><mrow><mi>h</mi><mo stretchy="false">→</mo><mn>0</mn></mrow></math>.
+However, for very small values of <math id="Thmexamplex2.p1.m6" class="ltx_Math" alttext="h" display="inline"><mi>h</mi></math>, the error from subtractive cancellation can be catastrophic.
+From the table in the previous example, we see that for <math id="Thmexamplex2.p1.m7" class="ltx_Math" alttext="n\geq 54" display="inline"><mrow><mi>n</mi><mo>≥</mo><mn>54</mn></mrow></math>, <math id="Thmexamplex2.p1.m8" class="ltx_Math" alttext="\operatorname{fl}(\exp(2^{-n}))=1" display="inline"><mrow><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>exp</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>n</mi></mrow></msup><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>1</mn></mrow></math>.
+Therefore, for <math id="Thmexamplex2.p1.m9" class="ltx_Math" alttext="h=2^{-n}" display="inline"><mrow><mi>h</mi><mo>=</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>n</mi></mrow></msup></mrow></math>,</span></p>
+<table id="S1.Ex31" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex31.m1" class="ltx_Math" alttext="\frac{\operatorname{fl}(\exp(h))-_{\operatorname{fl}}\exp(0)}{h}=\frac{1-_{%
+\operatorname{fl}}1}{h}=0,\qquad(n\geq 54)," display="block"><mrow><mrow><mrow><mfrac><mrow><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>exp</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>h</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><msub><mo>−</mo><mi>fl</mi></msub><mrow><mi>exp</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow></mrow><mi>h</mi></mfrac><mo>=</mo><mfrac><mrow><mn>1</mn><msub><mo>−</mo><mi>fl</mi></msub><mn>1</mn></mrow><mi>h</mi></mfrac><mo>=</mo><mn>0</mn></mrow><mo rspace="2.167em">,</mo><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>≥</mo><mn>54</mn></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">and the relative error is again 100%.
+We can also see from the previous table that for <math id="Thmexamplex2.p1.m10" class="ltx_Math" alttext="n=53" display="inline"><mrow><mi>n</mi><mo>=</mo><mn>53</mn></mrow></math>, the relative error is 100%.
+In this case, the numerator is <math id="Thmexamplex2.p1.m11" class="ltx_Math" alttext="2^{-52}" display="inline"><msup><mn>2</mn><mrow><mo>−</mo><mn>52</mn></mrow></msup></math> and the denominator is <math id="Thmexamplex2.p1.m12" class="ltx_Math" alttext="2^{-53}" display="inline"><msup><mn>2</mn><mrow><mo>−</mo><mn>53</mn></mrow></msup></math>, and so the difference quotient gives an approximation of <math id="Thmexamplex2.p1.m13" class="ltx_Math" alttext="2" display="inline"><mn>2</mn></math>, but the exact answer is 1.
+The table below shows the finite-difference approximation and relative error for values of <math id="Thmexamplex2.p1.m14" class="ltx_Math" alttext="h=2^{-n}" display="inline"><mrow><mi>h</mi><mo>=</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>n</mi></mrow></msup></mrow></math>.</span></p>
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r"><math id="Thmexamplex2.p1.m15" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r"><math id="Thmexamplex2.p1.m16" class="ltx_Math" alttext="(\operatorname{fl}(\exp(h))-_{\operatorname{fl}}1)\div_{\operatorname{fl}}h" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>exp</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>h</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><msub><mo>−</mo><mi>fl</mi></msub><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow><msub><mo>÷</mo><mi>fl</mi></msub><mi>h</mi></mrow></math></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column"><span class="ltx_text ltx_font_italic">Relative Error</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_italic">22</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t"><math id="Thmexamplex2.p1.m17" class="ltx_Math" alttext="1+2^{-23}" display="inline"><mrow><mn>1</mn><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>23</mn></mrow></msup></mrow></math></td>
+<td class="ltx_td ltx_align_center ltx_border_t"><math id="Thmexamplex2.p1.m18" class="ltx_Math" alttext="2^{-23}\approx 1.19\times 10^{-7}" display="inline"><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>23</mn></mrow></msup><mo>≈</mo><mrow><mn>1.19</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>7</mn></mrow></msup></mrow></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">23</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p1.m19" class="ltx_Math" alttext="1+2^{-24}" display="inline"><mrow><mn>1</mn><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>24</mn></mrow></msup></mrow></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p1.m20" class="ltx_Math" alttext="2^{-24}\approx 5.96\times 10^{-8}" display="inline"><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>24</mn></mrow></msup><mo>≈</mo><mrow><mn>5.96</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>8</mn></mrow></msup></mrow></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">24</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p1.m21" class="ltx_Math" alttext="1+2^{-25}" display="inline"><mrow><mn>1</mn><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>25</mn></mrow></msup></mrow></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p1.m22" class="ltx_Math" alttext="2^{-25}\approx 2.98\times 10^{-8}" display="inline"><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>25</mn></mrow></msup><mo>≈</mo><mrow><mn>2.98</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>8</mn></mrow></msup></mrow></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">25</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p1.m23" class="ltx_Math" alttext="1+2^{-26}" display="inline"><mrow><mn>1</mn><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>26</mn></mrow></msup></mrow></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p1.m24" class="ltx_Math" alttext="2^{-26}\approx 1.49\times 10^{-8}" display="inline"><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>26</mn></mrow></msup><mo>≈</mo><mrow><mn>1.49</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>8</mn></mrow></msup></mrow></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">26</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p1.m25" class="ltx_Math" alttext="1+2^{-26}" display="inline"><mrow><mn>1</mn><mo>+</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>26</mn></mrow></msup></mrow></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p1.m26" class="ltx_Math" alttext="2^{-26}\approx 1.49\times 10^{-8}" display="inline"><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>26</mn></mrow></msup><mo>≈</mo><mrow><mn>1.49</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>8</mn></mrow></msup></mrow></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">27</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p1.m27" class="ltx_Math" alttext="1" display="inline"><mn>1</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p1.m28" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p1.m29" class="ltx_Math" alttext="\vdots" display="inline"><mi mathvariant="normal">⋮</mi></math></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p1.m30" class="ltx_Math" alttext="\vdots" display="inline"><mi mathvariant="normal">⋮</mi></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p1.m31" class="ltx_Math" alttext="\vdots" display="inline"><mi mathvariant="normal">⋮</mi></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">52</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p1.m32" class="ltx_Math" alttext="1" display="inline"><mn>1</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p1.m33" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">53</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p1.m34" class="ltx_Math" alttext="2" display="inline"><mn>2</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p1.m35" class="ltx_Math" alttext="1" display="inline"><mn>1</mn></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">54</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p1.m36" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p1.m37" class="ltx_Math" alttext="1" display="inline"><mn>1</mn></math></td>
+</tr>
+</tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The upshot is that, while the finite difference error decreases as <math id="Thmexamplex2.p1.m38" class="ltx_Math" alttext="h\to 0" display="inline"><mrow><mi>h</mi><mo stretchy="false">→</mo><mn>0</mn></mrow></math>, we cannot take <math id="Thmexamplex2.p1.m39" class="ltx_Math" alttext="h" display="inline"><mi>h</mi></math> too small, otherwise round-off error will destroy the accuracy.</span></p>
+</div>
+<div id="Thmexamplex2.p2" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Note that the exact values obtained in the example above (where the relative error is zero) are essentially coincidences because of the particular choice of <math id="Thmexamplex2.p2.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> and <math id="Thmexamplex2.p2.m2" class="ltx_Math" alttext="c" display="inline"><mi>c</mi></math>.
+If we choose <math id="Thmexamplex2.p2.m3" class="ltx_Math" alttext="c=1" display="inline"><mrow><mi>c</mi><mo>=</mo><mn>1</mn></mrow></math>, then we obtain the following results.</span></p>
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r"><math id="Thmexamplex2.p2.m4" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r"><math id="Thmexamplex2.p2.m5" class="ltx_Math" alttext="(\operatorname{fl}(\exp(1+_{\operatorname{fl}}h))-_{\operatorname{fl}}%
+\operatorname{fl}(e))\div_{\operatorname{fl}}h" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>exp</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><msub><mo>+</mo><mi>fl</mi></msub><mi>h</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><msub><mo>−</mo><mi>fl</mi></msub><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">)</mo></mrow><msub><mo>÷</mo><mi>fl</mi></msub><mi>h</mi></mrow></math></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column"><span class="ltx_text ltx_font_italic">Relative Error</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_italic">16</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t"><math id="Thmexamplex2.p2.m6" class="ltx_Math" alttext="2.7183025674" display="inline"><mn>2.7183025674</mn></math></td>
+<td class="ltx_td ltx_align_center ltx_border_t"><math id="Thmexamplex2.p2.m7" class="ltx_Math" alttext="7.63\times 10^{-6}" display="inline"><mrow><mn>7.63</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>6</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">18</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m8" class="ltx_Math" alttext="2.7182870132" display="inline"><mn>2.7182870132</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m9" class="ltx_Math" alttext="1.91\times 10^{-6}" display="inline"><mrow><mn>1.91</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>6</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">20</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m10" class="ltx_Math" alttext="2.7182831247" display="inline"><mn>2.7182831247</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m11" class="ltx_Math" alttext="4.77\times 10^{-7}" display="inline"><mrow><mn>4.77</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>7</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">22</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m12" class="ltx_Math" alttext="2.7182821538" display="inline"><mn>2.7182821538</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m13" class="ltx_Math" alttext="1.20\times 10^{-7}" display="inline"><mrow><mn>1.20</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>7</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">24</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m14" class="ltx_Math" alttext="2.7182819098" display="inline"><mn>2.7182819098</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m15" class="ltx_Math" alttext="2.99\times 10^{-8}" display="inline"><mrow><mn>2.99</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>8</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">26</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m16" class="ltx_Math" alttext="2.7182818651" display="inline"><mn>2.7182818651</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m17" class="ltx_Math" alttext="1.35\times 10^{-8}" display="inline"><mrow><mn>1.35</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>8</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">28</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m18" class="ltx_Math" alttext="2.7182818651" display="inline"><mn>2.7182818651</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m19" class="ltx_Math" alttext="1.35\times 10^{-8}" display="inline"><mrow><mn>1.35</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>8</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">30</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m20" class="ltx_Math" alttext="2.7182822227" display="inline"><mn>2.7182822227</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m21" class="ltx_Math" alttext="1.45\times 10^{-7}" display="inline"><mrow><mn>1.45</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>7</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">32</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m22" class="ltx_Math" alttext="2.7182826996" display="inline"><mn>2.7182826996</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m23" class="ltx_Math" alttext="3.20\times 10^{-7}" display="inline"><mrow><mn>3.20</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>7</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">34</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m24" class="ltx_Math" alttext="2.7182846069" display="inline"><mn>2.7182846069</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m25" class="ltx_Math" alttext="1.02\times 10^{-6}" display="inline"><mrow><mn>1.02</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>6</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">36</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m26" class="ltx_Math" alttext="2.7182922363" display="inline"><mn>2.7182922363</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m27" class="ltx_Math" alttext="3.83\times 10^{-6}" display="inline"><mrow><mn>3.83</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>6</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">38</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m28" class="ltx_Math" alttext="2.7182617188" display="inline"><mn>2.7182617188</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m29" class="ltx_Math" alttext="7.40\times 10^{-6}" display="inline"><mrow><mn>7.40</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>6</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">40</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m30" class="ltx_Math" alttext="2.7182617188" display="inline"><mn>2.7182617188</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m31" class="ltx_Math" alttext="7.40\times 10^{-6}" display="inline"><mrow><mn>7.40</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>6</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m32" class="ltx_Math" alttext="\vdots" display="inline"><mi mathvariant="normal">⋮</mi></math></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m33" class="ltx_Math" alttext="\vdots" display="inline"><mi mathvariant="normal">⋮</mi></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m34" class="ltx_Math" alttext="\vdots" display="inline"><mi mathvariant="normal">⋮</mi></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">50</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m35" class="ltx_Math" alttext="3" display="inline"><mn>3</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m36" class="ltx_Math" alttext="1.04\times 10^{-1}" display="inline"><mrow><mn>1.04</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">51</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m37" class="ltx_Math" alttext="3" display="inline"><mn>3</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m38" class="ltx_Math" alttext="1.04\times 10^{-1}" display="inline"><mrow><mn>1.04</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">52</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m39" class="ltx_Math" alttext="4" display="inline"><mn>4</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m40" class="ltx_Math" alttext="4.72\times 10^{-1}" display="inline"><mrow><mn>4.72</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">53</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m41" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m42" class="ltx_Math" alttext="1" display="inline"><mn>1</mn></math></td>
+</tr>
+</tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">This example shows the most common behavior of the error for finite difference quotients: at first, the error decreases with <math id="Thmexamplex2.p2.m43" class="ltx_Math" alttext="h" display="inline"><mi>h</mi></math>, since the <math id="Thmexamplex2.p2.m44" class="ltx_Math" alttext="\mathcal{O}(h)" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">𝒪</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>h</mi><mo stretchy="false">)</mo></mrow></mrow></math> term gets smaller.
+Then, for sufficiently small <math id="Thmexamplex2.p2.m45" class="ltx_Math" alttext="h" display="inline"><mi>h</mi></math>, the round-off error becomes, significant, and the error starts to increase until it completely dominates.
+Notice that the error achieved a minimum of about <math id="Thmexamplex2.p2.m46" class="ltx_Math" alttext="10^{-8}" display="inline"><msup><mn>10</mn><mrow><mo>−</mo><mn>8</mn></mrow></msup></math>, which is very far from the 16 decimal digits of accuracy we would hope to obtain.
+We can help address this issue by using a centered difference approximation, which has error <math id="Thmexamplex2.p2.m47" class="ltx_Math" alttext="\mathcal{O}(h^{2})" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">𝒪</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>h</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow></mrow></math>.</span></p>
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r"><math id="Thmexamplex2.p2.m48" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r"><math id="Thmexamplex2.p2.m49" class="ltx_Math" alttext="(\operatorname{fl}(\exp(1+_{\operatorname{fl}}h))-_{\operatorname{fl}}%
+\operatorname{fl}(\exp(1-_{\operatorname{fl}}h)))\div_{\operatorname{fl}}(2h)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>exp</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><msub><mo>+</mo><mi>fl</mi></msub><mi>h</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><msub><mo>−</mo><mi>fl</mi></msub><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>exp</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><msub><mo>−</mo><mi>fl</mi></msub><mi>h</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">)</mo></mrow><msub><mo>÷</mo><mi>fl</mi></msub><mrow><mo stretchy="false">(</mo><mrow><mn>2</mn><mo>⁢</mo><mi>h</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column"><span class="ltx_text ltx_font_italic">Relative Error</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_italic">8</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t"><math id="Thmexamplex2.p2.m50" class="ltx_Math" alttext="2.7182887414125" display="inline"><mn>2.7182887414125</mn></math></td>
+<td class="ltx_td ltx_align_center ltx_border_t"><math id="Thmexamplex2.p2.m51" class="ltx_Math" alttext="2.54\times 10^{-6}" display="inline"><mrow><mn>2.54</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>6</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">10</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m52" class="ltx_Math" alttext="2.7182822605182" display="inline"><mn>2.7182822605182</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m53" class="ltx_Math" alttext="1.59\times 10^{-7}" display="inline"><mrow><mn>1.59</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>7</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">12</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m54" class="ltx_Math" alttext="2.7182818554629" display="inline"><mn>2.7182818554629</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m55" class="ltx_Math" alttext="9.93\times 10^{-9}" display="inline"><mrow><mn>9.93</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>9</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">14</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m56" class="ltx_Math" alttext="2.7182818301480" display="inline"><mn>2.7182818301480</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m57" class="ltx_Math" alttext="6.21\times 10^{-10}" display="inline"><mrow><mn>6.21</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>10</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">16</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m58" class="ltx_Math" alttext="2.7182818285655" display="inline"><mn>2.7182818285655</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m59" class="ltx_Math" alttext="3.92\times 10^{-11}" display="inline"><mrow><mn>3.92</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>11</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">18</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m60" class="ltx_Math" alttext="2.7182818284491" display="inline"><mn>2.7182818284491</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m61" class="ltx_Math" alttext="3.66\times 10^{-12}" display="inline"><mrow><mn>3.66</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>12</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">20</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m62" class="ltx_Math" alttext="2.7182818283327" display="inline"><mn>2.7182818283327</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m63" class="ltx_Math" alttext="4.65\times 10^{-11}" display="inline"><mrow><mn>4.65</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>11</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">22</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m64" class="ltx_Math" alttext="2.7182818287984" display="inline"><mn>2.7182818287984</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m65" class="ltx_Math" alttext="1.25\times 10^{-10}" display="inline"><mrow><mn>1.25</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>10</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">24</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m66" class="ltx_Math" alttext="2.7182818278670" display="inline"><mn>2.7182818278670</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m67" class="ltx_Math" alttext="2.18\times 10^{-10}" display="inline"><mrow><mn>2.18</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>10</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">26</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m68" class="ltx_Math" alttext="2.7182818353176" display="inline"><mn>2.7182818353176</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m69" class="ltx_Math" alttext="2.52\times 10^{-9}" display="inline"><mrow><mn>2.52</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>9</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">28</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m70" class="ltx_Math" alttext="2.7182818055153" display="inline"><mn>2.7182818055153</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m71" class="ltx_Math" alttext="8.44\times 10^{-9}" display="inline"><mrow><mn>8.44</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>9</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">30</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m72" class="ltx_Math" alttext="2.7182819843292" display="inline"><mn>2.7182819843292</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m73" class="ltx_Math" alttext="5.73\times 10^{-8}" display="inline"><mrow><mn>5.73</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>8</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">32</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m74" class="ltx_Math" alttext="2.7182817459106" display="inline"><mn>2.7182817459106</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m75" class="ltx_Math" alttext="3.04\times 10^{-8}" display="inline"><mrow><mn>3.04</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>8</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">34</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m76" class="ltx_Math" alttext="2.7182807922363" display="inline"><mn>2.7182807922363</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m77" class="ltx_Math" alttext="3.81\times 10^{-7}" display="inline"><mrow><mn>3.81</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>7</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m78" class="ltx_Math" alttext="\vdots" display="inline"><mi mathvariant="normal">⋮</mi></math></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m79" class="ltx_Math" alttext="\vdots" display="inline"><mi mathvariant="normal">⋮</mi></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m80" class="ltx_Math" alttext="\vdots" display="inline"><mi mathvariant="normal">⋮</mi></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">50</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m81" class="ltx_Math" alttext="2.75" display="inline"><mn>2.75</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m82" class="ltx_Math" alttext="1.17\times 10^{-2}" display="inline"><mrow><mn>1.17</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>2</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">51</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m83" class="ltx_Math" alttext="2.5" display="inline"><mn>2.5</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m84" class="ltx_Math" alttext="8.03\times 10^{-2}" display="inline"><mrow><mn>8.03</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>2</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">52</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m85" class="ltx_Math" alttext="3" display="inline"><mn>3</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m86" class="ltx_Math" alttext="1.04\times 10^{-1}" display="inline"><mrow><mn>1.04</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_r"><span class="ltx_text ltx_font_italic">53</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex2.p2.m87" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex2.p2.m88" class="ltx_Math" alttext="1" display="inline"><mn>1</mn></math></td>
+</tr>
+</tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Here, we see that the error achieves a minimum of about <math id="Thmexamplex2.p2.m89" class="ltx_Math" alttext="10^{-12}" display="inline"><msup><mn>10</mn><mrow><mo>−</mo><mn>12</mn></mrow></msup></math>, which is 10,000 times smaller than in the case of forward differences.</span></p>
+</div>
+<div id="Thmexamplex2.p3" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">We can predict roughly what error is achievable by considering both sources of error: the truncation error from the Taylor expansion, and round-off error from the floating point arithmetic.
+The truncation error scales like <math id="Thmexamplex2.p3.m1" class="ltx_Math" alttext="h^{2}" display="inline"><msup><mi>h</mi><mn>2</mn></msup></math>.
+The round-off error in the numerator will scale like <math id="Thmexamplex2.p3.m2" class="ltx_Math" alttext="2ue" display="inline"><mrow><mn>2</mn><mo>⁢</mo><mi>u</mi><mo>⁢</mo><mi>e</mi></mrow></math>, and so after dividing by the denominator <math id="Thmexamplex2.p3.m3" class="ltx_Math" alttext="2h" display="inline"><mrow><mn>2</mn><mo>⁢</mo><mi>h</mi></mrow></math> (and taking the relative error, with exact value <math id="Thmexamplex2.p3.m4" class="ltx_Math" alttext="f^{\prime}(1)=e" display="inline"><mrow><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>e</mi></mrow></math>), we see that the contribution to the relative error from round-off scales like <math id="Thmexamplex2.p3.m5" class="ltx_Math" alttext="u/h" display="inline"><mrow><mi>u</mi><mo>/</mo><mi>h</mi></mrow></math>.
+So, the overall error will scale like <math id="Thmexamplex2.p3.m6" class="ltx_Math ltx_framed ltx_framed_rectangle" alttext="\eta(h)=h^{2}+u/h" display="inline"><mrow><mrow><mi>η</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>h</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msup><mi>h</mi><mn>2</mn></msup><mo>+</mo><mrow><mi>u</mi><mo>/</mo><mi>h</mi></mrow></mrow></mrow></math>.</span></p>
+</div>
+<div id="Thmexamplex2.p4" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">We can find the <math id="Thmexamplex2.p4.m1" class="ltx_Math" alttext="h" display="inline"><mi>h</mi></math> that minimizes <math id="Thmexamplex2.p4.m2" class="ltx_Math" alttext="\eta(h)" display="inline"><mrow><mi>η</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>h</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+To do this, we find the critical point <math id="Thmexamplex2.p4.m3" class="ltx_Math" alttext="\eta^{\prime}(h)=2h-uh^{-2}=0" display="inline"><mrow><mrow><msup><mi>η</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>h</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><mn>2</mn><mo>⁢</mo><mi>h</mi></mrow><mo>−</mo><mrow><mi>u</mi><mo>⁢</mo><msup><mi>h</mi><mrow><mo>−</mo><mn>2</mn></mrow></msup></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math>.
+This gives <math id="Thmexamplex2.p4.m4" class="ltx_Math" alttext="h=\sqrt[3]{u/2}=\sqrt[3]{2^{-54}}=2^{-18}" display="inline"><mrow><mi>h</mi><mo>=</mo><mroot><mrow><mi>u</mi><mo>/</mo><mn>2</mn></mrow><mn>3</mn></mroot><mo>=</mo><mroot><msup><mn>2</mn><mrow><mo>−</mo><mn>54</mn></mrow></msup><mn>3</mn></mroot><mo>=</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>18</mn></mrow></msup></mrow></math>.
+This model predicts that the error will be minimized at <math id="Thmexamplex2.p4.m5" class="ltx_Math ltx_framed ltx_framed_rectangle" alttext="n=18" display="inline"><mrow><mi>n</mi><mo>=</mo><mn>18</mn></mrow></math> and the error will be bounded roughly <math id="Thmexamplex2.p4.m6" class="ltx_Math" alttext="2^{-36}+2^{-53}/2^{-18}=3\times 2^{-36}\approx 4\times 10^{-11}" display="inline"><mrow><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>36</mn></mrow></msup><mo>+</mo><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>53</mn></mrow></msup><mo>/</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>18</mn></mrow></msup></mrow></mrow><mo>=</mo><mrow><mn>3</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>36</mn></mrow></msup></mrow><mo>≈</mo><mrow><mn>4</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>11</mn></mrow></msup></mrow></mrow></math>.
+Indeed, in our table, the minimum is achieved at <math id="Thmexamplex2.p4.m7" class="ltx_Math" alttext="n=18" display="inline"><mrow><mi>n</mi><mo>=</mo><mn>18</mn></mrow></math>, and the observed error is less than the bound provided by the model.
+<math id="Thmexamplex2.p4.m8" class="ltx_Math" alttext="\blacklozenge" display="inline"><mi mathvariant="normal">◆</mi></math></span></p>
+</div>
+</div>
+<div id="Thmexamplex3" class="ltx_theorem ltx_theorem_examplex">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Example 3</span></span><span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmexamplex3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For functions which are analytic (complex differentiable around <math id="Thmexamplex3.p1.m1" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>), and which take real values on the real line, then we can use complex variable methods to get even more accurate approximations to derivatives.
+Counterintuitively, these methods use complex numbers to approximate results that are always real numbers.
+If we evaluate the Taylor series of <math id="Thmexamplex3.p1.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> about <math id="Thmexamplex3.p1.m3" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> at the point <math id="Thmexamplex3.p1.m4" class="ltx_Math" alttext="x+\mathfrak{i}h" display="inline"><mrow><mi>x</mi><mo>+</mo><mrow><mi>𝔦</mi><mo>⁢</mo><mi>h</mi></mrow></mrow></math> (where <math id="Thmexamplex3.p1.m5" class="ltx_Math" alttext="\mathfrak{i}" display="inline"><mi>𝔦</mi></math> is the imaginary unit), we obtain</span></p>
+<table id="S1.Ex32" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex32.m1" class="ltx_Math" alttext="f(x+\mathfrak{i}h)=f(x)+\mathfrak{i}hf^{\prime}(x)-\frac{h^{2}}{2}f^{\prime%
+\prime}(x)-\frac{\mathfrak{i}h^{3}}{3!}f^{(3)}(x)+\cdots," display="block"><mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>+</mo><mrow><mi>𝔦</mi><mo>⁢</mo><mi>h</mi></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>+</mo><mrow><mi>𝔦</mi><mo>⁢</mo><mi>h</mi><mo>⁢</mo><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>−</mo><mrow><mfrac><msup><mi>h</mi><mn>2</mn></msup><mn>2</mn></mfrac><mo>⁢</mo><msup><mi>f</mi><mo>′′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mfrac><mrow><mi>𝔦</mi><mo>⁢</mo><msup><mi>h</mi><mn>3</mn></msup></mrow><mrow><mn>3</mn><mo>!</mo></mrow></mfrac><mo>⁢</mo><msup><mi>f</mi><mrow><mo stretchy="false">(</mo><mn>3</mn><mo stretchy="false">)</mo></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>+</mo><mi mathvariant="normal">⋯</mi></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">and so</span></p>
+<table id="S1.Ex33" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex33.m1" class="ltx_Math" alttext="\frac{\operatorname{im}(f(x+\mathfrak{i}h))}{h}=f^{\prime}(x)+\mathcal{O}(h^{2%
+})." display="block"><mrow><mrow><mfrac><mrow><mi>im</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>+</mo><mrow><mi>𝔦</mi><mo>⁢</mo><mi>h</mi></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mi>h</mi></mfrac><mo>=</mo><mrow><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>+</mo><mrow><mi class="ltx_font_mathcaligraphic">𝒪</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>h</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">This is a second-order approximation requiring only one (complex) evaluation of <math id="Thmexamplex3.p1.m6" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>.
+Furthermore, <span class="ltx_text ltx_font_bold">there is no subtraction</span> in the numerator, and since the imaginary part of <math id="Thmexamplex3.p1.m7" class="ltx_Math" alttext="x+\mathfrak{i}h" display="inline"><mrow><mi>x</mi><mo>+</mo><mrow><mi>𝔦</mi><mo>⁢</mo><mi>h</mi></mrow></mrow></math> is <math id="Thmexamplex3.p1.m8" class="ltx_Math" alttext="\mathcal{O}(h)" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">𝒪</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>h</mi><mo stretchy="false">)</mo></mrow></mrow></math>, the round-off error in computing <math id="Thmexamplex3.p1.m9" class="ltx_Math" alttext="\operatorname{fl}(f(x+\mathfrak{i}h))" display="inline"><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>+</mo><mrow><mi>𝔦</mi><mo>⁢</mo><mi>h</mi></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math> will scale like <math id="Thmexamplex3.p1.m10" class="ltx_Math" alttext="uh" display="inline"><mrow><mi>u</mi><mo>⁢</mo><mi>h</mi></mrow></math>.
+Therefore, we can model the error as <math id="Thmexamplex3.p1.m11" class="ltx_Math" alttext="h^{2}+uh/h=h^{2}+u" display="inline"><mrow><mrow><msup><mi>h</mi><mn>2</mn></msup><mo>+</mo><mrow><mrow><mi>u</mi><mo>⁢</mo><mi>h</mi></mrow><mo>/</mo><mi>h</mi></mrow></mrow><mo>=</mo><mrow><msup><mi>h</mi><mn>2</mn></msup><mo>+</mo><mi>u</mi></mrow></mrow></math>.
+The round-off term does not grow as <math id="Thmexamplex3.p1.m12" class="ltx_Math" alttext="h\to 0" display="inline"><mrow><mi>h</mi><mo stretchy="false">→</mo><mn>0</mn></mrow></math>, allowing us to use extremely small values of <math id="Thmexamplex3.p1.m13" class="ltx_Math" alttext="h" display="inline"><mi>h</mi></math> and still obtain accurate results.</span></p>
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_th_row ltx_border_r"><math id="Thmexamplex3.p1.m14" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r"><math id="Thmexamplex3.p1.m15" class="ltx_Math" alttext="\operatorname{fl}(\operatorname{im}(\exp(1+\mathfrak{i}h)))\div_{\operatorname%
+{fl}}h" display="inline"><mrow><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>im</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>exp</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><mo>+</mo><mrow><mi>𝔦</mi><mo>⁢</mo><mi>h</mi></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><msub><mo>÷</mo><mi>fl</mi></msub><mi>h</mi></mrow></math></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column"><span class="ltx_text ltx_font_italic">Relative Error</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_italic">8</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t"><math id="Thmexamplex3.p1.m16" class="ltx_Math" alttext="2.718274915516147" display="inline"><mn>2.718274915516147</mn></math></td>
+<td class="ltx_td ltx_align_center ltx_border_t"><math id="Thmexamplex3.p1.m17" class="ltx_Math" alttext="2.54\times 10^{-6}" display="inline"><mrow><mn>2.54</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>6</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">10</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex3.p1.m18" class="ltx_Math" alttext="2.718281396399805" display="inline"><mn>2.718281396399805</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex3.p1.m19" class="ltx_Math" alttext="1.59\times 10^{-7}" display="inline"><mrow><mn>1.59</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>7</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">12</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex3.p1.m20" class="ltx_Math" alttext="2.718281801455341" display="inline"><mn>2.718281801455341</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex3.p1.m21" class="ltx_Math" alttext="9.93\times 10^{-9}" display="inline"><mrow><mn>9.93</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>9</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">14</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex3.p1.m22" class="ltx_Math" alttext="2.718281826771314" display="inline"><mn>2.718281826771314</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex3.p1.m23" class="ltx_Math" alttext="6.21\times 10^{-10}" display="inline"><mrow><mn>6.21</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>10</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">16</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex3.p1.m24" class="ltx_Math" alttext="2.718281828353562" display="inline"><mn>2.718281828353562</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex3.p1.m25" class="ltx_Math" alttext="3.88\times 10^{-11}" display="inline"><mrow><mn>3.88</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>11</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">18</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex3.p1.m26" class="ltx_Math" alttext="2.718281828452453" display="inline"><mn>2.718281828452453</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex3.p1.m27" class="ltx_Math" alttext="2.43\times 10^{-12}" display="inline"><mrow><mn>2.43</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>12</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">20</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex3.p1.m28" class="ltx_Math" alttext="2.718281828458633" display="inline"><mn>2.718281828458633</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex3.p1.m29" class="ltx_Math" alttext="1.52\times 10^{-13}" display="inline"><mrow><mn>1.52</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>13</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">22</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex3.p1.m30" class="ltx_Math" alttext="2.718281828459019" display="inline"><mn>2.718281828459019</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex3.p1.m31" class="ltx_Math" alttext="9.53\times 10^{-15}" display="inline"><mrow><mn>9.53</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>15</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">24</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex3.p1.m32" class="ltx_Math" alttext="2.718281828459044" display="inline"><mn>2.718281828459044</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex3.p1.m33" class="ltx_Math" alttext="5.43\times 10^{-16}" display="inline"><mrow><mn>5.43</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>16</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">26</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex3.p1.m34" class="ltx_Math" alttext="2.718281828459045" display="inline"><mn>2.718281828459045</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex3.p1.m35" class="ltx_Math" alttext="5.32\times 10^{-17}" display="inline"><mrow><mn>5.32</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>17</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">28</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex3.p1.m36" class="ltx_Math" alttext="2.718281828459045" display="inline"><mn>2.718281828459045</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex3.p1.m37" class="ltx_Math" alttext="5.32\times 10^{-17}" display="inline"><mrow><mn>5.32</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>17</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">30</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex3.p1.m38" class="ltx_Math" alttext="2.718281828459045" display="inline"><mn>2.718281828459045</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex3.p1.m39" class="ltx_Math" alttext="5.32\times 10^{-17}" display="inline"><mrow><mn>5.32</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>17</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">32</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex3.p1.m40" class="ltx_Math" alttext="2.718281828459045" display="inline"><mn>2.718281828459045</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex3.p1.m41" class="ltx_Math" alttext="5.32\times 10^{-17}" display="inline"><mrow><mn>5.32</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>17</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">34</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex3.p1.m42" class="ltx_Math" alttext="2.718281828459045" display="inline"><mn>2.718281828459045</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex3.p1.m43" class="ltx_Math" alttext="5.32\times 10^{-17}" display="inline"><mrow><mn>5.32</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>17</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><math id="Thmexamplex3.p1.m44" class="ltx_Math" alttext="\vdots" display="inline"><mi mathvariant="normal">⋮</mi></math></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex3.p1.m45" class="ltx_Math" alttext="\vdots" display="inline"><mi mathvariant="normal">⋮</mi></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex3.p1.m46" class="ltx_Math" alttext="\vdots" display="inline"><mi mathvariant="normal">⋮</mi></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">200</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex3.p1.m47" class="ltx_Math" alttext="2.718281828459045" display="inline"><mn>2.718281828459045</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex3.p1.m48" class="ltx_Math" alttext="5.32\times 10^{-17}" display="inline"><mrow><mn>5.32</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>17</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">201</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex3.p1.m49" class="ltx_Math" alttext="2.718281828459045" display="inline"><mn>2.718281828459045</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex3.p1.m50" class="ltx_Math" alttext="5.32\times 10^{-17}" display="inline"><mrow><mn>5.32</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>17</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">202</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex3.p1.m51" class="ltx_Math" alttext="2.718281828459045" display="inline"><mn>2.718281828459045</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex3.p1.m52" class="ltx_Math" alttext="5.32\times 10^{-17}" display="inline"><mrow><mn>5.32</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>17</mn></mrow></msup></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><span class="ltx_text ltx_font_italic">203</span></th>
+<td class="ltx_td ltx_align_center ltx_border_r"><math id="Thmexamplex3.p1.m53" class="ltx_Math" alttext="2.718281828459045" display="inline"><mn>2.718281828459045</mn></math></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex3.p1.m54" class="ltx_Math" alttext="5.32\times 10^{-17}" display="inline"><mrow><mn>5.32</mn><mo lspace="0.222em" rspace="0.222em">×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>17</mn></mrow></msup></mrow></math></td>
+</tr>
+</tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">From these results, we see that the complex step method achieves as good accuracy as is possible, without needed to balance the competing forces of truncation error and round-off error.
+<math id="Thmexamplex3.p1.m55" class="ltx_Math" alttext="\blacklozenge" display="inline"><mi mathvariant="normal">◆</mi></math></span></p>
+</div>
+</div>
+<div id="S1.SS3.p7" class="ltx_para">
+<p class="ltx_p">Our final example concerns linear algebra.</p>
+</div>
+<div id="Thmexamplex4" class="ltx_theorem ltx_theorem_examplex">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Example 4</span></span><span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmexamplex4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For <math id="Thmexamplex4.p1.m1" class="ltx_Math" alttext="a\neq 0" display="inline"><mrow><mi>a</mi><mo>≠</mo><mn>0</mn></mrow></math>, consider the solution of the following linear system by Gaussian elimination with back-substitution,</span></p>
+<table id="S1.Ex34" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex34.m1" class="ltx_Math" alttext="\begin{pmatrix}a&amp;1\\
+1&amp;1\end{pmatrix}\begin{pmatrix}x\\
+y\end{pmatrix}=\begin{pmatrix}1\\
+2\end{pmatrix}\quad\longrightarrow\quad\begin{pmatrix}a&amp;1\\
+0&amp;1-1/a\end{pmatrix}\begin{pmatrix}x\\
+y\end{pmatrix}=\begin{pmatrix}1\\
+2-1/a\end{pmatrix}," display="block"><mrow><mrow><mrow><mrow><mrow><mo>(</mo><mtable columnspacing="5pt" displaystyle="true" rowspacing="0pt"><mtr><mtd><mi>a</mi></mtd><mtd><mn>1</mn></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd></mtr></mtable><mo>)</mo></mrow><mo>⁢</mo><mrow><mo>(</mo><mtable displaystyle="true" rowspacing="0pt"><mtr><mtd><mi>x</mi></mtd></mtr><mtr><mtd><mi>y</mi></mtd></mtr></mtable><mo>)</mo></mrow></mrow><mo>=</mo><mrow><mrow><mo>(</mo><mtable displaystyle="true" rowspacing="0pt"><mtr><mtd><mn>1</mn></mtd></mtr><mtr><mtd><mn>2</mn></mtd></mtr></mtable><mo>)</mo></mrow><mspace width="1em"></mspace><mo stretchy="false">⟶</mo></mrow></mrow><mspace width="1em"></mspace><mrow><mrow><mrow><mo>(</mo><mtable columnspacing="5pt" displaystyle="true" rowspacing="0pt"><mtr><mtd><mi>a</mi></mtd><mtd><mn>1</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mrow><mn>1</mn><mo>−</mo><mrow><mn>1</mn><mo>/</mo><mi>a</mi></mrow></mrow></mtd></mtr></mtable><mo>)</mo></mrow><mo>⁢</mo><mrow><mo>(</mo><mtable displaystyle="true" rowspacing="0pt"><mtr><mtd><mi>x</mi></mtd></mtr><mtr><mtd><mi>y</mi></mtd></mtr></mtable><mo>)</mo></mrow></mrow><mo>=</mo><mrow><mo>(</mo><mtable displaystyle="true" rowspacing="0pt"><mtr><mtd><mn>1</mn></mtd></mtr><mtr><mtd><mrow><mn>2</mn><mo>−</mo><mrow><mn>1</mn><mo>/</mo><mi>a</mi></mrow></mrow></mtd></mtr></mtable><mo>)</mo></mrow></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">which yields</span></p>
+<table id="S1.EGx6" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S1.Ex35"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S1.Ex35.m1" class="ltx_Math" alttext="\displaystyle y" display="inline"><mi>y</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S1.Ex35.m2" class="ltx_Math" alttext="\displaystyle=\frac{2-(1/a)}{1-(1/a)}," display="inline"><mrow><mrow><mi></mi><mo>=</mo><mstyle displaystyle="true"><mfrac><mrow><mn>2</mn><mo>−</mo><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><mo>/</mo><mi>a</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mrow><mn>1</mn><mo>−</mo><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><mo>/</mo><mi>a</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mfrac></mstyle></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S1.Ex36"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S1.Ex36.m1" class="ltx_Math" alttext="\displaystyle x" display="inline"><mi>x</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S1.Ex36.m2" class="ltx_Math" alttext="\displaystyle=\frac{1-y}{a}." display="inline"><mrow><mrow><mi></mi><mo>=</mo><mstyle displaystyle="true"><mfrac><mrow><mn>1</mn><mo>−</mo><mi>y</mi></mrow><mi>a</mi></mfrac></mstyle></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For <math id="Thmexamplex4.p1.m2" class="ltx_Math" alttext="a=2^{-54}" display="inline"><mrow><mi>a</mi><mo>=</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>54</mn></mrow></msup></mrow></math>, both <math id="Thmexamplex4.p1.m3" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> and <math id="Thmexamplex4.p1.m4" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> are very nearly 1.
+However, if we evaluate these formulas in floating point arithmetic, we obtain <math id="Thmexamplex4.p1.m5" class="ltx_Math" alttext="y=1-2^{-53}" display="inline"><mrow><mi>y</mi><mo>=</mo><mrow><mn>1</mn><mo>−</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>53</mn></mrow></msup></mrow></mrow></math> (which is in fact <math id="Thmexamplex4.p1.m6" class="ltx_Math" alttext="\operatorname{fl}(y)" display="inline"><mrow><mi>fl</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>, the best possible value), which then gives <math id="Thmexamplex4.p1.m7" class="ltx_Math" alttext="x=2^{-53}/2^{-54}=2" display="inline"><mrow><mi>x</mi><mo>=</mo><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>53</mn></mrow></msup><mo>/</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>54</mn></mrow></msup></mrow><mo>=</mo><mn>2</mn></mrow></math>.
+The relative error in <math id="Thmexamplex4.p1.m8" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> is therefore <math id="Thmexamplex4.p1.m9" class="ltx_Math" alttext="1-2^{-53}" display="inline"><mrow><mn>1</mn><mo>−</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>53</mn></mrow></msup></mrow></math>, i.e. essentially 100%.</span></p>
+</div>
+<div id="Thmexamplex4.p2" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">This example illustrates that simple linear algebra problems where all entries of the matrices and vectors can be represented exactly in floating point (and the solution can be represented very accurately in floating point) can still lead to catastrophic round-off errors.</span></p>
+</div>
+<div id="Thmexamplex4.p3" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">However, through careful design of linear algebra algorithms, these problems can be avoided.
+Such algorithms are called <span class="ltx_text ltx_font_bold">numerically stable</span> methods.
+Indeed, if we use a standard Gaussian elimination routine on the computer to solve this problem, we will obtain answers that are extremely accurate.
+The methods used are specifically designed to avoid these bad round-off errors.
+<math id="Thmexamplex4.p3.m1" class="ltx_Math" alttext="\blacklozenge" display="inline"><mi mathvariant="normal">◆</mi></math></span></p>
+</div>
+</div>
 </section>
 </section>
 </article>
 </div>
 <footer class="ltx_page_footer">
-<div class="ltx_page_logo">Generated  on Fri Sep 25 20:42:57 2026 by <a href="http://dlmf.nist.gov/LaTeXML/" class="ltx_LaTeXML_logo"><span style="letter-spacing:-0.2em; margin-right:0.1em;">L<span class="ltx_font_smallcaps" style="position:relative; bottom:2.2pt;">a</span>T<span class="ltx_font_smallcaps" style="font-size:120%;position:relative; bottom:-0.2ex;">e</span></span><span style="font-size:90%; position:relative; bottom:-0.2ex;">XML</span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="Mascot Sammy"></a>
+<div class="ltx_page_logo">Generated  on Mon Sep 28 15:06:32 2026 by <a href="http://dlmf.nist.gov/LaTeXML/" class="ltx_LaTeXML_logo"><span style="letter-spacing:-0.2em; margin-right:0.1em;">L<span class="ltx_font_smallcaps" style="position:relative; bottom:2.2pt;">a</span>T<span class="ltx_font_smallcaps" style="font-size:120%;position:relative; bottom:-0.2ex;">e</span></span><span style="font-size:90%; position:relative; bottom:-0.2ex;">XML</span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="Mascot Sammy"></a>
 </div></footer>
 </div>
 </body>
