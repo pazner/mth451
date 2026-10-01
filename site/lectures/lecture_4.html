@@ -1,0 +1,377 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>MTH 451/551 Lecture 4</title>
+<!--Generated on Wed Sep 30 17:06:06 2026 by LaTeXML (version 0.8.8) http://dlmf.nist.gov/LaTeXML/.-->
+
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+<a class="back-link" href="../index.html">[Back to main course page]</a>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">MTH 451/551 
+<br class="ltx_break">Lecture 4</h1>
+<div class="ltx_authors">
+<span class="ltx_creator ltx_role_author">
+<span class="ltx_personname">Prof. W. Pazner
+</span></span>
+</div>
+
+<section id="S1" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">1 </span>Solving Equations and Root Finding</h2>
+
+<div id="S1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">[Textbook reference: §2.1]</p>
+</div>
+<div id="S1.p2" class="ltx_para">
+<p class="ltx_p">We are interested in finding the solution to the system <math id="S1.p2.m1" class="ltx_Math" alttext="f(x)=0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math> for some function <math id="S1.p2.m2" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>, i.e. the roots of <math id="S1.p2.m3" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>.
+Depending on the specific form of the function <math id="S1.p2.m4" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>, we may, through some complicated algebraic manipulations, be able to find a closed-form expression for the roots.
+However, this is a laborious process, and we are not always guaranteed to succeed.
+For example, as mentioned at the beginning of the course, there is no general closed-form expression (written in terms of radicals) for the roots of polynomials of degree 5 or higher.
+Therefore, it is of great utility to develop <span class="ltx_text ltx_font_italic">algorithms</span> that approximate the roots, using only evaluations of <math id="S1.p2.m5" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> (and perhaps its derivatives), without symbolic or algebraic manipulations.</p>
+</div>
+<section id="S1.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">1.1 </span>Root Bracketing Methods</h3>
+
+<div id="S1.SS1.p1" class="ltx_para">
+<p class="ltx_p">Two of the oldest and most basic methods for root finding are the <span class="ltx_text ltx_font_bold">bisection</span> and <span class="ltx_text ltx_font_bold">regula falsi</span> methods, which are both <span class="ltx_text ltx_font_italic">root bracketing</span> methods.
+This means that if there is a root <math id="S1.SS1.p1.m1" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> of <math id="S1.SS1.p1.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> in the interval <math id="S1.SS1.p1.m3" class="ltx_Math" alttext="(a,b)" display="inline"><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></math> (we say that <math id="S1.SS1.p1.m4" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> and <math id="S1.SS1.p1.m5" class="ltx_Math" alttext="b" display="inline"><mi>b</mi></math> <span class="ltx_text ltx_font_italic">bracket</span> the root, since they lie on either side of it), then we generate a nested sequence of intervals <math id="S1.SS1.p1.m6" class="ltx_Math" alttext="(a_{n},b_{n})" display="inline"><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>n</mi></msub><mo>,</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></math>, each of which contain the root <math id="S1.SS1.p1.m7" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>.
+Within each interval, we will obtain an approximate root <math id="S1.SS1.p1.m8" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> that converges to <math id="S1.SS1.p1.m9" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> as <math id="S1.SS1.p1.m10" class="ltx_Math" alttext="n\to\infty" display="inline"><mrow><mi>n</mi><mo stretchy="false">→</mo><mi mathvariant="normal">∞</mi></mrow></math>.</p>
+</div>
+<section id="S1.SS1.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">1.1.1 </span>The Bisection Method</h4>
+
+<div id="S1.SS1.SSS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">[Note: we differ slightly from the textbook here by using closed intervals and non-strict inequalities.]</span></p>
+</div>
+<div id="S1.SS1.SSS1.p2" class="ltx_para">
+<p class="ltx_p">We consider a continuous function <math id="S1.SS1.SSS1.p2.m1" class="ltx_Math" alttext="f\in C[a,b]" display="inline"><mrow><mi>f</mi><mo>∈</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></mrow></mrow></math>, such that <math id="S1.SS1.SSS1.p2.m2" class="ltx_Math" alttext="f(a)f(b)\leq 0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mn>0</mn></mrow></math>.
+This means that either <math id="S1.SS1.SSS1.p2.m3" class="ltx_Math" alttext="f(a)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="S1.SS1.SSS1.p2.m4" class="ltx_Math" alttext="f(b)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math> have opposite signs, or at least one of them is zero.
+By the intermediate value theorem, this implies that there exists a root of <math id="S1.SS1.SSS1.p2.m5" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> in the interval <math id="S1.SS1.SSS1.p2.m6" class="ltx_Math" alttext="[a,b]" display="inline"><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math>.
+The bisection method generates a sequence <math id="S1.SS1.SSS1.p2.m7" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> that converges to a root <math id="S1.SS1.SSS1.p2.m8" class="ltx_Math" alttext="r\in[a,b]" display="inline"><mrow><mi>r</mi><mo>∈</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></mrow></math>.</p>
+<ol id="S1.I1" class="ltx_enumerate">
+<li id="S1.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S1.I1.i1.p1" class="ltx_para">
+<p class="ltx_p">Initialize <math id="S1.I1.i1.p1.m1" class="ltx_Math" alttext="[a_{0},b_{0}]=[a,b]" display="inline"><mrow><mrow><mo stretchy="false">[</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>b</mi><mn>0</mn></msub><mo stretchy="false">]</mo></mrow><mo>=</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></mrow></math>, <math id="S1.I1.i1.p1.m2" class="ltx_Math" alttext="x_{0}=(a_{0}+b_{0})/2" display="inline"><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>=</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><msub><mi>a</mi><mn>0</mn></msub><mo>+</mo><msub><mi>b</mi><mn>0</mn></msub></mrow><mo stretchy="false">)</mo></mrow><mo>/</mo><mn>2</mn></mrow></mrow></math>.</p>
+</div>
+</li>
+<li id="S1.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S1.I1.i2.p1" class="ltx_para">
+<p class="ltx_p">Iterate <math id="S1.I1.i2.p1.m1" class="ltx_Math" alttext="[a_{n+1},b_{n+1}]=\begin{cases}[a_{n},x_{n}]\quad&amp;\text{if $f(a_{n})f(x_{n})%
+\leq 0$},\\
+[x_{n},b_{n}]\quad&amp;\text{otherwise.}\end{cases}" display="inline"><mrow><mrow><mo stretchy="false">[</mo><msub><mi>a</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>,</mo><msub><mi>b</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">]</mo></mrow><mo>=</mo><mrow><mo>{</mo><mtable columnspacing="5pt" rowspacing="0pt"><mtr><mtd class="ltx_align_left" columnalign="left"><mrow><mrow><mo stretchy="false">[</mo><msub><mi>a</mi><mi>n</mi></msub><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">]</mo></mrow><mspace width="1em"></mspace></mrow></mtd><mtd class="ltx_align_left" columnalign="left"><mrow><mrow><mtext>if </mtext><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mn>0</mn></mrow></mrow><mo>,</mo></mrow></mtd></mtr><mtr><mtd class="ltx_align_left" columnalign="left"><mrow><mrow><mo stretchy="false">[</mo><msub><mi>x</mi><mi>n</mi></msub><mo>,</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">]</mo></mrow><mspace width="1em"></mspace></mrow></mtd><mtd class="ltx_align_left" columnalign="left"><mtext>otherwise.</mtext></mtd></mtr></mtable></mrow></mrow></math>.</p>
+</div>
+</li>
+</ol>
+<p class="ltx_p">To turn this into a practical algorithm, we need to set some <span class="ltx_text ltx_font_bold">termination criteria</span>.
+The sequence <math id="S1.SS1.SSS1.p2.m9" class="ltx_Math" alttext="x_{n}\to r" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">→</mo><mi>r</mi></mrow></math>, and we need to decide when to stop iterating, and accept the current value of <math id="S1.SS1.SSS1.p2.m10" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> as a good enough approximation to <math id="S1.SS1.SSS1.p2.m11" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> (very rarely we may find <math id="S1.SS1.SSS1.p2.m12" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> such that <math id="S1.SS1.SSS1.p2.m13" class="ltx_Math" alttext="f(x_{n})=0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math> exactly, but this does not happen usually).
+Typically, we set both a <span class="ltx_text ltx_font_bold">tolerance</span> and <span class="ltx_text ltx_font_bold">maximum number of iterations</span>.
+In the version of the algorithm presented below, we provide two tolerances and a maximum number of iterations.
+We terminate if either <math id="S1.SS1.SSS1.p2.m14" class="ltx_Math" alttext="|f(x_{n})|\leq\mathrm{ftol}" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mi>ftol</mi></mrow></math> or if <math id="S1.SS1.SSS1.p2.m15" class="ltx_Math" alttext="|x_{n}-r|\leq\mathrm{xtol}" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mi>xtol</mi></mrow></math>.
+Even though we don’t know the exact value of <math id="S1.SS1.SSS1.p2.m16" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> (if we did, we wouldn’t need an algorithm to approximate it), we can bound <math id="S1.SS1.SSS1.p2.m17" class="ltx_Math" alttext="|x_{n}-r|" display="inline"><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow></math> since <math id="S1.SS1.SSS1.p2.m18" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> is guaranteed to lie in every interval we generate.</p>
+</div>
+<div id="S1.SS1.SSS1.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">Pseudocode version of the bisection algorithm: return an approximation <math id="S1.SS1.SSS1.p3.m1" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> of a root <math id="S1.SS1.SSS1.p3.m2" class="ltx_Math" alttext="r\in[a,b]" display="inline"><mrow><mi>r</mi><mo>∈</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></mrow></math> of <math id="S1.SS1.SSS1.p3.m3" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>, given that <math id="S1.SS1.SSS1.p3.m4" class="ltx_Math" alttext="f(a)f(b)\leq 0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mn>0</mn></mrow></math>.</p>
+</div>
+<div id="S1.SS1.SSS1.p4" class="ltx_para">
+<div class="ltx_listing ltx_listing">
+<div id="algx1.l1" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">1:</span></span><span class="ltx_text ltx_font_bold">function</span> <span class="ltx_text ltx_font_smallcaps">Bisection</span>(<math id="algx1.l1.m1" class="ltx_Math" alttext="f,a,b,\mathrm{ftol},\mathrm{xtol},\mathrm{maxit}" display="inline"><mrow><mi>f</mi><mo>,</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>ftol</mi><mo>,</mo><mi>xtol</mi><mo>,</mo><mi>maxit</mi></mrow></math>)
+
+</div>
+<div id="algx1.l2" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">2:</span></span>     <math id="algx1.l2.m1" class="ltx_Math" alttext="x\leftarrow(a+b)/2" display="inline"><mrow><mi>x</mi><mo stretchy="false">←</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>a</mi><mo>+</mo><mi>b</mi></mrow><mo stretchy="false">)</mo></mrow><mo>/</mo><mn>2</mn></mrow></mrow></math>
+
+</div>
+<div id="algx1.l3" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">3:</span></span>     <span class="ltx_text ltx_font_bold">for</span> <math id="algx1.l3.m1" class="ltx_Math" alttext="n=1,2,\ldots,\mathrm{maxit}" display="inline"><mrow><mi>n</mi><mo>=</mo><mrow><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mi>maxit</mi></mrow></mrow></math> <span class="ltx_text ltx_font_bold">do</span>
+
+</div>
+<div id="algx1.l4" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">4:</span></span>         <span class="ltx_text ltx_font_bold">if</span> <math id="algx1.l4.m1" class="ltx_Math" alttext="f(a)f(x)\leq 0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mn>0</mn></mrow></math> <span class="ltx_text ltx_font_bold">then</span>
+
+</div>
+<div id="algx1.l5" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">5:</span></span>              <math id="algx1.l5.m1" class="ltx_Math" alttext="b\leftarrow x" display="inline"><mrow><mi>b</mi><mo stretchy="false">←</mo><mi>x</mi></mrow></math>
+
+</div>
+<div id="algx1.l6" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">6:</span></span>         <span class="ltx_text ltx_font_bold">else</span>
+</div>
+<div id="algx1.l7" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">7:</span></span>              <math id="algx1.l7.m1" class="ltx_Math" alttext="a\leftarrow x" display="inline"><mrow><mi>a</mi><mo stretchy="false">←</mo><mi>x</mi></mrow></math>
+
+</div>
+<div id="algx1.l8" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">8:</span></span>         <span class="ltx_text ltx_font_bold">end</span> <span class="ltx_text ltx_font_bold">if</span>
+</div>
+<div id="algx1.l9" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">9:</span></span>         <math id="algx1.l9.m1" class="ltx_Math" alttext="x\leftarrow(a+b)/2" display="inline"><mrow><mi>x</mi><mo stretchy="false">←</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>a</mi><mo>+</mo><mi>b</mi></mrow><mo stretchy="false">)</mo></mrow><mo>/</mo><mn>2</mn></mrow></mrow></math>
+
+</div>
+<div id="algx1.l10" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">10:</span></span>         <span class="ltx_text ltx_font_bold">return</span> <math id="algx1.l10.m1" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> <span class="ltx_text ltx_font_bold">if</span> <math id="algx1.l10.m2" class="ltx_Math" alttext="|f(x)|\leq\mathrm{ftol}" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mi>ftol</mi></mrow></math> <span class="ltx_text ltx_font_bold">or</span> <math id="algx1.l10.m3" class="ltx_Math" alttext="(b-a)/2\leq\mathrm{xtol}" display="inline"><mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>b</mi><mo>−</mo><mi>a</mi></mrow><mo stretchy="false">)</mo></mrow><mo>/</mo><mn>2</mn></mrow><mo>≤</mo><mi>xtol</mi></mrow></math>
+
+</div>
+<div id="algx1.l11" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">11:</span></span>     <span class="ltx_text ltx_font_bold">end</span> <span class="ltx_text ltx_font_bold">for</span>
+</div>
+<div id="algx1.l12" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">12:</span></span>     <span class="ltx_text ltx_font_italic">Bisection did not converge in maximum number of iterations.</span>
+
+</div>
+<div id="algx1.l13" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">13:</span></span><span class="ltx_text ltx_font_bold">end</span> <span class="ltx_text ltx_font_bold">function</span>
+</div>
+</div>
+</div>
+<div id="S1.SS1.SSS1.p5" class="ltx_para">
+<p class="ltx_p">The following theorem guarantees that the bisection method always converges to a root, and gives an <span class="ltx_text ltx_font_italic">a priori</span> bound on the error at each iteration.</p>
+</div>
+<div id="Thmtheorem1" class="ltx_theorem ltx_theorem_theorem">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Theorem 1</span></span><span class="ltx_text ltx_font_bold"> </span>(Convergence of the bisection method; Textbook Theorem 2.2)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmtheorem1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Suppose that <math id="Thmtheorem1.p1.m1" class="ltx_Math" alttext="f\in C[a,b]" display="inline"><mrow><mi>f</mi><mo>∈</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></mrow></mrow></math> with <math id="Thmtheorem1.p1.m2" class="ltx_Math" alttext="f(a)f(b)\leq 0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mn>0</mn></mrow></math>.
+If <math id="Thmtheorem1.p1.m3" class="ltx_Math" alttext="\{a_{n},x_{n},b_{n}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>a</mi><mi>n</mi></msub><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub><mo>,</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></math> is generated by the bisection method, then <math id="Thmtheorem1.p1.m4" class="ltx_Math" alttext="x_{n}\to r\in[a,b]" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">→</mo><mi>r</mi><mo>∈</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></mrow></math>, where <math id="Thmtheorem1.p1.m5" class="ltx_Math" alttext="f(r)=0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math>.
+Furthermore, we have the error bound</span></p>
+<table id="S1.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex1.m1" class="ltx_Math" alttext="|x_{n}-r|\leq 2^{-(n+1)}(b-a)\qquad\text{for all $n$.}" display="block"><mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mrow><mrow><msup><mn>2</mn><mrow><mo>−</mo><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>b</mi><mo>−</mo><mi>a</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mspace width="2em"></mspace><mrow><mtext class="ltx_mathvariant_italic">for all </mtext><mi>n</mi><mtext class="ltx_mathvariant_italic">.</mtext></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="S1.SS1.SSS1.p6" class="ltx_para">
+<p class="ltx_p">First, we show by induction that <math id="S1.SS1.SSS1.p6.m1" class="ltx_Math" alttext="f(a_{n})f(b_{n})\leq 0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mn>0</mn></mrow></math> for all <math id="S1.SS1.SSS1.p6.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>.
+This holds for <math id="S1.SS1.SSS1.p6.m3" class="ltx_Math" alttext="n=0" display="inline"><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow></math> by assumption.
+Suppose it holds for some <math id="S1.SS1.SSS1.p6.m4" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>.
+If <math id="S1.SS1.SSS1.p6.m5" class="ltx_Math" alttext="f(a_{n})f(x_{n})\leq 0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mn>0</mn></mrow></math>, then <math id="S1.SS1.SSS1.p6.m6" class="ltx_Math" alttext="[a_{n+1},b_{n+1}]=[a_{n},x_{n}]" display="inline"><mrow><mrow><mo stretchy="false">[</mo><msub><mi>a</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>,</mo><msub><mi>b</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">]</mo></mrow><mo>=</mo><mrow><mo stretchy="false">[</mo><msub><mi>a</mi><mi>n</mi></msub><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">]</mo></mrow></mrow></math>, and so <math id="S1.SS1.SSS1.p6.m7" class="ltx_Math" alttext="f(a_{n+1})f(b_{n+1})=f(a_{n})f(x_{n})\leq 0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mn>0</mn></mrow></math>.
+Otherwise, <math id="S1.SS1.SSS1.p6.m8" class="ltx_Math" alttext="f(a_{n})f(x_{n})&gt;0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>&gt;</mo><mn>0</mn></mrow></math>, so <math id="S1.SS1.SSS1.p6.m9" class="ltx_Math" alttext="f(a_{n})" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="S1.SS1.SSS1.p6.m10" class="ltx_Math" alttext="f(x_{n})" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math> are nonzero and have the same sign.
+Since <math id="S1.SS1.SSS1.p6.m11" class="ltx_Math" alttext="f(a_{n})f(b_{n})\leq 0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mn>0</mn></mrow></math>, it follows that <math id="S1.SS1.SSS1.p6.m12" class="ltx_Math" alttext="f(x_{n})f(b_{n})\leq 0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mn>0</mn></mrow></math>, and so <math id="S1.SS1.SSS1.p6.m13" class="ltx_Math" alttext="f(a_{n+1})f(b_{n+1})=f(x_{n})f(b_{n})\leq 0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mn>0</mn></mrow></math>.</p>
+</div>
+<div id="S1.SS1.SSS1.p7" class="ltx_para">
+<p class="ltx_p">By construction, <math id="S1.SS1.SSS1.p7.m1" class="ltx_Math" alttext="a_{n}\leq x_{n}\leq b_{n}" display="inline"><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>≤</mo><msub><mi>x</mi><mi>n</mi></msub><mo>≤</mo><msub><mi>b</mi><mi>n</mi></msub></mrow></math>, and the intervals are nested, so</p>
+<table id="S1.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex2.m1" class="ltx_Math" alttext="a\leq a_{n}\leq a_{n+1}\leq b_{n+1}\leq b_{n}\leq b" display="block"><mrow><mi>a</mi><mo>≤</mo><msub><mi>a</mi><mi>n</mi></msub><mo>≤</mo><msub><mi>a</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>≤</mo><msub><mi>b</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>≤</mo><msub><mi>b</mi><mi>n</mi></msub><mo>≤</mo><mi>b</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">for all <math id="S1.SS1.SSS1.p7.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>.
+The sequence <math id="S1.SS1.SSS1.p7.m3" class="ltx_Math" alttext="\{a_{n}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></math> is nondecreasing and bounded above by <math id="S1.SS1.SSS1.p7.m4" class="ltx_Math" alttext="b" display="inline"><mi>b</mi></math>, and the sequence <math id="S1.SS1.SSS1.p7.m5" class="ltx_Math" alttext="\{b_{n}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></math> is nonincreasing and bounded below by <math id="S1.SS1.SSS1.p7.m6" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>.
+By the Monotone Convergence Theorem, there exist <math id="S1.SS1.SSS1.p7.m7" class="ltx_Math" alttext="\bar{a},\bar{b}\in[a,b]" display="inline"><mrow><mrow><mover accent="true"><mi>a</mi><mo>¯</mo></mover><mo>,</mo><mover accent="true"><mi>b</mi><mo>¯</mo></mover></mrow><mo>∈</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></mrow></math> such that <math id="S1.SS1.SSS1.p7.m8" class="ltx_Math" alttext="a_{n}\to\bar{a}" display="inline"><mrow><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">→</mo><mover accent="true"><mi>a</mi><mo>¯</mo></mover></mrow></math> and <math id="S1.SS1.SSS1.p7.m9" class="ltx_Math" alttext="b_{n}\to\bar{b}" display="inline"><mrow><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">→</mo><mover accent="true"><mi>b</mi><mo>¯</mo></mover></mrow></math>.
+Furthermore, since each step halves the length of the interval, <math id="S1.SS1.SSS1.p7.m10" class="ltx_Math" alttext="b_{n+1}-a_{n+1}=(b_{n}-a_{n})/2" display="inline"><mrow><mrow><msub><mi>b</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><msub><mi>a</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><mo>=</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><msub><mi>b</mi><mi>n</mi></msub><mo>−</mo><msub><mi>a</mi><mi>n</mi></msub></mrow><mo stretchy="false">)</mo></mrow><mo>/</mo><mn>2</mn></mrow></mrow></math>, we see that</p>
+<table id="S1.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex3.m1" class="ltx_Math" alttext="b_{n}-a_{n}=2^{-n}(b-a)" display="block"><mrow><mrow><msub><mi>b</mi><mi>n</mi></msub><mo>−</mo><msub><mi>a</mi><mi>n</mi></msub></mrow><mo>=</mo><mrow><msup><mn>2</mn><mrow><mo>−</mo><mi>n</mi></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>b</mi><mo>−</mo><mi>a</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">for all <math id="S1.SS1.SSS1.p7.m11" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>.
+Taking the limit as <math id="S1.SS1.SSS1.p7.m12" class="ltx_Math" alttext="n\to\infty" display="inline"><mrow><mi>n</mi><mo stretchy="false">→</mo><mi mathvariant="normal">∞</mi></mrow></math>, we find <math id="S1.SS1.SSS1.p7.m13" class="ltx_Math" alttext="\bar{b}-\bar{a}=0" display="inline"><mrow><mrow><mover accent="true"><mi>b</mi><mo>¯</mo></mover><mo>−</mo><mover accent="true"><mi>a</mi><mo>¯</mo></mover></mrow><mo>=</mo><mn>0</mn></mrow></math>, and so <math id="S1.SS1.SSS1.p7.m14" class="ltx_Math" alttext="\bar{a}=\bar{b}" display="inline"><mrow><mover accent="true"><mi>a</mi><mo>¯</mo></mover><mo>=</mo><mover accent="true"><mi>b</mi><mo>¯</mo></mover></mrow></math>.
+We take <math id="S1.SS1.SSS1.p7.m15" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> to be this common value.</p>
+</div>
+<div id="S1.SS1.SSS1.p8" class="ltx_para">
+<p class="ltx_p">Since <math id="S1.SS1.SSS1.p8.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is continuous at <math id="S1.SS1.SSS1.p8.m2" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>, we have <math id="S1.SS1.SSS1.p8.m3" class="ltx_Math" alttext="f(a_{n})f(b_{n})\to[f(r)]^{2}" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">→</mo><msup><mrow><mo stretchy="false">[</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow><mn>2</mn></msup></mrow></math>.
+Since <math id="S1.SS1.SSS1.p8.m4" class="ltx_Math" alttext="f(a_{n})f(b_{n})\leq 0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mn>0</mn></mrow></math> for all <math id="S1.SS1.SSS1.p8.m5" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>, the limit must also satisfy <math id="S1.SS1.SSS1.p8.m6" class="ltx_Math" alttext="[f(r)]^{2}\leq 0" display="inline"><mrow><msup><mrow><mo stretchy="false">[</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow><mn>2</mn></msup><mo>≤</mo><mn>0</mn></mrow></math>.
+But clearly <math id="S1.SS1.SSS1.p8.m7" class="ltx_Math" alttext="[f(r)]^{2}\geq 0" display="inline"><mrow><msup><mrow><mo stretchy="false">[</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow><mn>2</mn></msup><mo>≥</mo><mn>0</mn></mrow></math>, so we must have <math id="S1.SS1.SSS1.p8.m8" class="ltx_Math" alttext="f(r)=0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math>.</p>
+</div>
+<div id="S1.SS1.SSS1.p9" class="ltx_para">
+<p class="ltx_p">Finally, since <math id="S1.SS1.SSS1.p9.m1" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> is the midpoint of <math id="S1.SS1.SSS1.p9.m2" class="ltx_Math" alttext="[a_{n},b_{n}]" display="inline"><mrow><mo stretchy="false">[</mo><msub><mi>a</mi><mi>n</mi></msub><mo>,</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">]</mo></mrow></math> and <math id="S1.SS1.SSS1.p9.m3" class="ltx_Math" alttext="r\in[a_{n},b_{n}]" display="inline"><mrow><mi>r</mi><mo>∈</mo><mrow><mo stretchy="false">[</mo><msub><mi>a</mi><mi>n</mi></msub><mo>,</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">]</mo></mrow></mrow></math>, the distance from <math id="S1.SS1.SSS1.p9.m4" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> to <math id="S1.SS1.SSS1.p9.m5" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> is at most half the length of the interval,</p>
+<table id="S1.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex4.m1" class="ltx_Math" alttext="|x_{n}-r|\leq\frac{b_{n}-a_{n}}{2}=2^{-(n+1)}(b-a)." display="block"><mrow><mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mfrac><mrow><msub><mi>b</mi><mi>n</mi></msub><mo>−</mo><msub><mi>a</mi><mi>n</mi></msub></mrow><mn>2</mn></mfrac><mo>=</mo><mrow><msup><mn>2</mn><mrow><mo>−</mo><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>b</mi><mo>−</mo><mi>a</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">The right-hand side tends to zero as <math id="S1.SS1.SSS1.p9.m6" class="ltx_Math" alttext="n\to\infty" display="inline"><mrow><mi>n</mi><mo stretchy="false">→</mo><mi mathvariant="normal">∞</mi></mrow></math>, and so <math id="S1.SS1.SSS1.p9.m7" class="ltx_Math" alttext="x_{n}\to r" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">→</mo><mi>r</mi></mrow></math>.
+∎</p>
+</div>
+</div>
+</section>
+<section id="S1.SS1.SSS2" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">1.1.2 </span>Regula Falsi</h4>
+
+<div id="S1.SS1.SSS2.p1" class="ltx_para">
+<p class="ltx_p">The <span class="ltx_text ltx_font_italic">regula falsi</span> method (latin for <span class="ltx_text ltx_font_italic">false position</span>) is a simple variation on the bisection method.
+Like bisection, it is a root bracketing method.
+The “false positions” in this case are the two endpoints, which are generally not roots themselves, but are used to help find the roots.
+Bisection proceeded by always choosing the midpoint of the interval, leading to a halving of the error bound at every step.
+This had no dependence on the function <math id="S1.SS1.SSS2.p1.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> whatsoever.
+Regula falsi, on the other hand, chooses <math id="S1.SS1.SSS2.p1.m2" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> to be the zero of the secant line connecting <math id="S1.SS1.SSS2.p1.m3" class="ltx_Math" alttext="(a_{n},f(a_{n}))" display="inline"><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>n</mi></msub><mo>,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></math> and <math id="S1.SS1.SSS2.p1.m4" class="ltx_Math" alttext="(b_{n},f(b_{n}))" display="inline"><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mi>n</mi></msub><mo>,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></math>.
+This uses more information about the function <math id="S1.SS1.SSS2.p1.m5" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>, and can often converge much faster than bisection, but lacks the same guaranteed error reduction rate.</p>
+</div>
+<div id="S1.SS1.SSS2.p2" class="ltx_para">
+<p class="ltx_p">The setup is the same as in bisection, except here we require that <math id="S1.SS1.SSS2.p2.m1" class="ltx_Math" alttext="f(a)f(b)&lt;0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>&lt;</mo><mn>0</mn></mrow></math> strictly in order for the secant line to have nonzero slope.
+The method is summarized as follows:</p>
+<ol id="S1.I2" class="ltx_enumerate">
+<li id="S1.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S1.I2.i1.p1" class="ltx_para">
+<p class="ltx_p">Initialize <math id="S1.I2.i1.p1.m1" class="ltx_Math" alttext="[a_{0},b_{0}]=[a,b]" display="inline"><mrow><mrow><mo stretchy="false">[</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>b</mi><mn>0</mn></msub><mo stretchy="false">]</mo></mrow><mo>=</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></mrow></math>, <math id="S1.I2.i1.p1.m2" class="ltx_Math" alttext="\displaystyle x_{0}=\frac{a_{0}f(b_{0})-b_{0}f(a_{0})}{f(b_{0})-f(a_{0})}" display="inline"><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>=</mo><mstyle displaystyle="true"><mfrac><mrow><mrow><msub><mi>a</mi><mn>0</mn></msub><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><msub><mi>b</mi><mn>0</mn></msub><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></mfrac></mstyle></mrow></math>.</p>
+</div>
+</li>
+<li id="S1.I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S1.I2.i2.p1" class="ltx_para">
+<p class="ltx_p">Iterate <math id="S1.I2.i2.p1.m1" class="ltx_Math" alttext="[a_{n+1},b_{n+1}]=\begin{cases}[a_{n},x_{n}]\quad&amp;\text{if $f(a_{n})f(x_{n})&lt;0%
+$},\\
+[x_{n},b_{n}]\quad&amp;\text{otherwise,}\end{cases}" display="inline"><mrow><mrow><mo stretchy="false">[</mo><msub><mi>a</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>,</mo><msub><mi>b</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">]</mo></mrow><mo>=</mo><mrow><mo>{</mo><mtable columnspacing="5pt" rowspacing="0pt"><mtr><mtd class="ltx_align_left" columnalign="left"><mrow><mrow><mo stretchy="false">[</mo><msub><mi>a</mi><mi>n</mi></msub><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">]</mo></mrow><mspace width="1em"></mspace></mrow></mtd><mtd class="ltx_align_left" columnalign="left"><mrow><mrow><mtext>if </mtext><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>&lt;</mo><mn>0</mn></mrow></mrow><mo>,</mo></mrow></mtd></mtr><mtr><mtd class="ltx_align_left" columnalign="left"><mrow><mrow><mo stretchy="false">[</mo><msub><mi>x</mi><mi>n</mi></msub><mo>,</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">]</mo></mrow><mspace width="1em"></mspace></mrow></mtd><mtd class="ltx_align_left" columnalign="left"><mtext>otherwise,</mtext></mtd></mtr></mtable></mrow></mrow></math>  <math id="S1.I2.i2.p1.m2" class="ltx_Math" alttext="\displaystyle x_{n+1}=\frac{a_{n+1}f(b_{n+1})-b_{n+1}f(a_{n+1})}{f(b_{n+1})-f(%
+a_{n+1})}" display="inline"><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mstyle displaystyle="true"><mfrac><mrow><mrow><msub><mi>a</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><msub><mi>b</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></mfrac></mstyle></mrow></math>.</p>
+</div>
+</li>
+</ol>
+<p class="ltx_p">The formula for <math id="S1.SS1.SSS2.p2.m2" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> is the zero of the secant line through <math id="S1.SS1.SSS2.p2.m3" class="ltx_Math" alttext="(a_{n},f(a_{n}))" display="inline"><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>n</mi></msub><mo>,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></math> and <math id="S1.SS1.SSS2.p2.m4" class="ltx_Math" alttext="(b_{n},f(b_{n}))" display="inline"><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mi>n</mi></msub><mo>,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></math>.
+It can equivalently be written as</p>
+<table id="S1.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex5.m1" class="ltx_Math" alttext="x_{n}=a_{n}-\frac{b_{n}-a_{n}}{f(b_{n})-f(a_{n})}f(a_{n})=b_{n}-\frac{b_{n}-a_%
+{n}}{f(b_{n})-f(a_{n})}f(b_{n})." display="block"><mrow><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>=</mo><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>−</mo><mrow><mfrac><mrow><msub><mi>b</mi><mi>n</mi></msub><mo>−</mo><msub><mi>a</mi><mi>n</mi></msub></mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></mfrac><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><mrow><msub><mi>b</mi><mi>n</mi></msub><mo>−</mo><mrow><mfrac><mrow><msub><mi>b</mi><mi>n</mi></msub><mo>−</mo><msub><mi>a</mi><mi>n</mi></msub></mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></mfrac><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+</div>
+<div id="S1.SS1.SSS2.p3" class="ltx_para">
+<p class="ltx_p">The termination criteria are the same as for bisection, with one important difference.
+Since <math id="S1.SS1.SSS2.p3.m1" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> and <math id="S1.SS1.SSS2.p3.m2" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> both lie in <math id="S1.SS1.SSS2.p3.m3" class="ltx_Math" alttext="[a_{n},b_{n}]" display="inline"><mrow><mo stretchy="false">[</mo><msub><mi>a</mi><mi>n</mi></msub><mo>,</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">]</mo></mrow></math>, we can still bound the error by <math id="S1.SS1.SSS2.p3.m4" class="ltx_Math" alttext="|x_{n}-r|\leq\max(x_{n}-a_{n},b_{n}-x_{n})" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mrow><mi>max</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><msub><mi>a</mi><mi>n</mi></msub></mrow><mo>,</mo><mrow><msub><mi>b</mi><mi>n</mi></msub><mo>−</mo><msub><mi>x</mi><mi>n</mi></msub></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+However, unlike in bisection, the length of the interval <math id="S1.SS1.SSS2.p3.m5" class="ltx_Math" alttext="[a_{n},b_{n}]" display="inline"><mrow><mo stretchy="false">[</mo><msub><mi>a</mi><mi>n</mi></msub><mo>,</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">]</mo></mrow></math> does not necessarily go to zero.
+Often, one of the endpoints will stay fixed for all iterations.
+In that case, this error bound will never drop below <math id="S1.SS1.SSS2.p3.m6" class="ltx_Math" alttext="\mathrm{xtol}" display="inline"><mi>xtol</mi></math>, and the iteration will be terminated by <math id="S1.SS1.SSS2.p3.m7" class="ltx_Math" alttext="\mathrm{ftol}" display="inline"><mi>ftol</mi></math> (or <math id="S1.SS1.SSS2.p3.m8" class="ltx_Math" alttext="\mathrm{maxit}" display="inline"><mi>maxit</mi></math>) instead.</p>
+</div>
+<div id="S1.SS1.SSS2.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">Pseudocode version of the regula falsi algorithm: return an approximation <math id="S1.SS1.SSS2.p4.m1" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> of a root <math id="S1.SS1.SSS2.p4.m2" class="ltx_Math" alttext="r\in(a,b)" display="inline"><mrow><mi>r</mi><mo>∈</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math> of <math id="S1.SS1.SSS2.p4.m3" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>, given that <math id="S1.SS1.SSS2.p4.m4" class="ltx_Math" alttext="f(a)f(b)&lt;0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>&lt;</mo><mn>0</mn></mrow></math>.</p>
+</div>
+<div id="S1.SS1.SSS2.p5" class="ltx_para">
+<div class="ltx_listing ltx_listing">
+<div id="algx2.l1" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">1:</span></span><span class="ltx_text ltx_font_bold">function</span> <span class="ltx_text ltx_font_smallcaps">RegulaFalsi</span>(<math id="algx2.l1.m1" class="ltx_Math" alttext="f,a,b,\mathrm{ftol},\mathrm{xtol},\mathrm{maxit}" display="inline"><mrow><mi>f</mi><mo>,</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>ftol</mi><mo>,</mo><mi>xtol</mi><mo>,</mo><mi>maxit</mi></mrow></math>)
+
+</div>
+<div id="algx2.l2" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">2:</span></span>     <math id="algx2.l2.m1" class="ltx_Math" alttext="x\leftarrow\big{(}af(b)-bf(a)\big{)}/\big{(}f(b)-f(a)\big{)}" display="inline"><mrow><mi>x</mi><mo stretchy="false">←</mo><mrow><mrow><mo maxsize="120%" minsize="120%">(</mo><mrow><mrow><mi>a</mi><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>b</mi><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow><mo>/</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow></mrow></mrow></math>
+
+</div>
+<div id="algx2.l3" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">3:</span></span>     <span class="ltx_text ltx_font_bold">for</span> <math id="algx2.l3.m1" class="ltx_Math" alttext="n=1,2,\ldots,\mathrm{maxit}" display="inline"><mrow><mi>n</mi><mo>=</mo><mrow><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mi>maxit</mi></mrow></mrow></math> <span class="ltx_text ltx_font_bold">do</span>
+
+</div>
+<div id="algx2.l4" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">4:</span></span>         <span class="ltx_text ltx_font_bold">if</span> <math id="algx2.l4.m1" class="ltx_Math" alttext="f(a)f(x)&lt;0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>&lt;</mo><mn>0</mn></mrow></math> <span class="ltx_text ltx_font_bold">then</span>
+
+</div>
+<div id="algx2.l5" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">5:</span></span>              <math id="algx2.l5.m1" class="ltx_Math" alttext="b\leftarrow x" display="inline"><mrow><mi>b</mi><mo stretchy="false">←</mo><mi>x</mi></mrow></math>
+
+</div>
+<div id="algx2.l6" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">6:</span></span>         <span class="ltx_text ltx_font_bold">else</span>
+</div>
+<div id="algx2.l7" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">7:</span></span>              <math id="algx2.l7.m1" class="ltx_Math" alttext="a\leftarrow x" display="inline"><mrow><mi>a</mi><mo stretchy="false">←</mo><mi>x</mi></mrow></math>
+
+</div>
+<div id="algx2.l8" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">8:</span></span>         <span class="ltx_text ltx_font_bold">end</span> <span class="ltx_text ltx_font_bold">if</span>
+</div>
+<div id="algx2.l9" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">9:</span></span>         <math id="algx2.l9.m1" class="ltx_Math" alttext="x\leftarrow\big{(}af(b)-bf(a)\big{)}/\big{(}f(b)-f(a)\big{)}" display="inline"><mrow><mi>x</mi><mo stretchy="false">←</mo><mrow><mrow><mo maxsize="120%" minsize="120%">(</mo><mrow><mrow><mi>a</mi><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>b</mi><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow><mo>/</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow></mrow></mrow></math>
+
+</div>
+<div id="algx2.l10" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">10:</span></span>         <span class="ltx_text ltx_font_bold">return</span> <math id="algx2.l10.m1" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> <span class="ltx_text ltx_font_bold">if</span> <math id="algx2.l10.m2" class="ltx_Math" alttext="|f(x)|\leq\mathrm{ftol}" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mi>ftol</mi></mrow></math> <span class="ltx_text ltx_font_bold">or</span> <math id="algx2.l10.m3" class="ltx_Math" alttext="\max(x-a,b-x)\leq\mathrm{xtol}" display="inline"><mrow><mrow><mi>max</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mi>a</mi></mrow><mo>,</mo><mrow><mi>b</mi><mo>−</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mi>xtol</mi></mrow></math>
+
+</div>
+<div id="algx2.l11" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">11:</span></span>     <span class="ltx_text ltx_font_bold">end</span> <span class="ltx_text ltx_font_bold">for</span>
+</div>
+<div id="algx2.l12" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">12:</span></span>     <span class="ltx_text ltx_font_italic">Regula falsi did not converge in maximum number of iterations.</span>
+
+</div>
+<div id="algx2.l13" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">13:</span></span><span class="ltx_text ltx_font_bold">end</span> <span class="ltx_text ltx_font_bold">function</span>
+</div>
+</div>
+</div>
+<div id="S1.SS1.SSS2.p6" class="ltx_para">
+<p class="ltx_p">The following theorem guarantees that the regula falsi method always converges to a root.
+In contrast to the bisection method, there is no <span class="ltx_text ltx_font_italic">a priori</span> bound on the error.</p>
+</div>
+<div id="Thmtheorem2" class="ltx_theorem ltx_theorem_theorem">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Theorem 2</span></span><span class="ltx_text ltx_font_bold"> </span>(Convergence of the regula falsi method; Textbook Theorem 2.7)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmtheorem2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Suppose that <math id="Thmtheorem2.p1.m1" class="ltx_Math" alttext="f\in C[a,b]" display="inline"><mrow><mi>f</mi><mo>∈</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></mrow></mrow></math> with <math id="Thmtheorem2.p1.m2" class="ltx_Math" alttext="f(a)f(b)&lt;0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>&lt;</mo><mn>0</mn></mrow></math>.
+If <math id="Thmtheorem2.p1.m3" class="ltx_Math" alttext="\{a_{n},x_{n},b_{n}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>a</mi><mi>n</mi></msub><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub><mo>,</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></math> is generated by the regula falsi method, then <math id="Thmtheorem2.p1.m4" class="ltx_Math" alttext="x_{n}\to r\in(a,b)" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">→</mo><mi>r</mi><mo>∈</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math>, where <math id="Thmtheorem2.p1.m5" class="ltx_Math" alttext="f(r)=0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="S1.SS1.SSS2.p7" class="ltx_para">
+<p class="ltx_p">We only consider the non-trivial case, where <math id="S1.SS1.SSS2.p7.m1" class="ltx_Math" alttext="f(x_{n})\neq 0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>≠</mo><mn>0</mn></mrow></math> for all <math id="S1.SS1.SSS2.p7.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>.
+We lose no generality by assuming that <math id="S1.SS1.SSS2.p7.m3" class="ltx_Math" alttext="f(a)&lt;0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>&lt;</mo><mn>0</mn></mrow></math> and <math id="S1.SS1.SSS2.p7.m4" class="ltx_Math" alttext="f(b)&gt;0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>&gt;</mo><mn>0</mn></mrow></math>, which guarantees that <math id="S1.SS1.SSS2.p7.m5" class="ltx_Math" alttext="f(a_{n})&lt;0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>&lt;</mo><mn>0</mn></mrow></math> and <math id="S1.SS1.SSS2.p7.m6" class="ltx_Math" alttext="f(b_{n})&gt;0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>&gt;</mo><mn>0</mn></mrow></math> for all <math id="S1.SS1.SSS2.p7.m7" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>.
+In particular, <math id="S1.SS1.SSS2.p7.m8" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> is well-defined, and since the secant line changes sign between <math id="S1.SS1.SSS2.p7.m9" class="ltx_Math" alttext="a_{n}" display="inline"><msub><mi>a</mi><mi>n</mi></msub></math> and <math id="S1.SS1.SSS2.p7.m10" class="ltx_Math" alttext="b_{n}" display="inline"><msub><mi>b</mi><mi>n</mi></msub></math>, we have <math id="S1.SS1.SSS2.p7.m11" class="ltx_Math" alttext="a_{n}&lt;x_{n}&lt;b_{n}" display="inline"><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>&lt;</mo><msub><mi>x</mi><mi>n</mi></msub><mo>&lt;</mo><msub><mi>b</mi><mi>n</mi></msub></mrow></math>.</p>
+</div>
+<div id="S1.SS1.SSS2.p8" class="ltx_para">
+<p class="ltx_p">As in the proof for bisection, <math id="S1.SS1.SSS2.p8.m1" class="ltx_Math" alttext="\{a_{n}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></math> is nondecreasing and <math id="S1.SS1.SSS2.p8.m2" class="ltx_Math" alttext="\{b_{n}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></math> is nonincreasing, so <math id="S1.SS1.SSS2.p8.m3" class="ltx_Math" alttext="a_{n}\to a^{*}" display="inline"><mrow><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">→</mo><msup><mi>a</mi><mo>∗</mo></msup></mrow></math> and <math id="S1.SS1.SSS2.p8.m4" class="ltx_Math" alttext="b_{n}\to b^{*}" display="inline"><mrow><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">→</mo><msup><mi>b</mi><mo>∗</mo></msup></mrow></math> for some <math id="S1.SS1.SSS2.p8.m5" class="ltx_Math" alttext="a^{*}\leq b^{*}" display="inline"><mrow><msup><mi>a</mi><mo>∗</mo></msup><mo>≤</mo><msup><mi>b</mi><mo>∗</mo></msup></mrow></math>.
+By continuity, <math id="S1.SS1.SSS2.p8.m6" class="ltx_Math" alttext="f(a^{*})\leq 0\leq f(b^{*})" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>a</mi><mo>∗</mo></msup><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mn>0</mn><mo>≤</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>b</mi><mo>∗</mo></msup><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+If <math id="S1.SS1.SSS2.p8.m7" class="ltx_Math" alttext="a^{*}=b^{*}" display="inline"><mrow><msup><mi>a</mi><mo>∗</mo></msup><mo>=</mo><msup><mi>b</mi><mo>∗</mo></msup></mrow></math>, then we take <math id="S1.SS1.SSS2.p8.m8" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> to be this common value, and <math id="S1.SS1.SSS2.p8.m9" class="ltx_Math" alttext="f(r)=0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math> and <math id="S1.SS1.SSS2.p8.m10" class="ltx_Math" alttext="x_{n}\to r" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">→</mo><mi>r</mi></mrow></math> by the same argument as for bisection.</p>
+</div>
+<div id="S1.SS1.SSS2.p9" class="ltx_para">
+<p class="ltx_p">Suppose instead that <math id="S1.SS1.SSS2.p9.m1" class="ltx_Math" alttext="a^{*}&lt;b^{*}" display="inline"><mrow><msup><mi>a</mi><mo>∗</mo></msup><mo>&lt;</mo><msup><mi>b</mi><mo>∗</mo></msup></mrow></math>.
+Since <math id="S1.SS1.SSS2.p9.m2" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> is either <math id="S1.SS1.SSS2.p9.m3" class="ltx_Math" alttext="a_{n+1}\leq a^{*}" display="inline"><mrow><msub><mi>a</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>≤</mo><msup><mi>a</mi><mo>∗</mo></msup></mrow></math> or <math id="S1.SS1.SSS2.p9.m4" class="ltx_Math" alttext="b_{n+1}\geq b^{*}" display="inline"><mrow><msub><mi>b</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>≥</mo><msup><mi>b</mi><mo>∗</mo></msup></mrow></math>, no <math id="S1.SS1.SSS2.p9.m5" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> lies in the interval <math id="S1.SS1.SSS2.p9.m6" class="ltx_Math" alttext="(a^{*},b^{*})" display="inline"><mrow><mo stretchy="false">(</mo><msup><mi>a</mi><mo>∗</mo></msup><mo>,</mo><msup><mi>b</mi><mo>∗</mo></msup><mo stretchy="false">)</mo></mrow></math>.
+If <math id="S1.SS1.SSS2.p9.m7" class="ltx_Math" alttext="f(a^{*})\neq f(b^{*})" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>a</mi><mo>∗</mo></msup><mo stretchy="false">)</mo></mrow></mrow><mo>≠</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>b</mi><mo>∗</mo></msup><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, then by continuity,</p>
+<table id="S1.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex6.m1" class="ltx_Math" alttext="x_{n}\to x^{*}=\frac{a^{*}f(b^{*})-b^{*}f(a^{*})}{f(b^{*})-f(a^{*})}." display="block"><mrow><mrow><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">→</mo><msup><mi>x</mi><mo>∗</mo></msup><mo>=</mo><mfrac><mrow><mrow><msup><mi>a</mi><mo>∗</mo></msup><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>b</mi><mo>∗</mo></msup><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><msup><mi>b</mi><mo>∗</mo></msup><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>a</mi><mo>∗</mo></msup><mo stretchy="false">)</mo></mrow></mrow></mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>b</mi><mo>∗</mo></msup><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>a</mi><mo>∗</mo></msup><mo stretchy="false">)</mo></mrow></mrow></mrow></mfrac></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">If <math id="S1.SS1.SSS2.p9.m8" class="ltx_Math" alttext="f(a^{*})=0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>a</mi><mo>∗</mo></msup><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math>, then <math id="S1.SS1.SSS2.p9.m9" class="ltx_Math" alttext="x^{*}=a^{*}" display="inline"><mrow><msup><mi>x</mi><mo>∗</mo></msup><mo>=</mo><msup><mi>a</mi><mo>∗</mo></msup></mrow></math>, and we take <math id="S1.SS1.SSS2.p9.m10" class="ltx_Math" alttext="r=a^{*}" display="inline"><mrow><mi>r</mi><mo>=</mo><msup><mi>a</mi><mo>∗</mo></msup></mrow></math>.
+Similarly, if <math id="S1.SS1.SSS2.p9.m11" class="ltx_Math" alttext="f(b^{*})=0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>b</mi><mo>∗</mo></msup><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math>, then <math id="S1.SS1.SSS2.p9.m12" class="ltx_Math" alttext="x^{*}=b^{*}" display="inline"><mrow><msup><mi>x</mi><mo>∗</mo></msup><mo>=</mo><msup><mi>b</mi><mo>∗</mo></msup></mrow></math>, and we take <math id="S1.SS1.SSS2.p9.m13" class="ltx_Math" alttext="r=b^{*}" display="inline"><mrow><mi>r</mi><mo>=</mo><msup><mi>b</mi><mo>∗</mo></msup></mrow></math>.
+If both <math id="S1.SS1.SSS2.p9.m14" class="ltx_Math" alttext="f(a^{*})&lt;0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>a</mi><mo>∗</mo></msup><mo stretchy="false">)</mo></mrow></mrow><mo>&lt;</mo><mn>0</mn></mrow></math> and <math id="S1.SS1.SSS2.p9.m15" class="ltx_Math" alttext="f(b^{*})&gt;0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>b</mi><mo>∗</mo></msup><mo stretchy="false">)</mo></mrow></mrow><mo>&gt;</mo><mn>0</mn></mrow></math>, then <math id="S1.SS1.SSS2.p9.m16" class="ltx_Math" alttext="x^{*}" display="inline"><msup><mi>x</mi><mo>∗</mo></msup></math> lies strictly between <math id="S1.SS1.SSS2.p9.m17" class="ltx_Math" alttext="a^{*}" display="inline"><msup><mi>a</mi><mo>∗</mo></msup></math> and <math id="S1.SS1.SSS2.p9.m18" class="ltx_Math" alttext="b^{*}" display="inline"><msup><mi>b</mi><mo>∗</mo></msup></math>, which is impossible, since no <math id="S1.SS1.SSS2.p9.m19" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> lies in <math id="S1.SS1.SSS2.p9.m20" class="ltx_Math" alttext="(a^{*},b^{*})" display="inline"><mrow><mo stretchy="false">(</mo><msup><mi>a</mi><mo>∗</mo></msup><mo>,</mo><msup><mi>b</mi><mo>∗</mo></msup><mo stretchy="false">)</mo></mrow></math>.
+The only remaining possibility is <math id="S1.SS1.SSS2.p9.m21" class="ltx_Math" alttext="f(a^{*})=f(b^{*})=0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>a</mi><mo>∗</mo></msup><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>b</mi><mo>∗</mo></msup><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math> with <math id="S1.SS1.SSS2.p9.m22" class="ltx_Math" alttext="a^{*}&lt;b^{*}" display="inline"><mrow><msup><mi>a</mi><mo>∗</mo></msup><mo>&lt;</mo><msup><mi>b</mi><mo>∗</mo></msup></mrow></math>.
+This is clearly impossible if <math id="S1.SS1.SSS2.p9.m23" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> has only one root in <math id="S1.SS1.SSS2.p9.m24" class="ltx_Math" alttext="(a,b)" display="inline"><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></math>; the general case is more involved (see textbook §2.1, Exercise 13).
+∎</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Wed Sep 30 17:06:06 2026 by <a href="http://dlmf.nist.gov/LaTeXML/" class="ltx_LaTeXML_logo"><span style="letter-spacing:-0.2em; margin-right:0.1em;">L<span class="ltx_font_smallcaps" style="position:relative; bottom:2.2pt;">a</span>T<span class="ltx_font_smallcaps" style="font-size:120%;position:relative; bottom:-0.2ex;">e</span></span><span style="font-size:90%; position:relative; bottom:-0.2ex;">XML</span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="Mascot Sammy"></a>
+</div></footer>
+</div>
+</body>
+</html>
