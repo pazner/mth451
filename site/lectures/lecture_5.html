@@ -1,0 +1,528 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>MTH 451/551 Lecture 5</title>
+<!--Generated on Tue Oct  6 10:36:40 2026 by LaTeXML (version 0.8.8) http://dlmf.nist.gov/LaTeXML/.-->
+
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+<a class="back-link" href="../index.html">[Back to main course page]</a>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">MTH 451/551 
+<br class="ltx_break">Lecture 5</h1>
+<div class="ltx_authors">
+<span class="ltx_creator ltx_role_author">
+<span class="ltx_personname">Prof. W. Pazner
+</span></span>
+</div>
+
+<section id="S1" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">1 </span>Solving Equations and Root Finding</h2>
+
+<section id="S1.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">1.1 </span>Newton and Secant Methods</h3>
+
+<div id="S1.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">[Textbook reference: §2.2]</p>
+</div>
+<div id="S1.SS1.p2" class="ltx_para">
+<p class="ltx_p">Recall that the regula falsi method used the root of the secant line to find the next approximation to the root of <math id="S1.SS1.p2.m1" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+The idea is that the secant line can be thought of as an approximation to <math id="S1.SS1.p2.m2" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>, and its zero is easily computable.
+This same idea of <span class="ltx_text ltx_font_bold">linear approximation</span> underlies both of the methods that we will see in this section: Newton’s method and the secant method.</p>
+</div>
+<div id="S1.SS1.p3" class="ltx_para">
+<p class="ltx_p">These methods are not root bracketing methods.
+They do not require that we start with an interval that contains the root, but they also do not guarantee that we obtain nested intervals containing the root.
+In fact, these methods may sometimes <span class="ltx_text ltx_font_italic">fail to converge</span>.
+However, when they do converge, they usually do so <span class="ltx_text ltx_font_italic">much more rapidly</span> than the methods we have considered earlier.
+This can be seen as a trade-off between robustness and speed of convergence.
+We briefly note that there are ways to combine these fast methods with robust root bracketing methods to obtain methods that are both fast and robust.
+The combination of the secant method with bisection is called “Brent’s method”, and the combination of Newton’s method with bisection is often called “Newt-safe”.</p>
+</div>
+<section id="S1.SS1.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">1.1.1 </span>Newton’s Method</h4>
+
+<div id="S1.SS1.SSS1.p1" class="ltx_para">
+<p class="ltx_p">Newton’s method starts with an “initial guess” <math id="S1.SS1.SSS1.p1.m1" class="ltx_Math" alttext="x_{0}" display="inline"><msub><mi>x</mi><mn>0</mn></msub></math>, which should be “close” to a root <math id="S1.SS1.SSS1.p1.m2" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> of <math id="S1.SS1.SSS1.p1.m3" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>, and then proceeds by approximating <math id="S1.SS1.SSS1.p1.m4" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> by its <span class="ltx_text ltx_font_bold">linearization</span>, i.e. first-order Taylor polynomial taken at the point <math id="S1.SS1.SSS1.p1.m5" class="ltx_Math" alttext="x_{0}" display="inline"><msub><mi>x</mi><mn>0</mn></msub></math>,</p>
+<table id="S1.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex1.m1" class="ltx_Math" alttext="p_{1}(x)=f(x_{0})+f^{\prime}(x_{0})(x-x_{0})." display="block"><mrow><mrow><mrow><msub><mi>p</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>+</mo><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><msub><mi>x</mi><mn>0</mn></msub></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">Then, the root of <math id="S1.SS1.SSS1.p1.m6" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> is approximated by the root of <math id="S1.SS1.SSS1.p1.m7" class="ltx_Math" alttext="p_{1}(x)" display="inline"><mrow><msub><mi>p</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>,</p>
+<table id="S1.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex2.m1" class="ltx_Math" alttext="f^{\prime}(x_{0})x=f^{\prime}(x_{0})x_{0}-f(x_{0})\quad\implies\quad x=x_{0}-%
+\frac{f(x_{0})}{f^{\prime}(x_{0})}." display="block"><mrow><mrow><mrow><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>x</mi></mrow><mo>=</mo><mrow><mrow><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><msub><mi>x</mi><mn>0</mn></msub></mrow><mo>−</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mspace width="1em"></mspace><mo stretchy="false">⟹</mo></mrow></mrow><mspace width="1em"></mspace><mrow><mi>x</mi><mo>=</mo><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>−</mo><mfrac><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mfrac></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">We call this new point <math id="S1.SS1.SSS1.p1.m8" class="ltx_Math" alttext="x_{1}" display="inline"><msub><mi>x</mi><mn>1</mn></msub></math>.
+The hope is that <math id="S1.SS1.SSS1.p1.m9" class="ltx_Math" alttext="x_{1}" display="inline"><msub><mi>x</mi><mn>1</mn></msub></math> is a better approximation than <math id="S1.SS1.SSS1.p1.m10" class="ltx_Math" alttext="x_{0}" display="inline"><msub><mi>x</mi><mn>0</mn></msub></math> (i.e. closer to the true root <math id="S1.SS1.SSS1.p1.m11" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>).
+Then, if we repeat this process, starting now at <math id="S1.SS1.SSS1.p1.m12" class="ltx_Math" alttext="x_{1}" display="inline"><msub><mi>x</mi><mn>1</mn></msub></math>, we will get an even better approximation <math id="S1.SS1.SSS1.p1.m13" class="ltx_Math" alttext="x_{2}" display="inline"><msub><mi>x</mi><mn>2</mn></msub></math>, and so on.
+This gives the iteration:</p>
+<table id="S1.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex3.m1" class="ltx_Math" alttext="x_{n+1}=x_{n}-\frac{f(x_{n})}{f^{\prime}(x_{n})}," display="block"><mrow><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mfrac><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mfrac></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">(as long as <math id="S1.SS1.SSS1.p1.m14" class="ltx_Math" alttext="f^{\prime}(x_{n})\neq 0" display="inline"><mrow><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>≠</mo><mn>0</mn></mrow></math>).</p>
+</div>
+<div id="S1.SS1.SSS1.p2" class="ltx_para">
+<p class="ltx_p">The secant method is very similar.
+Instead of approximating <math id="S1.SS1.SSS1.p2.m1" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> by its first-order Taylor polynomial, we approximate it by its secant line through two points <math id="S1.SS1.SSS1.p2.m2" class="ltx_Math" alttext="(x_{0},f(x_{0}))" display="inline"><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>0</mn></msub><mo>,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></math> and <math id="S1.SS1.SSS1.p2.m3" class="ltx_Math" alttext="(x_{1},f(x_{1}))" display="inline"><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></math>.
+This requires two initial guesses, <math id="S1.SS1.SSS1.p2.m4" class="ltx_Math" alttext="x_{0}\neq x_{1}" display="inline"><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>≠</mo><msub><mi>x</mi><mn>1</mn></msub></mrow></math>.
+Then, the root of the secant line is given by</p>
+<table id="S1.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex4.m1" class="ltx_Math" alttext="x_{2}=x_{1}-\frac{x_{1}-x_{0}}{f(x_{1})-f(x_{0})}f(x_{1})=\frac{x_{0}f(x_{1})-%
+x_{1}f(x_{0})}{f(x_{1})-f(x_{0})}." display="block"><mrow><mrow><msub><mi>x</mi><mn>2</mn></msub><mo>=</mo><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><mrow><mfrac><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><msub><mi>x</mi><mn>0</mn></msub></mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></mfrac><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><mfrac><mrow><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></mfrac></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">Then, we proceed by using the most recent two points for the secant line, obtaining the iteration</p>
+<table id="S1.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex5.m1" class="ltx_Math" alttext="x_{n+1}=x_{n}-\frac{x_{n}-x_{n-1}}{f(x_{n})-f(x_{n-1})}f(x_{n})=\frac{x_{n-1}f%
+(x_{n})-x_{n}f(x_{n-1})}{f(x_{n})-f(x_{n-1})}." display="block"><mrow><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mrow><mfrac><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><msub><mi>x</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></mfrac><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><mfrac><mrow><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></mfrac></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">The secant method requires evaluation only of the function <math id="S1.SS1.SSS1.p2.m5" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>, whereas Newton’s method requires evaluation of the function <math id="S1.SS1.SSS1.p2.m6" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> and its derivative <math id="S1.SS1.SSS1.p2.m7" class="ltx_Math" alttext="f^{\prime}" display="inline"><msup><mi>f</mi><mo>′</mo></msup></math>.</p>
+</div>
+<div id="S1.SS1.SSS1.p3" class="ltx_para">
+<p class="ltx_p">We summarize Newton’s method and the secant method in the algorithms below.</p>
+</div>
+<div id="S1.SS1.SSS1.p4" class="ltx_para ltx_noindent">
+<div class="ltx_listing ltx_listing">
+<div id="algx1.l1" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">1:</span></span><span class="ltx_text ltx_font_bold">function</span> <span class="ltx_text ltx_font_smallcaps">Newton</span>(<math id="algx1.l1.m1" class="ltx_Math" alttext="f,f^{\prime},x,\mathrm{ftol},\mathrm{xtol},\mathrm{maxit}" display="inline"><mrow><mi>f</mi><mo>,</mo><msup><mi>f</mi><mo>′</mo></msup><mo>,</mo><mi>x</mi><mo>,</mo><mi>ftol</mi><mo>,</mo><mi>xtol</mi><mo>,</mo><mi>maxit</mi></mrow></math>)
+
+</div>
+<div id="algx1.l2" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">2:</span></span>     <span class="ltx_text ltx_font_bold">for</span> <math id="algx1.l2.m1" class="ltx_Math" alttext="n=1,2,\ldots,\mathrm{maxit}" display="inline"><mrow><mi>n</mi><mo>=</mo><mrow><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mi>maxit</mi></mrow></mrow></math> <span class="ltx_text ltx_font_bold">do</span>
+
+</div>
+<div id="algx1.l3" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">3:</span></span>         <math id="algx1.l3.m1" class="ltx_Math" alttext="\delta\leftarrow f(x)/f^{\prime}(x)" display="inline"><mrow><mi>δ</mi><mo stretchy="false">←</mo><mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>/</mo><msup><mi>f</mi><mo>′</mo></msup></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>
+
+</div>
+<div id="algx1.l4" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">4:</span></span>         <math id="algx1.l4.m1" class="ltx_Math" alttext="x\leftarrow x-\delta" display="inline"><mrow><mi>x</mi><mo stretchy="false">←</mo><mrow><mi>x</mi><mo>−</mo><mi>δ</mi></mrow></mrow></math>
+
+</div>
+<div id="algx1.l5" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">5:</span></span>         <span class="ltx_text ltx_font_bold">if</span> <math id="algx1.l5.m1" class="ltx_Math" alttext="|f(x)|\leq\mathrm{ftol}" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mi>ftol</mi></mrow></math> <span class="ltx_text ltx_font_bold">or</span> <math id="algx1.l5.m2" class="ltx_Math" alttext="|\delta|\leq\mathrm{xtol}" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mi>δ</mi><mo stretchy="false">|</mo></mrow><mo>≤</mo><mi>xtol</mi></mrow></math> <span class="ltx_text ltx_font_bold">then</span>
+
+</div>
+<div id="algx1.l6" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">6:</span></span>              <span class="ltx_text ltx_font_bold">return</span> <math id="algx1.l6.m1" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>
+
+</div>
+<div id="algx1.l7" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">7:</span></span>         <span class="ltx_text ltx_font_bold">end</span> <span class="ltx_text ltx_font_bold">if</span>
+</div>
+<div id="algx1.l8" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">8:</span></span>     <span class="ltx_text ltx_font_bold">end</span> <span class="ltx_text ltx_font_bold">for</span>
+</div>
+<div id="algx1.l9" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">9:</span></span>     <span class="ltx_text ltx_font_italic">Did not converge.</span>
+
+</div>
+<div id="algx1.l10" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">10:</span></span><span class="ltx_text ltx_font_bold">end</span> <span class="ltx_text ltx_font_bold">function</span>
+</div>
+</div>
+</div>
+<div id="S1.SS1.SSS1.p5" class="ltx_para">
+<div class="ltx_listing ltx_listing">
+<div id="algx2.l1" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">1:</span></span><span class="ltx_text ltx_font_bold">function</span> <span class="ltx_text ltx_font_smallcaps">Secant</span>(<math id="algx2.l1.m1" class="ltx_Math" alttext="f,x_{0},x_{1},\mathrm{ftol},\mathrm{xtol},\mathrm{maxit}" display="inline"><mrow><mi>f</mi><mo>,</mo><msub><mi>x</mi><mn>0</mn></msub><mo>,</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi>ftol</mi><mo>,</mo><mi>xtol</mi><mo>,</mo><mi>maxit</mi></mrow></math>)
+
+</div>
+<div id="algx2.l2" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">2:</span></span>     <span class="ltx_text ltx_font_bold">for</span> <math id="algx2.l2.m1" class="ltx_Math" alttext="n=1,2,\ldots,\mathrm{maxit}" display="inline"><mrow><mi>n</mi><mo>=</mo><mrow><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mi>maxit</mi></mrow></mrow></math> <span class="ltx_text ltx_font_bold">do</span>
+
+</div>
+<div id="algx2.l3" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">3:</span></span>         <math id="algx2.l3.m1" class="ltx_Math" alttext="\delta\leftarrow(x_{1}-x_{0})f(x_{1})/\big{(}f(x_{1})-f(x_{0})\big{)}" display="inline"><mrow><mi>δ</mi><mo stretchy="false">←</mo><mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><msub><mi>x</mi><mn>0</mn></msub></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>/</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow></mrow></mrow></math>
+
+</div>
+<div id="algx2.l4" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">4:</span></span>         <math id="algx2.l4.m1" class="ltx_Math" alttext="x_{0}\leftarrow x_{1}" display="inline"><mrow><msub><mi>x</mi><mn>0</mn></msub><mo stretchy="false">←</mo><msub><mi>x</mi><mn>1</mn></msub></mrow></math>,  <math id="algx2.l4.m2" class="ltx_Math" alttext="x_{1}\leftarrow x_{1}-\delta" display="inline"><mrow><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">←</mo><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><mi>δ</mi></mrow></mrow></math>
+
+</div>
+<div id="algx2.l5" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">5:</span></span>         <span class="ltx_text ltx_font_bold">if</span> <math id="algx2.l5.m1" class="ltx_Math" alttext="|f(x_{1})|\leq\mathrm{ftol}" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mi>ftol</mi></mrow></math> <span class="ltx_text ltx_font_bold">or</span> <math id="algx2.l5.m2" class="ltx_Math" alttext="|\delta|\leq\mathrm{xtol}" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mi>δ</mi><mo stretchy="false">|</mo></mrow><mo>≤</mo><mi>xtol</mi></mrow></math> <span class="ltx_text ltx_font_bold">then</span>
+
+</div>
+<div id="algx2.l6" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">6:</span></span>              <span class="ltx_text ltx_font_bold">return</span> <math id="algx2.l6.m1" class="ltx_Math" alttext="x_{1}" display="inline"><msub><mi>x</mi><mn>1</mn></msub></math>
+
+</div>
+<div id="algx2.l7" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">7:</span></span>         <span class="ltx_text ltx_font_bold">end</span> <span class="ltx_text ltx_font_bold">if</span>
+</div>
+<div id="algx2.l8" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">8:</span></span>     <span class="ltx_text ltx_font_bold">end</span> <span class="ltx_text ltx_font_bold">for</span>
+</div>
+<div id="algx2.l9" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">9:</span></span>     <span class="ltx_text ltx_font_italic">Did not converge.</span>
+
+</div>
+<div id="algx2.l10" class="ltx_listingline">
+<span class="ltx_tag ltx_tag_listingline"><span class="ltx_text" style="font-size:80%;">10:</span></span><span class="ltx_text ltx_font_bold">end</span> <span class="ltx_text ltx_font_bold">function</span>
+</div>
+</div>
+</div>
+</section>
+<section id="S1.SS1.SSS2" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">1.1.2 </span>Differences Between Regula Falsi and Secant Method</h4>
+
+<div id="S1.SS1.SSS2.p1" class="ltx_para">
+<p class="ltx_p">Both the regula falsi and the secant methods use the root of the secant line as the next point in the iteration, and so they appear to be very similar.
+However, there is a key difference: the secant method <span class="ltx_text ltx_font_bold">always uses the newest two points</span> to form the secant line.
+Regula falsi, on the other hand, uses the secant line between the <span class="ltx_text ltx_font_bold">newest point</span> and <span class="ltx_text ltx_font_bold">one of the previous points</span>, chosen so that <math id="S1.SS1.SSS2.p1.m1" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> has opposite sign at the two endpoints (ensuring that the root is bracketed).
+Other than this difference, the methods are the same.
+Although this difference appears minor, it can have significant implications for robustness and speed of convergence.
+Regula falsi guarantees that the root remains bracketed, and is guaranteed to converge as long the starting interval is valid, but convergence may be slow.
+Heuristically, secant method should converge faster because it is always using the most up-to-date information: we expect <math id="S1.SS1.SSS2.p1.m2" class="ltx_Math" alttext="x_{n}\to r" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">→</mo><mi>r</mi></mrow></math>, so the most recent points <math id="S1.SS1.SSS2.p1.m3" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> and <math id="S1.SS1.SSS2.p1.m4" class="ltx_Math" alttext="x_{n-1}" display="inline"><msub><mi>x</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub></math> should be the best approximations so far to the root <math id="S1.SS1.SSS2.p1.m5" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>, rather than using <math id="S1.SS1.SSS2.p1.m6" class="ltx_Math" alttext="a_{n}" display="inline"><msub><mi>a</mi><mi>n</mi></msub></math> or <math id="S1.SS1.SSS2.p1.m7" class="ltx_Math" alttext="b_{n}" display="inline"><msub><mi>b</mi><mi>n</mi></msub></math> as one of the endpoints, which may be “stale” information.
+The secant method does indeed converge (much) faster than regula falsi, and we will make this argument rigorous shortly.
+The drawback is that it is not guaranteed to converge even if the initial two points bracket the root.
+Additional criteria are needed to guarantee convergence, and these generally depend on unknown parameters that cannot be checked practically.</p>
+</div>
+<div id="Thmexamplex1" class="ltx_theorem ltx_theorem_examplex">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Example 1</span></span><span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmexamplex1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">As an example, we illustrate the use of the regula falsi and secant methods to solve</span></p>
+<table id="S1.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex6.m1" class="ltx_Math" alttext="x^{2}-2=0." display="block"><mrow><mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mn>2</mn></mrow><mo>=</mo><mn>0</mn></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The roots are <math id="Thmexamplex1.p1.m1" class="ltx_Math" alttext="\pm\sqrt{2}=1.41421\dots" display="inline"><mrow><mrow><mo>±</mo><msqrt><mn>2</mn></msqrt></mrow><mo>=</mo><mrow><mn>1.41421</mn><mo>⁢</mo><mi>…</mi></mrow></mrow></math>, and so we use the interval <math id="Thmexamplex1.p1.m2" class="ltx_Math" alttext="[1,2]" display="inline"><mrow><mo stretchy="false">[</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo stretchy="false">]</mo></mrow></math> to bracket the root (and for the secant method initialization).
+The results are summarized in the table below, with the correct digits of the approximations <math id="Thmexamplex1.p1.m3" class="ltx_Math" alttext="x_{n}\approx\sqrt{2}" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>≈</mo><msqrt><mn>2</mn></msqrt></mrow></math> shown in bold.</span></p>
+</div>
+<div class="ltx_logical-block">
+<div id="Thmexamplex1.p2" class="ltx_para">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_th ltx_th_column ltx_th_row ltx_border_rr" colspan="4"></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column" colspan="2"><span class="ltx_text ltx_font_italic" style="font-size:90%;">Secant</span></th>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_th ltx_th_column ltx_th_row ltx_border_rr" colspan="4"></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column"><math id="Thmexamplex1.m1" class="ltx_Math" alttext="n" display="inline"><mi mathsize="90%">n</mi></math></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column"><math id="Thmexamplex1.m2" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi mathsize="90%">x</mi><mi mathsize="90%">n</mi></msub></math></th>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_th_row ltx_border_rr" colspan="4"><span class="ltx_text ltx_font_italic" style="font-size:90%;">Regula Falsi</span></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column"><math id="Thmexamplex1.m3" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column"><span class="ltx_text ltx_font_italic" style="font-size:90%;">1.000000000000000</span></th>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_th_row ltx_border_r"><math id="Thmexamplex1.m4" class="ltx_Math" alttext="n" display="inline"><mi mathsize="90%">n</mi></math></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column"><math id="Thmexamplex1.m5" class="ltx_Math" alttext="a_{n}" display="inline"><msub><mi mathsize="90%">a</mi><mi mathsize="90%">n</mi></msub></math></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column"><math id="Thmexamplex1.m6" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi mathsize="90%">x</mi><mi mathsize="90%">n</mi></msub></math></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_rr"><math id="Thmexamplex1.m7" class="ltx_Math" alttext="b_{n}" display="inline"><msub><mi mathsize="90%">b</mi><mi mathsize="90%">n</mi></msub></math></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column"><math id="Thmexamplex1.m8" class="ltx_Math" alttext="1" display="inline"><mn mathsize="90%">1</mn></math></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column"><span class="ltx_text ltx_font_italic" style="font-size:90%;">2.000000000000000</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r ltx_border_t"><math id="Thmexamplex1.m9" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></th>
+<td class="ltx_td ltx_align_center ltx_border_t"><span class="ltx_text ltx_font_italic" style="font-size:90%;">1.000000000000000</span></td>
+<td class="ltx_td ltx_align_center ltx_border_t">
+<span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1</span><span class="ltx_text ltx_font_italic" style="font-size:90%;">.333333333333333</span>
+</td>
+<td class="ltx_td ltx_align_center ltx_border_rr ltx_border_t"><span class="ltx_text ltx_font_italic" style="font-size:90%;">2.000000000000000</span></td>
+<td class="ltx_td ltx_align_center ltx_border_t"><math id="Thmexamplex1.m10" class="ltx_Math" alttext="2" display="inline"><mn mathsize="90%">2</mn></math></td>
+<td class="ltx_td ltx_align_center ltx_border_t">
+<span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1</span><span class="ltx_text ltx_font_italic" style="font-size:90%;">.333333333333333</span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><math id="Thmexamplex1.m11" class="ltx_Math" alttext="1" display="inline"><mn mathsize="90%">1</mn></math></th>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_italic" style="font-size:90%;">1.333333333333333</span></td>
+<td class="ltx_td ltx_align_center">
+<span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1.4</span><span class="ltx_text ltx_font_italic" style="font-size:90%;">00000000000000</span>
+</td>
+<td class="ltx_td ltx_align_center ltx_border_rr"><span class="ltx_text ltx_font_italic" style="font-size:90%;">2.000000000000000</span></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex1.m12" class="ltx_Math" alttext="3" display="inline"><mn mathsize="90%">3</mn></math></td>
+<td class="ltx_td ltx_align_center">
+<span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1.4</span><span class="ltx_text ltx_font_italic" style="font-size:90%;">00000000000000</span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><math id="Thmexamplex1.m13" class="ltx_Math" alttext="2" display="inline"><mn mathsize="90%">2</mn></math></th>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_italic" style="font-size:90%;">1.400000000000000</span></td>
+<td class="ltx_td ltx_align_center">
+<span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1.41</span><span class="ltx_text ltx_font_italic" style="font-size:90%;">1764705882353</span>
+</td>
+<td class="ltx_td ltx_align_center ltx_border_rr"><span class="ltx_text ltx_font_italic" style="font-size:90%;">2.000000000000000</span></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex1.m14" class="ltx_Math" alttext="4" display="inline"><mn mathsize="90%">4</mn></math></td>
+<td class="ltx_td ltx_align_center">
+<span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1.414</span><span class="ltx_text ltx_font_italic" style="font-size:90%;">634146341463</span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><math id="Thmexamplex1.m15" class="ltx_Math" alttext="3" display="inline"><mn mathsize="90%">3</mn></math></th>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_italic" style="font-size:90%;">1.411764705882353</span></td>
+<td class="ltx_td ltx_align_center">
+<span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1.41</span><span class="ltx_text ltx_font_italic" style="font-size:90%;">3793103448276</span>
+</td>
+<td class="ltx_td ltx_align_center ltx_border_rr"><span class="ltx_text ltx_font_italic" style="font-size:90%;">2.000000000000000</span></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex1.m16" class="ltx_Math" alttext="5" display="inline"><mn mathsize="90%">5</mn></math></td>
+<td class="ltx_td ltx_align_center">
+<span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1.41421</span><span class="ltx_text ltx_font_italic" style="font-size:90%;">1438474870</span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><math id="Thmexamplex1.m17" class="ltx_Math" alttext="4" display="inline"><mn mathsize="90%">4</mn></math></th>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_italic" style="font-size:90%;">1.413793103448276</span></td>
+<td class="ltx_td ltx_align_center">
+<span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1.414</span><span class="ltx_text ltx_font_italic" style="font-size:90%;">141414141414</span>
+</td>
+<td class="ltx_td ltx_align_center ltx_border_rr"><span class="ltx_text ltx_font_italic" style="font-size:90%;">2.000000000000000</span></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex1.m18" class="ltx_Math" alttext="6" display="inline"><mn mathsize="90%">6</mn></math></td>
+<td class="ltx_td ltx_align_center">
+<span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1.414213562</span><span class="ltx_text ltx_font_italic" style="font-size:90%;">057320</span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><math id="Thmexamplex1.m19" class="ltx_Math" alttext="5" display="inline"><mn mathsize="90%">5</mn></math></th>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_italic" style="font-size:90%;">1.414141414141414</span></td>
+<td class="ltx_td ltx_align_center">
+<span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1.4142</span><span class="ltx_text ltx_font_italic" style="font-size:90%;">01183431953</span>
+</td>
+<td class="ltx_td ltx_align_center ltx_border_rr"><span class="ltx_text ltx_font_italic" style="font-size:90%;">2.000000000000000</span></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex1.m20" class="ltx_Math" alttext="7" display="inline"><mn mathsize="90%">7</mn></math></td>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1.414213562373095</span></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><math id="Thmexamplex1.m21" class="ltx_Math" alttext="6" display="inline"><mn mathsize="90%">6</mn></math></th>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_italic" style="font-size:90%;">1.414201183431953</span></td>
+<td class="ltx_td ltx_align_center">
+<span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1.41421</span><span class="ltx_text ltx_font_italic" style="font-size:90%;">1438474870</span>
+</td>
+<td class="ltx_td ltx_align_center ltx_border_rr"><span class="ltx_text ltx_font_italic" style="font-size:90%;">2.000000000000000</span></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex1.m22" class="ltx_Math" alttext="8" display="inline"><mn mathsize="90%">8</mn></math></td>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1.414213562373095</span></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><math id="Thmexamplex1.m23" class="ltx_Math" alttext="7" display="inline"><mn mathsize="90%">7</mn></math></th>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_italic" style="font-size:90%;">1.414211438474870</span></td>
+<td class="ltx_td ltx_align_center">
+<span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1.414213</span><span class="ltx_text ltx_font_italic" style="font-size:90%;">197969543</span>
+</td>
+<td class="ltx_td ltx_align_center ltx_border_rr"><span class="ltx_text ltx_font_italic" style="font-size:90%;">2.000000000000000</span></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex1.m24" class="ltx_Math" alttext="9" display="inline"><mn mathsize="90%">9</mn></math></td>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1.414213562373095</span></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><math id="Thmexamplex1.m25" class="ltx_Math" alttext="8" display="inline"><mn mathsize="90%">8</mn></math></th>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_italic" style="font-size:90%;">1.414213197969543</span></td>
+<td class="ltx_td ltx_align_center">
+<span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1.414213</span><span class="ltx_text ltx_font_italic" style="font-size:90%;">499851323</span>
+</td>
+<td class="ltx_td ltx_align_center ltx_border_rr"><span class="ltx_text ltx_font_italic" style="font-size:90%;">2.000000000000000</span></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex1.m26" class="ltx_Math" alttext="10" display="inline"><mn mathsize="90%">10</mn></math></td>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1.414213562373095</span></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><math id="Thmexamplex1.m27" class="ltx_Math" alttext="9" display="inline"><mn mathsize="90%">9</mn></math></th>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_italic" style="font-size:90%;">1.414213499851323</span></td>
+<td class="ltx_td ltx_align_center">
+<span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1.4142135</span><span class="ltx_text ltx_font_italic" style="font-size:90%;">51646055</span>
+</td>
+<td class="ltx_td ltx_align_center ltx_border_rr"><span class="ltx_text ltx_font_italic" style="font-size:90%;">2.000000000000000</span></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex1.m28" class="ltx_Math" alttext="11" display="inline"><mn mathsize="90%">11</mn></math></td>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1.414213562373095</span></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_r"><math id="Thmexamplex1.m29" class="ltx_Math" alttext="10" display="inline"><mn mathsize="90%">10</mn></math></th>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_italic" style="font-size:90%;">1.414213551646055</span></td>
+<td class="ltx_td ltx_align_center">
+<span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1.41421356</span><span class="ltx_text ltx_font_italic" style="font-size:90%;">0532626</span>
+</td>
+<td class="ltx_td ltx_align_center ltx_border_rr"><span class="ltx_text ltx_font_italic" style="font-size:90%;">2.000000000000000</span></td>
+<td class="ltx_td ltx_align_center"><math id="Thmexamplex1.m30" class="ltx_Math" alttext="12" display="inline"><mn mathsize="90%">12</mn></math></td>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_bold ltx_font_italic" style="font-size:90%;">1.414213562373095</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="Thmexamplex1.p3" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The secant method gets all digits correct in 5 iterations, whereas the regula falsi method, even after 10 iterations, does not have all digits correct.
+<math id="Thmexamplex1.p3.m1" class="ltx_Math" alttext="\blacklozenge" display="inline"><mi mathvariant="normal">◆</mi></math></span></p>
+</div>
+</div>
+<div id="Thmtheorem1" class="ltx_theorem ltx_theorem_theorem">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Theorem 1</span></span><span class="ltx_text ltx_font_bold"> </span>(Convergence of Newton’s method; Textbook Theorem 2.12)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmtheorem1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Suppose that <math id="Thmtheorem1.p1.m1" class="ltx_Math" alttext="r\in(a,b)" display="inline"><mrow><mi>r</mi><mo>∈</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math> is a root of <math id="Thmtheorem1.p1.m2" class="ltx_Math" alttext="f\in C^{2}(a,b)" display="inline"><mrow><mi>f</mi><mo>∈</mo><mrow><msup><mi>C</mi><mn>2</mn></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, and <math id="Thmtheorem1.p1.m3" class="ltx_Math" alttext="f^{\prime}(r)\neq 0" display="inline"><mrow><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≠</mo><mn>0</mn></mrow></math>.
+There is a <math id="Thmtheorem1.p1.m4" class="ltx_Math" alttext="\delta&gt;0" display="inline"><mrow><mi>δ</mi><mo>&gt;</mo><mn>0</mn></mrow></math> such that, if <math id="Thmtheorem1.p1.m5" class="ltx_Math" alttext="x_{0}\in(r-\delta,r+\delta)" display="inline"><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>∈</mo><mrow><mo stretchy="false">(</mo><mrow><mi>r</mi><mo>−</mo><mi>δ</mi></mrow><mo>,</mo><mrow><mi>r</mi><mo>+</mo><mi>δ</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math>, then the Newton iterates <math id="Thmtheorem1.p1.m6" class="ltx_Math" alttext="\{x_{n}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></math> will be well-defined and in <math id="Thmtheorem1.p1.m7" class="ltx_Math" alttext="(r-\delta,r+\delta)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>r</mi><mo>−</mo><mi>δ</mi></mrow><mo>,</mo><mrow><mi>r</mi><mo>+</mo><mi>δ</mi></mrow><mo stretchy="false">)</mo></mrow></math> for <math id="Thmtheorem1.p1.m8" class="ltx_Math" alttext="n\geq 0" display="inline"><mrow><mi>n</mi><mo>≥</mo><mn>0</mn></mrow></math>, and <math id="Thmtheorem1.p1.m9" class="ltx_Math" alttext="x_{n}\to r" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">→</mo><mi>r</mi></mrow></math> at least quadratically, with</span></p>
+<table id="S1.Ex7" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex7.m1" class="ltx_Math" alttext="\frac{x_{n+1}-r}{(x_{n}-r)^{2}}\to\frac{f^{\prime\prime}(r)}{2f^{\prime}(r)}%
+\qquad\text{as $n\to\infty$}," display="block"><mrow><mrow><mfrac><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><mi>r</mi></mrow><msup><mrow><mo stretchy="false">(</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">)</mo></mrow><mn>2</mn></msup></mfrac><mo stretchy="false">→</mo><mrow><mfrac><mrow><msup><mi>f</mi><mo>′′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mrow><mn>2</mn><mo>⁢</mo><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></mfrac><mspace width="2em"></mspace><mrow><mtext class="ltx_mathvariant_italic">as </mtext><mrow><mi>n</mi><mo stretchy="false">→</mo><mi mathvariant="normal">∞</mi></mrow></mrow></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">provided <math id="Thmtheorem1.p1.m10" class="ltx_Math" alttext="x_{n}\neq r" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>≠</mo><mi>r</mi></mrow></math> for any <math id="Thmtheorem1.p1.m11" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>.
+If <math id="Thmtheorem1.p1.m12" class="ltx_Math" alttext="f^{\prime\prime}(r)\neq 0" display="inline"><mrow><mrow><msup><mi>f</mi><mo>′′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≠</mo><mn>0</mn></mrow></math>, the convergence of Newton’s method is precisely quadratic.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="S1.SS1.SSS2.p2" class="ltx_para">
+<p class="ltx_p">Let <math id="S1.SS1.SSS2.p2.m1" class="ltx_Math" alttext="x_{n}\in(a,b)" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>∈</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math> with <math id="S1.SS1.SSS2.p2.m2" class="ltx_Math" alttext="f^{\prime}(x_{n})\neq 0" display="inline"><mrow><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>≠</mo><mn>0</mn></mrow></math>.
+Let <math id="S1.SS1.SSS2.p2.m3" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> be the tangent line through <math id="S1.SS1.SSS2.p2.m4" class="ltx_Math" alttext="(x_{n},f(x_{n}))" display="inline"><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo>,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></math>, i.e. the first-order Taylor polynomial of <math id="S1.SS1.SSS2.p2.m5" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> at <math id="S1.SS1.SSS2.p2.m6" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math>,</p>
+<table id="S1.Ex8" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex8.m1" class="ltx_Math" alttext="p(x)=f(x_{n})+f^{\prime}(x_{n})(x-x_{n})." display="block"><mrow><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>+</mo><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><msub><mi>x</mi><mi>n</mi></msub></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">Taylor’s Theorem gives</p>
+<table id="S1.Ex9" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex9.m1" class="ltx_Math" alttext="f(x)=p(x)+\frac{f^{\prime\prime}(\xi)}{2}(x-x_{n})^{2}" display="block"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>+</mo><mrow><mfrac><mrow><msup><mi>f</mi><mo>′′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>ξ</mi><mo stretchy="false">)</mo></mrow></mrow><mn>2</mn></mfrac><mo>⁢</mo><msup><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><msub><mi>x</mi><mi>n</mi></msub></mrow><mo stretchy="false">)</mo></mrow><mn>2</mn></msup></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">for some <math id="S1.SS1.SSS2.p2.m7" class="ltx_Math" alttext="\xi" display="inline"><mi>ξ</mi></math> between <math id="S1.SS1.SSS2.p2.m8" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> and <math id="S1.SS1.SSS2.p2.m9" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>.
+Evaluating at the root <math id="S1.SS1.SSS2.p2.m10" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> then gives</p>
+<table id="S1.Ex10" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex10.m1" class="ltx_Math" alttext="-p(r)=\frac{f^{\prime\prime}(\xi_{n})}{2}(r-x_{n})^{2}" display="block"><mrow><mrow><mo>−</mo><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><mrow><mfrac><mrow><msup><mi>f</mi><mo>′′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>ξ</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mn>2</mn></mfrac><mo>⁢</mo><msup><mrow><mo stretchy="false">(</mo><mrow><mi>r</mi><mo>−</mo><msub><mi>x</mi><mi>n</mi></msub></mrow><mo stretchy="false">)</mo></mrow><mn>2</mn></msup></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">where <math id="S1.SS1.SSS2.p2.m11" class="ltx_Math" alttext="\xi_{n}" display="inline"><msub><mi>ξ</mi><mi>n</mi></msub></math> is between <math id="S1.SS1.SSS2.p2.m12" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> and <math id="S1.SS1.SSS2.p2.m13" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>.
+The next point <math id="S1.SS1.SSS2.p2.m14" class="ltx_Math" alttext="x_{n+1}" display="inline"><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub></math> in Newton’s method is the root of <math id="S1.SS1.SSS2.p2.m15" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>, i.e. <math id="S1.SS1.SSS2.p2.m16" class="ltx_Math" alttext="p(x_{n+1})=0" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math>.
+So,</p>
+<table id="S1.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S1.Ex11"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S1.Ex11.m1" class="ltx_Math" alttext="\displaystyle-p(r)" display="inline"><mrow><mo>−</mo><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S1.Ex11.m2" class="ltx_Math" alttext="\displaystyle=p(x_{n+1})-p(r)" display="inline"><mrow><mi></mi><mo>=</mo><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S1.Ex12"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S1.Ex12.m1" class="ltx_Math" alttext="\displaystyle=f(x_{n})+f^{\prime}(x_{n})(x_{n+1}-x_{n})-f(x_{n})-f^{\prime}(x_%
+{n})(r-x_{n})" display="inline"><mrow><mi></mi><mo>=</mo><mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>+</mo><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><msub><mi>x</mi><mi>n</mi></msub></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>−</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>r</mi><mo>−</mo><msub><mi>x</mi><mi>n</mi></msub></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S1.Ex13"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S1.Ex13.m1" class="ltx_Math" alttext="\displaystyle=f^{\prime}(x_{n})(x_{n+1}-r)." display="inline"><mrow><mrow><mi></mi><mo>=</mo><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">Equating these two gives</p>
+<table id="S1.E1" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.E1.m1" class="ltx_Math" alttext="x_{n+1}-r=\frac{f^{\prime\prime}(\xi_{n})}{2f^{\prime}(x_{n})}(x_{n}-r)^{2}." display="block"><mrow><mrow><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><mi>r</mi></mrow><mo>=</mo><mrow><mfrac><mrow><msup><mi>f</mi><mo>′′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>ξ</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mrow><mn>2</mn><mo>⁢</mo><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mfrac><mo>⁢</mo><msup><mrow><mo stretchy="false">(</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">)</mo></mrow><mn>2</mn></msup></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(1)</span></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">We claim that the ratio <math id="S1.SS1.SSS2.p2.m17" class="ltx_Math" alttext="\frac{f^{\prime\prime}(\xi_{n})}{2f^{\prime}(x_{n})}" display="inline"><mfrac><mrow><msup><mi>f</mi><mo>′′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>ξ</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mrow><mn>2</mn><mo>⁢</mo><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mfrac></math> is bounded as long as <math id="S1.SS1.SSS2.p2.m18" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> is sufficiently close to the root <math id="S1.SS1.SSS2.p2.m19" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>.
+To see this, note that since <math id="S1.SS1.SSS2.p2.m20" class="ltx_Math" alttext="f\in C^{2}(a,b)" display="inline"><mrow><mi>f</mi><mo>∈</mo><mrow><msup><mi>C</mi><mn>2</mn></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, <math id="S1.SS1.SSS2.p2.m21" class="ltx_Math" alttext="f^{\prime\prime}(x)" display="inline"><mrow><msup><mi>f</mi><mo>′′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> is bounded above close to <math id="S1.SS1.SSS2.p2.m22" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>.
+Additionally, since <math id="S1.SS1.SSS2.p2.m23" class="ltx_Math" alttext="f^{\prime}" display="inline"><msup><mi>f</mi><mo>′</mo></msup></math> is continuous in <math id="S1.SS1.SSS2.p2.m24" class="ltx_Math" alttext="(a,b)" display="inline"><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></math> and <math id="S1.SS1.SSS2.p2.m25" class="ltx_Math" alttext="f^{\prime}(r)\neq 0" display="inline"><mrow><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≠</mo><mn>0</mn></mrow></math>, <math id="S1.SS1.SSS2.p2.m26" class="ltx_Math" alttext="f^{\prime}(x)" display="inline"><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> is bounded below close to <math id="S1.SS1.SSS2.p2.m27" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>.
+Therefore, there exists some <math id="S1.SS1.SSS2.p2.m28" class="ltx_Math" alttext="\delta&gt;0" display="inline"><mrow><mi>δ</mi><mo>&gt;</mo><mn>0</mn></mrow></math> such that</p>
+<table id="S1.Ex14" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex14.m1" class="ltx_Math" alttext="C\coloneqq\frac{\max\limits_{x\in[r-\delta,r+\delta]}|f^{\prime\prime}(x)|}{2%
+\min\limits_{x\in[r-\delta,r+\delta]}|f^{\prime}(x)|}&lt;\infty." display="block"><mrow><mrow><mi>C</mi><mo>≔</mo><mfrac><mrow><munder><mi>max</mi><mrow><mi>x</mi><mo>∈</mo><mrow><mo stretchy="false">[</mo><mrow><mi>r</mi><mo>−</mo><mi>δ</mi></mrow><mo>,</mo><mrow><mi>r</mi><mo>+</mo><mi>δ</mi></mrow><mo stretchy="false">]</mo></mrow></mrow></munder><mo>⁡</mo><mrow><mo stretchy="false">|</mo><mrow><msup><mi>f</mi><mo>′′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow></mrow><mrow><mn>2</mn><mo lspace="0.167em">⁢</mo><mrow><munder><mi>min</mi><mrow><mi>x</mi><mo>∈</mo><mrow><mo stretchy="false">[</mo><mrow><mi>r</mi><mo>−</mo><mi>δ</mi></mrow><mo>,</mo><mrow><mi>r</mi><mo>+</mo><mi>δ</mi></mrow><mo stretchy="false">]</mo></mrow></mrow></munder><mo>⁡</mo><mrow><mo stretchy="false">|</mo><mrow><msup><mi>f</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow></mrow></mrow></mfrac><mo>&lt;</mo><mi mathvariant="normal">∞</mi></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">We can choose <math id="S1.SS1.SSS2.p2.m29" class="ltx_Math" alttext="\delta" display="inline"><mi>δ</mi></math> even smaller to ensure <math id="S1.SS1.SSS2.p2.m30" class="ltx_Math" alttext="\gamma\coloneqq C\delta&lt;1" display="inline"><mrow><mi>γ</mi><mo>≔</mo><mrow><mi>C</mi><mo>⁢</mo><mi>δ</mi></mrow><mo>&lt;</mo><mn>1</mn></mrow></math>.
+Then, if <math id="S1.SS1.SSS2.p2.m31" class="ltx_Math" alttext="x_{n}\in(r-\delta,r+\delta)" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>∈</mo><mrow><mo stretchy="false">(</mo><mrow><mi>r</mi><mo>−</mo><mi>δ</mi></mrow><mo>,</mo><mrow><mi>r</mi><mo>+</mo><mi>δ</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math>, (<a href="#S1.E1" title="In 1.1.2 Differences Between Regula Falsi and Secant Method ‣ 1.1 Newton and Secant Methods ‣ 1 Solving Equations and Root Finding ‣ MTH 451/551 Lecture 5" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a>) gives</p>
+<table id="S1.E2" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.E2.m1" class="ltx_Math" alttext="|x_{n+1}-r|\leq C|x_{n}-r|^{2}\leq\gamma|x_{n}-r|&lt;|x_{n}-r|&lt;\delta," display="block"><mrow><mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mrow><mi>C</mi><mo>⁢</mo><msup><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow><mn>2</mn></msup></mrow><mo>≤</mo><mrow><mi>γ</mi><mo>⁢</mo><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow></mrow><mo>&lt;</mo><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow><mo>&lt;</mo><mi>δ</mi></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(2)</span></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">so <math id="S1.SS1.SSS2.p2.m32" class="ltx_Math" alttext="x_{n+1}\in(r-\delta,r+\delta)" display="inline"><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>∈</mo><mrow><mo stretchy="false">(</mo><mrow><mi>r</mi><mo>−</mo><mi>δ</mi></mrow><mo>,</mo><mrow><mi>r</mi><mo>+</mo><mi>δ</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math> as well.
+This means that if <math id="S1.SS1.SSS2.p2.m33" class="ltx_Math" alttext="x_{0}\in(r-\delta,r+\delta)" display="inline"><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>∈</mo><mrow><mo stretchy="false">(</mo><mrow><mi>r</mi><mo>−</mo><mi>δ</mi></mrow><mo>,</mo><mrow><mi>r</mi><mo>+</mo><mi>δ</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math>, then <math id="S1.SS1.SSS2.p2.m34" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> will be for <math id="S1.SS1.SSS2.p2.m35" class="ltx_Math" alttext="n=1,2,\ldots" display="inline"><mrow><mi>n</mi><mo>=</mo><mrow><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mi mathvariant="normal">…</mi></mrow></mrow></math>.
+Let <math id="S1.SS1.SSS2.p2.m36" class="ltx_Math" alttext="e_{n}=x_{n}-r" display="inline"><mrow><msub><mi>e</mi><mi>n</mi></msub><mo>=</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow></mrow></math>.
+From (<a href="#S1.E2" title="In 1.1.2 Differences Between Regula Falsi and Secant Method ‣ 1.1 Newton and Secant Methods ‣ 1 Solving Equations and Root Finding ‣ MTH 451/551 Lecture 5" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2</span></a>),</p>
+<table id="S1.Ex15" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex15.m1" class="ltx_Math" alttext="|e_{n}|\leq\gamma^{n}|e_{0}|\gamma^{n}(b-a)." display="block"><mrow><mrow><mrow><mo stretchy="false">|</mo><msub><mi>e</mi><mi>n</mi></msub><mo stretchy="false">|</mo></mrow><mo>≤</mo><mrow><msup><mi>γ</mi><mi>n</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">|</mo><msub><mi>e</mi><mn>0</mn></msub><mo stretchy="false">|</mo></mrow><mo>⁢</mo><msup><mi>γ</mi><mi>n</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>b</mi><mo>−</mo><mi>a</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">Since <math id="S1.SS1.SSS2.p2.m37" class="ltx_Math" alttext="\gamma&lt;1" display="inline"><mrow><mi>γ</mi><mo>&lt;</mo><mn>1</mn></mrow></math>, this implies <math id="S1.SS1.SSS2.p2.m38" class="ltx_Math" alttext="|e_{n}|\to 0" display="inline"><mrow><mrow><mo stretchy="false">|</mo><msub><mi>e</mi><mi>n</mi></msub><mo stretchy="false">|</mo></mrow><mo stretchy="false">→</mo><mn>0</mn></mrow></math>, and so <math id="S1.SS1.SSS2.p2.m39" class="ltx_Math" alttext="x_{n}\to r" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">→</mo><mi>r</mi></mrow></math>.
+The remainder of the theorem statements follow from (<a href="#S1.E1" title="In 1.1.2 Differences Between Regula Falsi and Secant Method ‣ 1.1 Newton and Secant Methods ‣ 1 Solving Equations and Root Finding ‣ MTH 451/551 Lecture 5" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a>).
+∎</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Tue Oct  6 10:36:40 2026 by <a href="http://dlmf.nist.gov/LaTeXML/" class="ltx_LaTeXML_logo"><span style="letter-spacing:-0.2em; margin-right:0.1em;">L<span class="ltx_font_smallcaps" style="position:relative; bottom:2.2pt;">a</span>T<span class="ltx_font_smallcaps" style="font-size:120%;position:relative; bottom:-0.2ex;">e</span></span><span style="font-size:90%; position:relative; bottom:-0.2ex;">XML</span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="Mascot Sammy"></a>
+</div></footer>
+</div>
+</body>
+</html>
