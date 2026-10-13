@@ -1,0 +1,447 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>MTH 451/551 Lecture 6</title>
+<!--Generated on Tue Oct 13 10:50:34 2026 by LaTeXML (version 0.8.8) http://dlmf.nist.gov/LaTeXML/.-->
+
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+<a class="back-link" href="../index.html">[Back to main course page]</a>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">MTH 451/551 
+<br class="ltx_break">Lecture 6</h1>
+<div class="ltx_authors">
+<span class="ltx_creator ltx_role_author">
+<span class="ltx_personname">Prof. W. Pazner
+</span></span>
+</div>
+
+<section id="S1" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">1 </span>Functional Iteration and Fixed Points</h2>
+
+<div id="S1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">[Textbook reference: §2.3]</p>
+</div>
+<div id="S1.p2" class="ltx_para">
+<p class="ltx_p">Many of the methods we have seen (and ones we will see later in this course) generate sequences <math id="S1.p2.m1" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> that converge to some limit <math id="S1.p2.m2" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>.
+The convergence of these methods can often be studied using a concept called <span class="ltx_text ltx_font_italic">functional iteration</span>.
+Let <math id="S1.p2.m3" class="ltx_Math" alttext="I" display="inline"><mi>I</mi></math> be some subset of <math id="S1.p2.m4" class="ltx_Math" alttext="\mathbb{R}" display="inline"><mi>ℝ</mi></math>, and let <math id="S1.p2.m5" class="ltx_Math" alttext="g:I\to I" display="inline"><mrow><mi>g</mi><mo lspace="0.278em" rspace="0.278em">:</mo><mrow><mi>I</mi><mo stretchy="false">→</mo><mi>I</mi></mrow></mrow></math>.
+Starting from some initial <math id="S1.p2.m6" class="ltx_Math" alttext="x_{0}" display="inline"><msub><mi>x</mi><mn>0</mn></msub></math>, the <span class="ltx_text ltx_font_bold">functional iterates</span> of <math id="S1.p2.m7" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> are given by</p>
+<table id="S1.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex1.m1" class="ltx_Math" alttext="x_{n+1}=g(x_{n})." display="block"><mrow><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+</div>
+<div id="Thmexamplex1" class="ltx_theorem ltx_theorem_examplex">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Example 1</span></span><span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmexamplex1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmexamplex1.p1.m1" class="ltx_Math" alttext="g(x)=\cos(x)" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>cos</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+We consider the functional iteration starting from some different choices of <math id="Thmexamplex1.p1.m2" class="ltx_Math" alttext="x_{0}" display="inline"><msub><mi>x</mi><mn>0</mn></msub></math>.
+Note that for each of the starting values, the iteration appears to converge to the same value, <math id="Thmexamplex1.p1.m3" class="ltx_Math" alttext="r\approx 0.739085" display="inline"><mrow><mi>r</mi><mo>≈</mo><mn>0.739085</mn></mrow></math>, which is a solution to <math id="Thmexamplex1.p1.m4" class="ltx_Math" alttext="g(x)=x" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>x</mi></mrow></math>.
+<math id="Thmexamplex1.p1.m5" class="ltx_Math" alttext="\blacklozenge" display="inline"><mi mathvariant="normal">◆</mi></math></span></p>
+</div>
+</div>
+<div id="S1.p3" class="ltx_para">
+<p class="ltx_p">The fact that the iteration in the example above converged to a solution to <math id="S1.p3.m1" class="ltx_Math" alttext="g(x)=x" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>x</mi></mrow></math> is not a coincidence, as the following theorem tells us.</p>
+</div>
+<div id="Thmtheorem1" class="ltx_theorem ltx_theorem_theorem">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Theorem 1</span></span><span class="ltx_text ltx_font_bold"> </span>(Limits of functional iteration; Textbook Theorem 2.19)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmtheorem1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Suppose that <math id="Thmtheorem1.p1.m1" class="ltx_Math" alttext="x_{0}" display="inline"><msub><mi>x</mi><mn>0</mn></msub></math> is given and that the sequence <math id="Thmtheorem1.p1.m2" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> is generated by functional iteration using the function <math id="Thmtheorem1.p1.m3" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math>, <math id="Thmtheorem1.p1.m4" class="ltx_Math" alttext="x_{n+1}=g(x_{n})" display="inline"><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math> for <math id="Thmtheorem1.p1.m5" class="ltx_Math" alttext="n\geq 0" display="inline"><mrow><mi>n</mi><mo>≥</mo><mn>0</mn></mrow></math>.
+If <math id="Thmtheorem1.p1.m6" class="ltx_Math" alttext="x_{n}\to r" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">→</mo><mi>r</mi></mrow></math> and <math id="Thmtheorem1.p1.m7" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> is continuous at <math id="Thmtheorem1.p1.m8" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>, then <math id="Thmtheorem1.p1.m9" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> is a <span class="ltx_text ltx_font_bold">fixed point</span> of <math id="Thmtheorem1.p1.m10" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math>, i.e. <math id="Thmtheorem1.p1.m11" class="ltx_Math" alttext="g(r)=r" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>r</mi></mrow></math>.</span></p>
+</div>
+</div>
+<div id="S1.p4" class="ltx_para">
+<p class="ltx_p">Given this theorem, it is important to understand when a function <math id="S1.p4.m1" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> has a fixed point, and under what conditions will the functional iteration <math id="S1.p4.m2" class="ltx_Math" alttext="x_{n+1}=g(x_{n})" display="inline"><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math> converge to that fixed point.
+One useful result on the existence of a fixed point is the following.</p>
+</div>
+<div id="Thmtheorem2" class="ltx_theorem ltx_theorem_theorem">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Theorem 2</span></span><span class="ltx_text ltx_font_bold"> </span>(A fixed point theorem; Textbook Theorem 2.3)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmtheorem2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If <math id="Thmtheorem2.p1.m1" class="ltx_Math" alttext="g\in C[a,b]" display="inline"><mrow><mi>g</mi><mo>∈</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></mrow></mrow></math> and <math id="Thmtheorem2.p1.m2" class="ltx_Math" alttext="g([a,b])\subseteq[a,b]" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>⊆</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></mrow></math>, then <math id="Thmtheorem2.p1.m3" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> has a fixed point <math id="Thmtheorem2.p1.m4" class="ltx_Math" alttext="r\in[a,b]" display="inline"><mrow><mi>r</mi><mo>∈</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="S1.p5" class="ltx_para">
+<p class="ltx_p">Let <math id="S1.p5.m1" class="ltx_Math" alttext="f(x)=g(x)-x" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mi>x</mi></mrow></mrow></math>.
+Since <math id="S1.p5.m2" class="ltx_Math" alttext="g(a),g(b)\in[a,b]" display="inline"><mrow><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>∈</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></mrow></math>, we have <math id="S1.p5.m3" class="ltx_Math" alttext="f(a)\geq 0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≥</mo><mn>0</mn></mrow></math> and <math id="S1.p5.m4" class="ltx_Math" alttext="f(b)\leq 0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mn>0</mn></mrow></math>, so <math id="S1.p5.m5" class="ltx_Math" alttext="f(a)f(b)\leq 0" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mn>0</mn></mrow></math>.
+By the convergence of the bisection method (Textbook Theorem 2.2), <math id="S1.p5.m6" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> has a root <math id="S1.p5.m7" class="ltx_Math" alttext="r\in[a,b]" display="inline"><mrow><mi>r</mi><mo>∈</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></mrow></math>, i.e. <math id="S1.p5.m8" class="ltx_Math" alttext="g(r)=r" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>r</mi></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="S1.p6" class="ltx_para">
+<p class="ltx_p">This theorem tells us that a fixed point exists, but not whether the functional iteration converges to it.
+The main tool that we will use to answer that question is the <span class="ltx_text ltx_font_bold">Contractive Mapping Theorem</span>.
+First, we need some definitions.</p>
+</div>
+<div id="Thmdefinition1" class="ltx_theorem ltx_theorem_definition">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Definition 1</span></span><span class="ltx_text ltx_font_bold"> </span>(Contraction; Textbook Definition 2.20)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmdefinition1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">We say that <math id="Thmdefinition1.p1.m1" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> is a <span class="ltx_text ltx_font_bold">contraction</span> (or <span class="ltx_text ltx_font_bold">contractive mapping</span>) on <math id="Thmdefinition1.p1.m2" class="ltx_Math" alttext="I\subseteq\mathbb{R}" display="inline"><mrow><mi>I</mi><mo>⊆</mo><mi>ℝ</mi></mrow></math> if there is a constant <math id="Thmdefinition1.p1.m3" class="ltx_Math" alttext="0\leq\gamma&lt;1" display="inline"><mrow><mn>0</mn><mo>≤</mo><mi>γ</mi><mo>&lt;</mo><mn>1</mn></mrow></math> such that</span></p>
+<table id="S1.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex2.m1" class="ltx_Math" alttext="|g(x)-g(y)|\leq\gamma|x-y|\qquad\text{for all $x,y\in I$}." display="block"><mrow><mrow><mrow><mo stretchy="false">|</mo><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mrow><mrow><mi>γ</mi><mo>⁢</mo><mrow><mo stretchy="false">|</mo><mrow><mi>x</mi><mo>−</mo><mi>y</mi></mrow><mo stretchy="false">|</mo></mrow></mrow><mspace width="2em"></mspace><mrow><mtext class="ltx_mathvariant_italic">for all </mtext><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>∈</mo><mi>I</mi></mrow></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+</div>
+</div>
+<div id="Thmlemma1" class="ltx_theorem ltx_theorem_lemma">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Lemma 1</span></span><span class="ltx_text ltx_font_bold"> </span>(Textbook equation (2.12))<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmlemma1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmlemma1.p1.m1" class="ltx_Math" alttext="I" display="inline"><mi>I</mi></math> be an interval, and let <math id="Thmlemma1.p1.m2" class="ltx_Math" alttext="g\in C^{1}(I)" display="inline"><mrow><mi>g</mi><mo>∈</mo><mrow><msup><mi>C</mi><mn>1</mn></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>I</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+Then</span></p>
+<table id="S1.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex3.m1" class="ltx_Math" alttext="|g(x)-g(y)|\leq\gamma|x-y|\quad\text{for all $x,y\in I$}\qquad\text{if and %
+only if}\qquad|g^{\prime}(x)|\leq\gamma\quad\text{for all $x\in I$}." display="block"><mrow><mrow><mrow><mrow><mo stretchy="false">|</mo><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mrow><mrow><mi>γ</mi><mo>⁢</mo><mrow><mo stretchy="false">|</mo><mrow><mi>x</mi><mo>−</mo><mi>y</mi></mrow><mo stretchy="false">|</mo></mrow></mrow><mspace width="1em"></mspace><mrow><mtext class="ltx_mathvariant_italic">for all </mtext><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>∈</mo><mi>I</mi></mrow></mrow><mspace width="2em"></mspace><mtext class="ltx_mathvariant_italic">if and only if</mtext></mrow></mrow><mspace width="2em"></mspace><mrow><mrow><mo stretchy="false">|</mo><mrow><msup><mi>g</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mrow><mi>γ</mi><mspace width="1em"></mspace><mrow><mtext class="ltx_mathvariant_italic">for all </mtext><mrow><mi>x</mi><mo>∈</mo><mi>I</mi></mrow></mrow></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="S1.p7" class="ltx_para">
+<p class="ltx_p">First, suppose that <math id="S1.p7.m1" class="ltx_Math" alttext="|g^{\prime}(x)|\leq\gamma" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><msup><mi>g</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mi>γ</mi></mrow></math> for all <math id="S1.p7.m2" class="ltx_Math" alttext="x\in I" display="inline"><mrow><mi>x</mi><mo>∈</mo><mi>I</mi></mrow></math>, and let <math id="S1.p7.m3" class="ltx_Math" alttext="x,y\in I" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>∈</mo><mi>I</mi></mrow></math>.
+By the Mean Value Theorem,</p>
+<table id="S1.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex4.m1" class="ltx_Math" alttext="|g(x)-g(y)|=|g^{\prime}(\xi)||x-y|\leq\gamma|x-y|" display="block"><mrow><mrow><mo stretchy="false">|</mo><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>=</mo><mrow><mrow><mo stretchy="false">|</mo><mrow><msup><mi>g</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>ξ</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">|</mo><mrow><mi>x</mi><mo>−</mo><mi>y</mi></mrow><mo stretchy="false">|</mo></mrow></mrow><mo>≤</mo><mrow><mi>γ</mi><mo>⁢</mo><mrow><mo stretchy="false">|</mo><mrow><mi>x</mi><mo>−</mo><mi>y</mi></mrow><mo stretchy="false">|</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">for some <math id="S1.p7.m4" class="ltx_Math" alttext="\xi" display="inline"><mi>ξ</mi></math> between <math id="S1.p7.m5" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> and <math id="S1.p7.m6" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math>, so <math id="S1.p7.m7" class="ltx_Math" alttext="|g^{\prime}(\xi)|\leq\gamma" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><msup><mi>g</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>ξ</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mi>γ</mi></mrow></math>.</p>
+</div>
+<div id="S1.p8" class="ltx_para">
+<p class="ltx_p">Conversely, suppose that <math id="S1.p8.m1" class="ltx_Math" alttext="|g(x)-g(y)|\leq\gamma|x-y|" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mrow><mi>γ</mi><mo>⁢</mo><mrow><mo stretchy="false">|</mo><mrow><mi>x</mi><mo>−</mo><mi>y</mi></mrow><mo stretchy="false">|</mo></mrow></mrow></mrow></math> for all <math id="S1.p8.m2" class="ltx_Math" alttext="x,y\in I" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>∈</mo><mi>I</mi></mrow></math>, and let <math id="S1.p8.m3" class="ltx_Math" alttext="x\in I" display="inline"><mrow><mi>x</mi><mo>∈</mo><mi>I</mi></mrow></math>.
+For any <math id="S1.p8.m4" class="ltx_Math" alttext="y\in I" display="inline"><mrow><mi>y</mi><mo>∈</mo><mi>I</mi></mrow></math> with <math id="S1.p8.m5" class="ltx_Math" alttext="y\neq x" display="inline"><mrow><mi>y</mi><mo>≠</mo><mi>x</mi></mrow></math>,</p>
+<table id="S1.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex5.m1" class="ltx_Math" alttext="\left|\frac{g(y)-g(x)}{y-x}\right|\leq\gamma." display="block"><mrow><mrow><mrow><mo>|</mo><mfrac><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mrow><mi>y</mi><mo>−</mo><mi>x</mi></mrow></mfrac><mo>|</mo></mrow><mo>≤</mo><mi>γ</mi></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">Taking the limit as <math id="S1.p8.m6" class="ltx_Math" alttext="y\to x" display="inline"><mrow><mi>y</mi><mo stretchy="false">→</mo><mi>x</mi></mrow></math> (with <math id="S1.p8.m7" class="ltx_Math" alttext="y\in I" display="inline"><mrow><mi>y</mi><mo>∈</mo><mi>I</mi></mrow></math>), we obtain <math id="S1.p8.m8" class="ltx_Math" alttext="|g^{\prime}(x)|\leq\gamma" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><msup><mi>g</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mi>γ</mi></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="Thmdefinition2" class="ltx_theorem ltx_theorem_definition">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Definition 2</span></span><span class="ltx_text ltx_font_bold"> </span>(Cauchy sequence; Textbook Definition 2.21)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmdefinition2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A sequence <math id="Thmdefinition2.p1.m1" class="ltx_Math" alttext="\{x_{n}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></math> in <math id="Thmdefinition2.p1.m2" class="ltx_Math" alttext="\mathbb{R}" display="inline"><mi>ℝ</mi></math> is a <span class="ltx_text ltx_font_bold">Cauchy sequence</span> if, for each <math id="Thmdefinition2.p1.m3" class="ltx_Math" alttext="\varepsilon&gt;0" display="inline"><mrow><mi>ε</mi><mo>&gt;</mo><mn>0</mn></mrow></math>, there is a natural number <math id="Thmdefinition2.p1.m4" class="ltx_Math" alttext="N=N(\varepsilon)" display="inline"><mrow><mi>N</mi><mo>=</mo><mrow><mi>N</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>ε</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> such that <math id="Thmdefinition2.p1.m5" class="ltx_Math" alttext="|x_{m}-x_{n}|\leq\varepsilon" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>m</mi></msub><mo>−</mo><msub><mi>x</mi><mi>n</mi></msub></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mi>ε</mi></mrow></math> whenever <math id="Thmdefinition2.p1.m6" class="ltx_Math" alttext="m,n\geq N" display="inline"><mrow><mrow><mi>m</mi><mo>,</mo><mi>n</mi></mrow><mo>≥</mo><mi>N</mi></mrow></math>.</span></p>
+</div>
+</div>
+<div id="Thmtheorem3" class="ltx_theorem ltx_theorem_theorem">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Theorem 3</span></span><span class="ltx_text ltx_font_bold"> </span>(Convergence of Cauchy sequences; Textbook Theorem 2.22)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmtheorem3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Cauchy sequences in <math id="Thmtheorem3.p1.m1" class="ltx_Math" alttext="\mathbb{R}" display="inline"><mi>ℝ</mi></math> converge.
+In other words, if <math id="Thmtheorem3.p1.m2" class="ltx_Math" alttext="\{x_{n}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></math> is a Cauchy sequence, then there is some <math id="Thmtheorem3.p1.m3" class="ltx_Math" alttext="r\in\mathbb{R}" display="inline"><mrow><mi>r</mi><mo>∈</mo><mi>ℝ</mi></mrow></math> such that <math id="Thmtheorem3.p1.m4" class="ltx_Math" alttext="x_{n}\to r" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">→</mo><mi>r</mi></mrow></math> as <math id="Thmtheorem3.p1.m5" class="ltx_Math" alttext="n\to\infty" display="inline"><mrow><mi>n</mi><mo stretchy="false">→</mo><mi mathvariant="normal">∞</mi></mrow></math>.</span></p>
+</div>
+</div>
+<div id="Thmtheorem4" class="ltx_theorem ltx_theorem_theorem">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Theorem 4</span></span><span class="ltx_text ltx_font_bold"> </span>(Contractive mapping theorem; Textbook Theorem 2.23)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmtheorem4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmtheorem4.p1.m1" class="ltx_Math" alttext="I\subseteq\mathbb{R}" display="inline"><mrow><mi>I</mi><mo>⊆</mo><mi>ℝ</mi></mrow></math> be a closed set.
+If <math id="Thmtheorem4.p1.m2" class="ltx_Math" alttext="g(I)\subseteq I" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>I</mi><mo stretchy="false">)</mo></mrow></mrow><mo>⊆</mo><mi>I</mi></mrow></math> and <math id="Thmtheorem4.p1.m3" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> is a contraction on <math id="Thmtheorem4.p1.m4" class="ltx_Math" alttext="I" display="inline"><mi>I</mi></math> with contraction constant <math id="Thmtheorem4.p1.m5" class="ltx_Math" alttext="0\leq\gamma&lt;1" display="inline"><mrow><mn>0</mn><mo>≤</mo><mi>γ</mi><mo>&lt;</mo><mn>1</mn></mrow></math>, then the following hold:</span></p>
+<ol id="S1.I1" class="ltx_enumerate">
+<li id="S1.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S1.I1.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="S1.I1.i1.p1.m1" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math><span class="ltx_text ltx_font_italic"> has a unique fixed point </span><math id="S1.I1.i1.p1.m2" class="ltx_Math" alttext="r\in I" display="inline"><mrow><mi>r</mi><mo>∈</mo><mi>I</mi></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="S1.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S1.I1.i2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If </span><math id="S1.I1.i2.p1.m1" class="ltx_Math" alttext="x_{0}\in I" display="inline"><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>∈</mo><mi>I</mi></mrow></math><span class="ltx_text ltx_font_italic"> and </span><math id="S1.I1.i2.p1.m2" class="ltx_Math" alttext="x_{n+1}=g(x_{n})" display="inline"><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic">, then </span><math id="S1.I1.i2.p1.m3" class="ltx_Math" alttext="x_{n}\to r" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">→</mo><mi>r</mi></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="S1.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">3.</span> 
+<div id="S1.I1.i3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The convergence is at least linear, with the error bounds</span></p>
+<table id="S1.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex6.m1" class="ltx_Math" alttext="|x_{n}-r|\leq\gamma^{n}|x_{0}-r|,\qquad|x_{n}-r|\leq\frac{\gamma^{n}}{1-\gamma%
+}|x_{1}-x_{0}|." display="block"><mrow><mrow><mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mrow><msup><mi>γ</mi><mi>n</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow></mrow></mrow><mo rspace="2.167em">,</mo><mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mrow><mfrac><msup><mi>γ</mi><mi>n</mi></msup><mrow><mn>1</mn><mo>−</mo><mi>γ</mi></mrow></mfrac><mo>⁢</mo><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><msub><mi>x</mi><mn>0</mn></msub></mrow><mo stretchy="false">|</mo></mrow></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="S1.p9" class="ltx_para">
+<p class="ltx_p">We first establish uniqueness: there is <span class="ltx_text ltx_font_bold">at most one</span> fixed point in <math id="S1.p9.m1" class="ltx_Math" alttext="I" display="inline"><mi>I</mi></math>.
+To do this, we suppose that <math id="S1.p9.m2" class="ltx_Math" alttext="r,s\in I" display="inline"><mrow><mrow><mi>r</mi><mo>,</mo><mi>s</mi></mrow><mo>∈</mo><mi>I</mi></mrow></math> are fixed points;
+we will show that <math id="S1.p9.m3" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> must equal <math id="S1.p9.m4" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math>.
+Since they are fixed points,</p>
+<table id="S1.Ex7" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex7.m1" class="ltx_Math" alttext="|r-s|=|g(r)-g(s)|\leq\gamma|r-s|." display="block"><mrow><mrow><mrow><mo stretchy="false">|</mo><mrow><mi>r</mi><mo>−</mo><mi>s</mi></mrow><mo stretchy="false">|</mo></mrow><mo>=</mo><mrow><mo stretchy="false">|</mo><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mrow><mi>γ</mi><mo>⁢</mo><mrow><mo stretchy="false">|</mo><mrow><mi>r</mi><mo>−</mo><mi>s</mi></mrow><mo stretchy="false">|</mo></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">If <math id="S1.p9.m5" class="ltx_Math" alttext="|r-s|\neq 0" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><mi>r</mi><mo>−</mo><mi>s</mi></mrow><mo stretchy="false">|</mo></mrow><mo>≠</mo><mn>0</mn></mrow></math>, then, since <math id="S1.p9.m6" class="ltx_Math" alttext="\gamma&lt;1" display="inline"><mrow><mi>γ</mi><mo>&lt;</mo><mn>1</mn></mrow></math>, we would have <math id="S1.p9.m7" class="ltx_Math" alttext="|r-s|&lt;|r-s|" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><mi>r</mi><mo>−</mo><mi>s</mi></mrow><mo stretchy="false">|</mo></mrow><mo>&lt;</mo><mrow><mo stretchy="false">|</mo><mrow><mi>r</mi><mo>−</mo><mi>s</mi></mrow><mo stretchy="false">|</mo></mrow></mrow></math>, a contradiction.
+Therefore, <math id="S1.p9.m8" class="ltx_Math" alttext="|r-s|=0" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><mi>r</mi><mo>−</mo><mi>s</mi></mrow><mo stretchy="false">|</mo></mrow><mo>=</mo><mn>0</mn></mrow></math>, and <math id="S1.p9.m9" class="ltx_Math" alttext="r=s" display="inline"><mrow><mi>r</mi><mo>=</mo><mi>s</mi></mrow></math>, establishing uniqueness.
+We now move on to proving existence.</p>
+</div>
+<div id="S1.p10" class="ltx_para">
+<p class="ltx_p">Let <math id="S1.p10.m1" class="ltx_Math" alttext="x_{n+1}=g(x_{n})" display="inline"><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+Since <math id="S1.p10.m2" class="ltx_Math" alttext="|x_{k+1}-x_{k}|=|g(x_{k})-g(x_{k-1})|\leq\gamma|x_{k}-x_{k-1}|" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><msub><mi>x</mi><mi>k</mi></msub></mrow><mo stretchy="false">|</mo></mrow><mo>=</mo><mrow><mo stretchy="false">|</mo><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>k</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mrow><mi>γ</mi><mo>⁢</mo><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>k</mi></msub><mo>−</mo><msub><mi>x</mi><mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow><mo stretchy="false">|</mo></mrow></mrow></mrow></math>, using induction we see that <math id="S1.p10.m3" class="ltx_Math" alttext="|x_{k+1}-x_{k}|\leq\gamma^{k}|x_{1}-x_{0}|" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><msub><mi>x</mi><mi>k</mi></msub></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mrow><msup><mi>γ</mi><mi>k</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><msub><mi>x</mi><mn>0</mn></msub></mrow><mo stretchy="false">|</mo></mrow></mrow></mrow></math> for all <math id="S1.p10.m4" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>.
+Suppose that <math id="S1.p10.m5" class="ltx_Math" alttext="m&gt;n" display="inline"><mrow><mi>m</mi><mo>&gt;</mo><mi>n</mi></mrow></math>, and consider <math id="S1.p10.m6" class="ltx_Math" alttext="|x_{m}-x_{n}|" display="inline"><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>m</mi></msub><mo>−</mo><msub><mi>x</mi><mi>n</mi></msub></mrow><mo stretchy="false">|</mo></mrow></math>.
+We have</p>
+<table id="S1.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S1.Ex8"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S1.Ex8.m1" class="ltx_Math" alttext="\displaystyle|x_{m}-x_{n}|" display="inline"><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>m</mi></msub><mo>−</mo><msub><mi>x</mi><mi>n</mi></msub></mrow><mo stretchy="false">|</mo></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S1.Ex8.m2" class="ltx_Math" alttext="\displaystyle=\left|\sum_{k=n}^{m-1}(x_{k+1}-x_{k})\right|\leq\sum_{k=n}^{m-1}%
+|x_{k+1}-x_{k}|\leq\sum_{k=n}^{m-1}\gamma^{k}|x_{1}-x_{0}|" display="inline"><mrow><mi></mi><mo>=</mo><mrow><mo>|</mo><mrow><mstyle displaystyle="true"><munderover><mo movablelimits="false">∑</mo><mrow><mi>k</mi><mo>=</mo><mi>n</mi></mrow><mrow><mi>m</mi><mo>−</mo><mn>1</mn></mrow></munderover></mstyle><mrow><mo stretchy="false">(</mo><mrow><msub><mi>x</mi><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><msub><mi>x</mi><mi>k</mi></msub></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>|</mo></mrow><mo>≤</mo><mrow><mstyle displaystyle="true"><munderover><mo movablelimits="false">∑</mo><mrow><mi>k</mi><mo>=</mo><mi>n</mi></mrow><mrow><mi>m</mi><mo>−</mo><mn>1</mn></mrow></munderover></mstyle><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><msub><mi>x</mi><mi>k</mi></msub></mrow><mo stretchy="false">|</mo></mrow></mrow><mo>≤</mo><mrow><mstyle displaystyle="true"><munderover><mo movablelimits="false">∑</mo><mrow><mi>k</mi><mo>=</mo><mi>n</mi></mrow><mrow><mi>m</mi><mo>−</mo><mn>1</mn></mrow></munderover></mstyle><mrow><msup><mi>γ</mi><mi>k</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><msub><mi>x</mi><mn>0</mn></msub></mrow><mo stretchy="false">|</mo></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S1.Ex9"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S1.Ex9.m1" class="ltx_Math" alttext="\displaystyle=|x_{1}-x_{0}|\left(\sum_{k=0}^{m-1}\gamma^{k}-\sum_{k=0}^{n-1}%
+\gamma^{k}\right)=\frac{\gamma^{n}-\gamma^{m}}{1-\gamma}|x_{1}-x_{0}|\leq\frac%
+{\gamma^{n}}{1-\gamma}|x_{1}-x_{0}|." display="inline"><mrow><mrow><mi></mi><mo>=</mo><mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><msub><mi>x</mi><mn>0</mn></msub></mrow><mo stretchy="false">|</mo></mrow><mo>⁢</mo><mrow><mo>(</mo><mrow><mrow><mstyle displaystyle="true"><munderover><mo movablelimits="false">∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>m</mi><mo>−</mo><mn>1</mn></mrow></munderover></mstyle><msup><mi>γ</mi><mi>k</mi></msup></mrow><mo>−</mo><mrow><mstyle displaystyle="true"><munderover><mo movablelimits="false">∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></munderover></mstyle><msup><mi>γ</mi><mi>k</mi></msup></mrow></mrow><mo>)</mo></mrow></mrow><mo>=</mo><mrow><mstyle displaystyle="true"><mfrac><mrow><msup><mi>γ</mi><mi>n</mi></msup><mo>−</mo><msup><mi>γ</mi><mi>m</mi></msup></mrow><mrow><mn>1</mn><mo>−</mo><mi>γ</mi></mrow></mfrac></mstyle><mo>⁢</mo><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><msub><mi>x</mi><mn>0</mn></msub></mrow><mo stretchy="false">|</mo></mrow></mrow><mo>≤</mo><mrow><mstyle displaystyle="true"><mfrac><msup><mi>γ</mi><mi>n</mi></msup><mrow><mn>1</mn><mo>−</mo><mi>γ</mi></mrow></mfrac></mstyle><mo>⁢</mo><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><msub><mi>x</mi><mn>0</mn></msub></mrow><mo stretchy="false">|</mo></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">Since the final term vanishes as <math id="S1.p10.m7" class="ltx_Math" alttext="n\to\infty" display="inline"><mrow><mi>n</mi><mo stretchy="false">→</mo><mi mathvariant="normal">∞</mi></mrow></math>, we see that <math id="S1.p10.m8" class="ltx_Math" alttext="\{x_{n}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></math> is a Cauchy sequence, which therefore must converge to some number <math id="S1.p10.m9" class="ltx_Math" alttext="r\in\mathbb{R}" display="inline"><mrow><mi>r</mi><mo>∈</mo><mi>ℝ</mi></mrow></math>.
+Since the terms of the sequence are all in <math id="S1.p10.m10" class="ltx_Math" alttext="I" display="inline"><mi>I</mi></math> and <math id="S1.p10.m11" class="ltx_Math" alttext="I" display="inline"><mi>I</mi></math> is closed, it holds that <math id="S1.p10.m12" class="ltx_Math" alttext="r\in I" display="inline"><mrow><mi>r</mi><mo>∈</mo><mi>I</mi></mrow></math>.
+Therefore, <math id="S1.p10.m13" class="ltx_Math" alttext="x_{n}\to r\in I" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">→</mo><mi>r</mi><mo>∈</mo><mi>I</mi></mrow></math>.
+Since <math id="S1.p10.m14" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> is continuous at <math id="S1.p10.m15" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>, <math id="S1.p10.m16" class="ltx_Math" alttext="g(x_{n})\to g(r)" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">→</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+Therefore,</p>
+<table id="S1.Ex10" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex10.m1" class="ltx_Math" alttext="r=\lim_{n\to\infty}x_{n+1}=\lim_{n\to\infty}g(x_{n})=g(r)," display="block"><mrow><mrow><mi>r</mi><mo rspace="0.1389em">=</mo><mrow><munder><mo lspace="0.1389em" movablelimits="false" rspace="0.167em">lim</mo><mrow><mi>n</mi><mo stretchy="false">→</mo><mi mathvariant="normal">∞</mi></mrow></munder><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><mo rspace="0.1389em">=</mo><mrow><munder><mo lspace="0.1389em" movablelimits="false" rspace="0.167em">lim</mo><mrow><mi>n</mi><mo stretchy="false">→</mo><mi mathvariant="normal">∞</mi></mrow></munder><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">and so <math id="S1.p10.m17" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> is the unique fixed point of <math id="S1.p10.m18" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> in <math id="S1.p10.m19" class="ltx_Math" alttext="I" display="inline"><mi>I</mi></math>.</p>
+</div>
+<div id="S1.p11" class="ltx_para">
+<p class="ltx_p">We proved above that the inequality</p>
+<table id="S1.Ex11" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex11.m1" class="ltx_Math" alttext="|x_{m}-x_{n}|\leq\frac{\gamma^{n}}{1-\gamma}|x_{1}-x_{0}|" display="block"><mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>m</mi></msub><mo>−</mo><msub><mi>x</mi><mi>n</mi></msub></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mrow><mfrac><msup><mi>γ</mi><mi>n</mi></msup><mrow><mn>1</mn><mo>−</mo><mi>γ</mi></mrow></mfrac><mo>⁢</mo><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><msub><mi>x</mi><mn>0</mn></msub></mrow><mo stretchy="false">|</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">holds for all <math id="S1.p11.m1" class="ltx_Math" alttext="m&gt;n" display="inline"><mrow><mi>m</mi><mo>&gt;</mo><mi>n</mi></mrow></math>, so</p>
+<table id="S1.Ex12" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex12.m1" class="ltx_Math" alttext="\lim_{m\to\infty}|x_{m}-x_{n}|=|r-x_{n}|\leq\frac{\gamma^{n}}{1-\gamma}|x_{1}-%
+x_{0}|," display="block"><mrow><mrow><mrow><munder><mo movablelimits="false">lim</mo><mrow><mi>m</mi><mo stretchy="false">→</mo><mi mathvariant="normal">∞</mi></mrow></munder><mrow><mo lspace="0em" stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>m</mi></msub><mo>−</mo><msub><mi>x</mi><mi>n</mi></msub></mrow><mo stretchy="false">|</mo></mrow></mrow><mo>=</mo><mrow><mo stretchy="false">|</mo><mrow><mi>r</mi><mo>−</mo><msub><mi>x</mi><mi>n</mi></msub></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mrow><mfrac><msup><mi>γ</mi><mi>n</mi></msup><mrow><mn>1</mn><mo>−</mo><mi>γ</mi></mrow></mfrac><mo>⁢</mo><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><msub><mi>x</mi><mn>0</mn></msub></mrow><mo stretchy="false">|</mo></mrow></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">which establishes one of the error bounds.
+The other error bound follows readily by induction, using <math id="S1.p11.m2" class="ltx_Math" alttext="|x_{n+1}-r|=|g(x_{n})-g(r)|\leq\gamma|x_{n}-r|" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow><mo>=</mo><mrow><mo stretchy="false">|</mo><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mrow><mi>γ</mi><mo>⁢</mo><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow></mrow></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="Thmexamplex2" class="ltx_theorem ltx_theorem_examplex">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Example 2</span></span><span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmexamplex2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">We return to Example <a href="#Thmexamplex1" title="Example 1. ‣ 1 Functional Iteration and Fixed Points ‣ MTH 451/551 Lecture 6" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a>, and prove that for any <math id="Thmexamplex2.p1.m1" class="ltx_Math" alttext="x_{0}\in\mathbb{R}" display="inline"><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>∈</mo><mi>ℝ</mi></mrow></math>, the functional iterates of <math id="Thmexamplex2.p1.m2" class="ltx_Math" alttext="g(x)=\cos(x)" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>cos</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> converge to the same limit <math id="Thmexamplex2.p1.m3" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>, which must be a fixed point <math id="Thmexamplex2.p1.m4" class="ltx_Math" alttext="g(r)=r" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>r</mi></mrow></math>.
+(Note that <math id="Thmexamplex2.p1.m5" class="ltx_Math" alttext="x=\cos(x)" display="inline"><mrow><mi>x</mi><mo>=</mo><mrow><mi>cos</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> has only one solution, so the fixed point is unique).</span></p>
+</div>
+<div id="Thmexamplex2.p2" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmexamplex2.p2.m1" class="ltx_Math" alttext="I=[0,1]" display="inline"><mrow><mi>I</mi><mo>=</mo><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></mrow></math>.
+Since <math id="Thmexamplex2.p2.m2" class="ltx_Math" alttext="\cos" display="inline"><mi>cos</mi></math> is decreasing on <math id="Thmexamplex2.p2.m3" class="ltx_Math" alttext="[0,1]" display="inline"><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></math>, we have <math id="Thmexamplex2.p2.m4" class="ltx_Math" alttext="g(I)=[\cos(1),\cos(0)]=[\cos(1),1]\subseteq I" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>I</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo stretchy="false">[</mo><mrow><mi>cos</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><mi>cos</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow><mo>=</mo><mrow><mo stretchy="false">[</mo><mrow><mi>cos</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><mo>⊆</mo><mi>I</mi></mrow></math>.
+For <math id="Thmexamplex2.p2.m5" class="ltx_Math" alttext="x,y\in I" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>∈</mo><mi>I</mi></mrow></math>, the Mean Value Theorem gives</span></p>
+<table id="S1.Ex13" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex13.m1" class="ltx_Math" alttext="\frac{g(x)-g(y)}{x-y}=\cos^{\prime}(\xi)=-\sin(\xi)" display="block"><mrow><mfrac><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mrow><mi>x</mi><mo>−</mo><mi>y</mi></mrow></mfrac><mo>=</mo><mrow><msup><mi>cos</mi><mo>′</mo></msup><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>ξ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo rspace="0.167em">−</mo><mrow><mi>sin</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>ξ</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">for some <math id="Thmexamplex2.p2.m6" class="ltx_Math" alttext="\xi" display="inline"><mi>ξ</mi></math> between <math id="Thmexamplex2.p2.m7" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> and <math id="Thmexamplex2.p2.m8" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math>, and so</span></p>
+<table id="S1.Ex14" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex14.m1" class="ltx_Math" alttext="|g(x)-g(y)|=|\sin(\xi)||x-y|\leq\sin(1)|x-y|." display="block"><mrow><mrow><mrow><mo stretchy="false">|</mo><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>=</mo><mrow><mrow><mo stretchy="false">|</mo><mrow><mi>sin</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>ξ</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">|</mo><mrow><mi>x</mi><mo>−</mo><mi>y</mi></mrow><mo stretchy="false">|</mo></mrow></mrow><mo>≤</mo><mrow><mrow><mi>sin</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow><mo>⁢</mo><mrow><mo stretchy="false">|</mo><mrow><mi>x</mi><mo>−</mo><mi>y</mi></mrow><mo stretchy="false">|</mo></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Therefore, <math id="Thmexamplex2.p2.m9" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> is a contraction on <math id="Thmexamplex2.p2.m10" class="ltx_Math" alttext="I" display="inline"><mi>I</mi></math> with <math id="Thmexamplex2.p2.m11" class="ltx_Math" alttext="\gamma=\sin(1)\approx 0.8415" display="inline"><mrow><mi>γ</mi><mo>=</mo><mrow><mi>sin</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow><mo>≈</mo><mn>0.8415</mn></mrow></math>.
+By the contractive mapping theorem (Theorem <a href="#Thmtheorem4" title="Theorem 4 (Contractive mapping theorem; Textbook Theorem 2.23). ‣ 1 Functional Iteration and Fixed Points ‣ MTH 451/551 Lecture 6" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a>), <math id="Thmexamplex2.p2.m12" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> has a unique fixed point <math id="Thmexamplex2.p2.m13" class="ltx_Math" alttext="r\in[0,1]" display="inline"><mrow><mi>r</mi><mo>∈</mo><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></mrow></math>, and the iteration converges to <math id="Thmexamplex2.p2.m14" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> whenever <math id="Thmexamplex2.p2.m15" class="ltx_Math" alttext="x_{0}\in[0,1]" display="inline"><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>∈</mo><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></mrow></math>.</span></p>
+</div>
+<div id="Thmexamplex2.p3" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Now let <math id="Thmexamplex2.p3.m1" class="ltx_Math" alttext="x_{0}\in\mathbb{R}" display="inline"><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>∈</mo><mi>ℝ</mi></mrow></math> be arbitrary.
+Then <math id="Thmexamplex2.p3.m2" class="ltx_Math" alttext="x_{1}=\cos(x_{0})\in[-1,1]" display="inline"><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>=</mo><mrow><mi>cos</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>∈</mo><mrow><mo stretchy="false">[</mo><mrow><mo>−</mo><mn>1</mn></mrow><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></mrow></math>, and since <math id="Thmexamplex2.p3.m3" class="ltx_Math" alttext="\cos" display="inline"><mi>cos</mi></math> is even, <math id="Thmexamplex2.p3.m4" class="ltx_Math" alttext="x_{2}=\cos(x_{1})=\cos(|x_{1}|)\in[\cos(1),1]\subseteq I" display="inline"><mrow><msub><mi>x</mi><mn>2</mn></msub><mo>=</mo><mrow><mi>cos</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>cos</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">|</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">|</mo></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>∈</mo><mrow><mo stretchy="false">[</mo><mrow><mi>cos</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><mo>⊆</mo><mi>I</mi></mrow></math>.
+Therefore, the iterates <math id="Thmexamplex2.p3.m5" class="ltx_Math" alttext="x_{2},x_{3},\ldots" display="inline"><mrow><msub><mi>x</mi><mn>2</mn></msub><mo>,</mo><msub><mi>x</mi><mn>3</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi></mrow></math> are the functional iterates of <math id="Thmexamplex2.p3.m6" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> starting from <math id="Thmexamplex2.p3.m7" class="ltx_Math" alttext="x_{2}\in I" display="inline"><mrow><msub><mi>x</mi><mn>2</mn></msub><mo>∈</mo><mi>I</mi></mrow></math>, and so <math id="Thmexamplex2.p3.m8" class="ltx_Math" alttext="x_{n}\to r" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">→</mo><mi>r</mi></mrow></math>.
+Furthermore,</span></p>
+<table id="S1.Ex15" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex15.m1" class="ltx_Math" alttext="|x_{n}-r|\leq\gamma^{n-2}|x_{2}-r|\leq\bigl{(}\sin(1)\bigr{)}^{n-2}\qquad\text%
+{for $n\geq 2$}.\blacklozenge" display="block"><mrow><mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mrow><msup><mi>γ</mi><mrow><mi>n</mi><mo>−</mo><mn>2</mn></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mn>2</mn></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow></mrow><mo>≤</mo><msup><mrow><mo maxsize="120%" minsize="120%">(</mo><mrow><mi>sin</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow><mrow><mi>n</mi><mo>−</mo><mn>2</mn></mrow></msup></mrow><mspace width="2em"></mspace><mrow><mtext class="ltx_mathvariant_italic">for </mtext><mrow><mi>n</mi><mo>≥</mo><mn>2</mn></mrow></mrow><mo lspace="0em" rspace="0.167em">.</mo><mi mathvariant="normal">◆</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+</div>
+</div>
+<div id="S1.p12" class="ltx_para">
+<p class="ltx_p">The contractive mapping theorem guarantees convergence that is <span class="ltx_text ltx_font_italic">at least</span> linear.
+The following theorem gives the precise order of convergence in terms of the derivatives of <math id="S1.p12.m1" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> at the fixed point.</p>
+</div>
+<div id="Thmtheorem5" class="ltx_theorem ltx_theorem_theorem">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Theorem 5</span></span><span class="ltx_text ltx_font_bold"> </span>(Convergence rates; Textbook Theorem 2.26)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmtheorem5.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmtheorem5.p1.m1" class="ltx_Math" alttext="\{x_{n}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></math> be a sequence generated by functional iteration with <math id="Thmtheorem5.p1.m2" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math>, and let <math id="Thmtheorem5.p1.m3" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> be a fixed point of <math id="Thmtheorem5.p1.m4" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math>, with <math id="Thmtheorem5.p1.m5" class="ltx_Math" alttext="x_{n}\neq r" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>≠</mo><mi>r</mi></mrow></math> for all <math id="Thmtheorem5.p1.m6" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>.</span></p>
+<ol id="S1.I2" class="ltx_enumerate">
+<li id="S1.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S1.I2.i1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If </span><math id="S1.I2.i1.p1.m1" class="ltx_Math" alttext="g\in C^{1}" display="inline"><mrow><mi>g</mi><mo>∈</mo><msup><mi>C</mi><mn>1</mn></msup></mrow></math><span class="ltx_text ltx_font_italic"> near </span><math id="S1.I2.i1.p1.m2" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math><span class="ltx_text ltx_font_italic"> and </span><math id="S1.I2.i1.p1.m3" class="ltx_Math" alttext="0&lt;|g^{\prime}(r)|&lt;1" display="inline"><mrow><mn>0</mn><mo>&lt;</mo><mrow><mo stretchy="false">|</mo><mrow><msup><mi>g</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>&lt;</mo><mn>1</mn></mrow></math><span class="ltx_text ltx_font_italic">, then </span><math id="S1.I2.i1.p1.m4" class="ltx_Math" alttext="x_{n}\to r" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">→</mo><mi>r</mi></mrow></math><span class="ltx_text ltx_font_italic"> precisely linearly if </span><math id="S1.I2.i1.p1.m5" class="ltx_Math" alttext="x_{0}" display="inline"><msub><mi>x</mi><mn>0</mn></msub></math><span class="ltx_text ltx_font_italic"> is sufficiently close to </span><math id="S1.I2.i1.p1.m6" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="S1.I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S1.I2.i2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let </span><math id="S1.I2.i2.p1.m1" class="ltx_Math" alttext="m\geq 2" display="inline"><mrow><mi>m</mi><mo>≥</mo><mn>2</mn></mrow></math><span class="ltx_text ltx_font_italic">.
+If </span><math id="S1.I2.i2.p1.m2" class="ltx_Math" alttext="g\in C^{m}" display="inline"><mrow><mi>g</mi><mo>∈</mo><msup><mi>C</mi><mi>m</mi></msup></mrow></math><span class="ltx_text ltx_font_italic"> near </span><math id="S1.I2.i2.p1.m3" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math><span class="ltx_text ltx_font_italic"> and </span><math id="S1.I2.i2.p1.m4" class="ltx_Math" alttext="g^{(j)}(r)=0" display="inline"><mrow><mrow><msup><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math><span class="ltx_text ltx_font_italic"> for </span><math id="S1.I2.i2.p1.m5" class="ltx_Math" alttext="1\leq j\leq m-1" display="inline"><mrow><mn>1</mn><mo>≤</mo><mi>j</mi><mo>≤</mo><mrow><mi>m</mi><mo>−</mo><mn>1</mn></mrow></mrow></math><span class="ltx_text ltx_font_italic">, but </span><math id="S1.I2.i2.p1.m6" class="ltx_Math" alttext="g^{(m)}(r)\neq 0" display="inline"><mrow><mrow><msup><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≠</mo><mn>0</mn></mrow></math><span class="ltx_text ltx_font_italic">, then </span><math id="S1.I2.i2.p1.m7" class="ltx_Math" alttext="x_{n}\to r" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">→</mo><mi>r</mi></mrow></math><span class="ltx_text ltx_font_italic"> with precisely order </span><math id="S1.I2.i2.p1.m8" class="ltx_Math" alttext="m" display="inline"><mi>m</mi></math><span class="ltx_text ltx_font_italic"> if </span><math id="S1.I2.i2.p1.m9" class="ltx_Math" alttext="x_{0}" display="inline"><msub><mi>x</mi><mn>0</mn></msub></math><span class="ltx_text ltx_font_italic"> is sufficiently close to </span><math id="S1.I2.i2.p1.m10" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="S1.p13" class="ltx_para">
+<p class="ltx_p">In either case, there is a constant <math id="S1.p13.m1" class="ltx_Math" alttext="\gamma\in[0,1)" display="inline"><mrow><mi>γ</mi><mo>∈</mo><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow></math> and an interval <math id="S1.p13.m2" class="ltx_Math" alttext="[r-\delta,r+\delta]" display="inline"><mrow><mo stretchy="false">[</mo><mrow><mi>r</mi><mo>−</mo><mi>δ</mi></mrow><mo>,</mo><mrow><mi>r</mi><mo>+</mo><mi>δ</mi></mrow><mo stretchy="false">]</mo></mrow></math> with <math id="S1.p13.m3" class="ltx_Math" alttext="\delta&gt;0" display="inline"><mrow><mi>δ</mi><mo>&gt;</mo><mn>0</mn></mrow></math> on which <math id="S1.p13.m4" class="ltx_Math" alttext="|g^{\prime}(x)|\leq\gamma" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><msup><mi>g</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mi>γ</mi></mrow></math>.
+By Lemma <a href="#Thmlemma1" title="Lemma 1 (Textbook equation (2.12)). ‣ 1 Functional Iteration and Fixed Points ‣ MTH 451/551 Lecture 6" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a>, <math id="S1.p13.m5" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> is a contraction on <math id="S1.p13.m6" class="ltx_Math" alttext="[r-\delta,r+\delta]" display="inline"><mrow><mo stretchy="false">[</mo><mrow><mi>r</mi><mo>−</mo><mi>δ</mi></mrow><mo>,</mo><mrow><mi>r</mi><mo>+</mo><mi>δ</mi></mrow><mo stretchy="false">]</mo></mrow></math>.
+Furthermore, for <math id="S1.p13.m7" class="ltx_Math" alttext="x\in[r-\delta,r+\delta]" display="inline"><mrow><mi>x</mi><mo>∈</mo><mrow><mo stretchy="false">[</mo><mrow><mi>r</mi><mo>−</mo><mi>δ</mi></mrow><mo>,</mo><mrow><mi>r</mi><mo>+</mo><mi>δ</mi></mrow><mo stretchy="false">]</mo></mrow></mrow></math>, taking <math id="S1.p13.m8" class="ltx_Math" alttext="y=r" display="inline"><mrow><mi>y</mi><mo>=</mo><mi>r</mi></mrow></math> and using <math id="S1.p13.m9" class="ltx_Math" alttext="g(r)=r" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>r</mi></mrow></math>, we have <math id="S1.p13.m10" class="ltx_Math" alttext="|g(x)-r|\leq\gamma|x-r|\leq\delta" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><mrow><mi>γ</mi><mo>⁢</mo><mrow><mo stretchy="false">|</mo><mrow><mi>x</mi><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow></mrow><mo>≤</mo><mi>δ</mi></mrow></math>, so <math id="S1.p13.m11" class="ltx_Math" alttext="g(x)\in[r-\delta,r+\delta]" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∈</mo><mrow><mo stretchy="false">[</mo><mrow><mi>r</mi><mo>−</mo><mi>δ</mi></mrow><mo>,</mo><mrow><mi>r</mi><mo>+</mo><mi>δ</mi></mrow><mo stretchy="false">]</mo></mrow></mrow></math>.
+By the contractive mapping theorem (Theorem <a href="#Thmtheorem4" title="Theorem 4 (Contractive mapping theorem; Textbook Theorem 2.23). ‣ 1 Functional Iteration and Fixed Points ‣ MTH 451/551 Lecture 6" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a>), convergence is guaranteed if <math id="S1.p13.m12" class="ltx_Math" alttext="x_{0}\in[r-\delta,r+\delta]" display="inline"><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>∈</mo><mrow><mo stretchy="false">[</mo><mrow><mi>r</mi><mo>−</mo><mi>δ</mi></mrow><mo>,</mo><mrow><mi>r</mi><mo>+</mo><mi>δ</mi></mrow><mo stretchy="false">]</mo></mrow></mrow></math>.</p>
+</div>
+<div id="S1.p14" class="ltx_para">
+<p class="ltx_p">In the first case,</p>
+<table id="S1.Ex16" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex16.m1" class="ltx_Math" alttext="\frac{|x_{n+1}-r|}{|x_{n}-r|}=\frac{|g(x_{n})-g(r)|}{|x_{n}-r|}=|g^{\prime}(%
+\xi_{n})|" display="block"><mrow><mfrac><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow></mfrac><mo>=</mo><mfrac><mrow><mo stretchy="false">|</mo><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">|</mo></mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow></mfrac><mo>=</mo><mrow><mo stretchy="false">|</mo><mrow><msup><mi>g</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>ξ</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">for some <math id="S1.p14.m1" class="ltx_Math" alttext="\xi_{n}" display="inline"><msub><mi>ξ</mi><mi>n</mi></msub></math> between <math id="S1.p14.m2" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> and <math id="S1.p14.m3" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>.
+Therefore, <math id="S1.p14.m4" class="ltx_Math" alttext="|x_{n+1}-r|/|x_{n}-r|\to|g^{\prime}(r)|\in(0,1)" display="inline"><mrow><mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow><mo>/</mo><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow></mrow><mo stretchy="false">→</mo><mrow><mo stretchy="false">|</mo><mrow><msup><mi>g</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>∈</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow></math>, and we see that the rate of convergence is precisely linear.
+In the second case, repeated applications of l’Hôpital’s rule reveal that</p>
+<table id="S1.Ex17" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex17.m1" class="ltx_Math" alttext="\lim_{x\to r}\frac{g(x)-r}{(x-r)^{m}}=\lim_{x\to r}\frac{g^{\prime}(x)}{m(x-r)%
+^{m-1}}=\cdots=\lim_{x\to r}\frac{g^{(m)}(x)}{m!}=\frac{g^{(m)}(r)}{m!}," display="block"><mrow><mrow><mrow><munder><mo movablelimits="false">lim</mo><mrow><mi>x</mi><mo stretchy="false">→</mo><mi>r</mi></mrow></munder><mfrac><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mi>r</mi></mrow><msup><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">)</mo></mrow><mi>m</mi></msup></mfrac></mrow><mo rspace="0.1389em">=</mo><mrow><munder><mo lspace="0.1389em" movablelimits="false" rspace="0.167em">lim</mo><mrow><mi>x</mi><mo stretchy="false">→</mo><mi>r</mi></mrow></munder><mfrac><mrow><msup><mi>g</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mrow><mi>m</mi><mo>⁢</mo><msup><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">)</mo></mrow><mrow><mi>m</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow></mfrac></mrow><mo>=</mo><mi mathvariant="normal">⋯</mi><mo rspace="0.1389em">=</mo><mrow><munder><mo lspace="0.1389em" movablelimits="false" rspace="0.167em">lim</mo><mrow><mi>x</mi><mo stretchy="false">→</mo><mi>r</mi></mrow></munder><mfrac><mrow><msup><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mrow><mi>m</mi><mo>!</mo></mrow></mfrac></mrow><mo>=</mo><mfrac><mrow><msup><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mrow><mi>m</mi><mo>!</mo></mrow></mfrac></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">so <math id="S1.p14.m5" class="ltx_Math" alttext="|x_{n+1}-r|/|x_{n}-r|^{m}\to|g^{(m)}(r)|/m!\neq 0" display="inline"><mrow><mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow><mo>/</mo><msup><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow><mi>m</mi></msup></mrow><mo stretchy="false">→</mo><mrow><mrow><mo stretchy="false">|</mo><mrow><msup><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>/</mo><mrow><mi>m</mi><mo>!</mo></mrow></mrow><mo>≠</mo><mn>0</mn></mrow></math>, and the rate of convergence is precisely order <math id="S1.p14.m6" class="ltx_Math" alttext="m" display="inline"><mi>m</mi></math>.
+∎</p>
+</div>
+</div>
+<div id="Thmexamplex3" class="ltx_theorem ltx_theorem_examplex">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Example 3</span></span><span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmexamplex3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">We return again to Example <a href="#Thmexamplex1" title="Example 1. ‣ 1 Functional Iteration and Fixed Points ‣ MTH 451/551 Lecture 6" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a>, and show that the convergence is precisely linear.
+We have <math id="Thmexamplex3.p1.m1" class="ltx_Math" alttext="g^{\prime}(r)=-\sin(r)" display="inline"><mrow><mrow><msup><mi>g</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo rspace="0.167em">−</mo><mrow><mi>sin</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>.
+Since <math id="Thmexamplex3.p1.m2" class="ltx_Math" alttext="r\in(0,1)" display="inline"><mrow><mi>r</mi><mo>∈</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow></math>, we have <math id="Thmexamplex3.p1.m3" class="ltx_Math" alttext="0&lt;\sin(r)&lt;\sin(1)&lt;1" display="inline"><mrow><mn>0</mn><mo>&lt;</mo><mrow><mi>sin</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>&lt;</mo><mrow><mi>sin</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow><mo>&lt;</mo><mn>1</mn></mrow></math>, so <math id="Thmexamplex3.p1.m4" class="ltx_Math" alttext="0&lt;|g^{\prime}(r)|&lt;1" display="inline"><mrow><mn>0</mn><mo>&lt;</mo><mrow><mo stretchy="false">|</mo><mrow><msup><mi>g</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>&lt;</mo><mn>1</mn></mrow></math> (numerically, <math id="Thmexamplex3.p1.m5" class="ltx_Math" alttext="|g^{\prime}(r)|=\sin(r)=\sqrt{1-r^{2}}\approx 0.6736" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><msup><mi>g</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>=</mo><mrow><mi>sin</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msqrt><mrow><mn>1</mn><mo>−</mo><msup><mi>r</mi><mn>2</mn></msup></mrow></msqrt><mo>≈</mo><mn>0.6736</mn></mrow></math>).
+By Theorem <a href="#Thmtheorem5" title="Theorem 5 (Convergence rates; Textbook Theorem 2.26). ‣ 1 Functional Iteration and Fixed Points ‣ MTH 451/551 Lecture 6" class="ltx_ref"><span class="ltx_text ltx_ref_tag">5</span></a>, the convergence is precisely linear if <math id="Thmexamplex3.p1.m6" class="ltx_Math" alttext="x_{0}" display="inline"><msub><mi>x</mi><mn>0</mn></msub></math> is sufficiently close to <math id="Thmexamplex3.p1.m7" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>.</span></p>
+</div>
+<div id="Thmexamplex3.p2" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Since we showed above that <math id="Thmexamplex3.p2.m1" class="ltx_Math" alttext="x_{n}\to r" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">→</mo><mi>r</mi></mrow></math> for any <math id="Thmexamplex3.p2.m2" class="ltx_Math" alttext="x_{0}" display="inline"><msub><mi>x</mi><mn>0</mn></msub></math>, the iterates eventually come arbitrarily close to <math id="Thmexamplex3.p2.m3" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>, and so the convergence is precisely linear for any <math id="Thmexamplex3.p2.m4" class="ltx_Math" alttext="x_{0}" display="inline"><msub><mi>x</mi><mn>0</mn></msub></math> (provided <math id="Thmexamplex3.p2.m5" class="ltx_Math" alttext="x_{n}\neq r" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>≠</mo><mi>r</mi></mrow></math> for all <math id="Thmexamplex3.p2.m6" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>).
+To see this directly, by the Mean Value Theorem,</span></p>
+<table id="S1.Ex18" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex18.m1" class="ltx_Math" alttext="\frac{|x_{n+1}-r|}{|x_{n}-r|}=\frac{|g(x_{n})-g(r)|}{|x_{n}-r|}=|\sin(\xi_{n})|" display="block"><mrow><mfrac><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow></mfrac><mo>=</mo><mfrac><mrow><mo stretchy="false">|</mo><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">|</mo></mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow></mfrac><mo>=</mo><mrow><mo stretchy="false">|</mo><mrow><mi>sin</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><msub><mi>ξ</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">|</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">for some <math id="Thmexamplex3.p2.m7" class="ltx_Math" alttext="\xi_{n}" display="inline"><msub><mi>ξ</mi><mi>n</mi></msub></math> between <math id="Thmexamplex3.p2.m8" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> and <math id="Thmexamplex3.p2.m9" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>.
+Since <math id="Thmexamplex3.p2.m10" class="ltx_Math" alttext="x_{n}\to r" display="inline"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">→</mo><mi>r</mi></mrow></math>, also <math id="Thmexamplex3.p2.m11" class="ltx_Math" alttext="\xi_{n}\to r" display="inline"><mrow><msub><mi>ξ</mi><mi>n</mi></msub><mo stretchy="false">→</mo><mi>r</mi></mrow></math>, and so</span></p>
+<table id="S1.Ex19" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex19.m1" class="ltx_Math" alttext="\frac{|x_{n+1}-r|}{|x_{n}-r|}\to\sin(r)\approx 0.6736.\blacklozenge" display="block"><mrow><mrow><mfrac><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">|</mo></mrow></mfrac><mo stretchy="false">→</mo><mrow><mi>sin</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≈</mo><mn>0.6736</mn></mrow><mo lspace="0em" rspace="0.167em">.</mo><mi mathvariant="normal">◆</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+</div>
+</div>
+</section>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Tue Oct 13 10:50:34 2026 by <a href="http://dlmf.nist.gov/LaTeXML/" class="ltx_LaTeXML_logo"><span style="letter-spacing:-0.2em; margin-right:0.1em;">L<span class="ltx_font_smallcaps" style="position:relative; bottom:2.2pt;">a</span>T<span class="ltx_font_smallcaps" style="font-size:120%;position:relative; bottom:-0.2ex;">e</span></span><span style="font-size:90%; position:relative; bottom:-0.2ex;">XML</span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="Mascot Sammy"></a>
+</div></footer>
+</div>
+</body>
+</html>

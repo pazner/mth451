@@ -8091,6 +8091,226 @@ a.anchor-link {
 </div>
 </div>
 </div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=802b29ef">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Comparison:-Newton's-method-and-the-secant-method">Comparison: Newton's method and the secant method<a class="anchor-link" href="#Comparison:-Newton's-method-and-the-secant-method">¶</a></h2><p>Example 2.14 (Table 2.4): $f(x) = x^3 - 2x + 2$, whose only real root is
+$$
+   r = -\left( \left(1 + \frac{\sqrt{57}}{9}\right)^{1/3} + \left(1 - \frac{\sqrt{57}}{9}\right)^{1/3} \right) \approx -1.769292354238631.
+$$
+For Newton's method we use the initial guess $x_0 = -2$, and for the secant method we use the first two Newton iterates, $x_0 = -2$ and $x_1 = -1.8$.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=df0aa36f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">g</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">dg</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e385c88a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">newton</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">dg</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">ftol</span><span class="o">=</span><span class="mf">1e-14</span><span class="p">,</span> <span class="n">xtol</span><span class="o">=</span><span class="mf">1e-14</span><span class="p">,</span> <span class="n">maxit</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>n   |  x_n                    |  f(x_n)     |  |x_n - x_(n-1)|
+----------------------------------------------------------------
+0   | -2.0000000000000000e+00 | -2.0000e+00 |
+1   | -1.8000000000000000e+00 | -2.3200e-01 |  2.0000e-01
+2   | -1.7699481865284974e+00 | -4.8497e-03 |  3.0052e-02
+3   | -1.7692926629059409e+00 | -2.2814e-06 |  6.5552e-04
+4   | -1.7692923542386998e+00 | -5.0537e-13 |  3.0867e-07
+5   | -1.7692923542386314e+00 |  0.0000e+00 |  6.8375e-14
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=642229f3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">secant</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.8</span><span class="p">,</span> <span class="n">ftol</span><span class="o">=</span><span class="mf">1e-14</span><span class="p">,</span> <span class="n">xtol</span><span class="o">=</span><span class="mf">1e-14</span><span class="p">,</span> <span class="n">maxit</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>n   |  x_n                    |  f(x_n)     |  |x_n - x_(n-1)|
+----------------------------------------------------------------
+0   | -2.0000000000000000e+00 | -2.0000e+00 |
+1   | -1.8000000000000000e+00 | -2.3200e-01 |  2.0000e-01
+2   | -1.7737556561085972e+00 | -3.3095e-02 |  2.6244e-02
+3   | -1.7693889775041600e+00 | -7.1421e-04 |  4.3667e-03
+4   | -1.7692926631945964e+00 | -2.2836e-06 |  9.6314e-05
+5   | -1.7692923542600683e+00 | -1.5844e-10 |  3.0893e-07
+6   | -1.7692923542386314e+00 |  0.0000e+00 |  2.1437e-11
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d014427f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Divergence-of-Newton's-method">Divergence of Newton's method<a class="anchor-link" href="#Divergence-of-Newton's-method">¶</a></h2><p>Example 2.15 (Table 2.5): $f(x) = \arctan(x)$, whose only root is $r = 0$. Starting from $x_0 = 1$, Newton's method converges, but starting from $x_0 = \sqrt{3}$, the iterates alternate in sign and grow rapidly in magnitude. We limit the number of iterations to 10, since the iterates soon overflow.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=43b117d4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">h</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">atan</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">dh</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b7face9e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">newton</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">dh</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">ftol</span><span class="o">=</span><span class="mf">1e-14</span><span class="p">,</span> <span class="n">xtol</span><span class="o">=</span><span class="mf">1e-14</span><span class="p">,</span> <span class="n">maxit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>n   |  x_n                    |  f(x_n)     |  |x_n - x_(n-1)|
+----------------------------------------------------------------
+0   |  1.0000000000000000e+00 |  7.8540e-01 |
+1   | -5.7079632679489656e-01 | -5.1867e-01 |  1.5708e+00
+2   |  1.1685990399891311e-01 |  1.1633e-01 |  6.8766e-01
+3   | -1.0610221170447159e-03 | -1.0610e-03 |  1.1792e-01
+4   |  7.9630960441064158e-10 |  7.9631e-10 |  1.0610e-03
+5   |  0.0000000000000000e+00 |  0.0000e+00 |  7.9631e-10
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8b3ccc5c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">newton</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">dh</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">ftol</span><span class="o">=</span><span class="mf">1e-14</span><span class="p">,</span> <span class="n">xtol</span><span class="o">=</span><span class="mf">1e-14</span><span class="p">,</span> <span class="n">maxit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>n   |  x_n                    |  f(x_n)     |  |x_n - x_(n-1)|
+----------------------------------------------------------------
+0   |  1.7320508075688772e+00 |  1.0472e+00 |
+1   | -2.4567393972175133e+00 | -1.1842e+00 |  4.1888e+00
+2   |  5.8750107306388895e+00 |  1.4022e+00 |  8.3318e+00
+3   | -4.3925164407008836e+01 | -1.5480e+00 |  4.9800e+01
+4   |  2.9444312477026251e+03 |  1.5705e+00 |  2.9884e+03
+5   | -1.3612406937619433e+07 | -1.5708e+00 |  1.3615e+07
+6   |  2.9106479777462181e+14 |  1.5708e+00 |  2.9106e+14
+7   | -1.3307584869460339e+29 | -1.5708e+00 |  1.3308e+29
+8   |  2.7817517259837439e+58 |  1.5708e+00 |  2.7818e+58
+9   | -1.2155046074418139e+117 | -1.5708e+00 |  1.2155e+117
+10  |  2.3207753117966380e+234 |  1.5708e+00 |  2.3208e+234
+Newton's method did not converge in maximum number of iterations
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=74a0a267">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Interactive-Newton's-method">Interactive Newton's method<a class="anchor-link" href="#Interactive-Newton's-method">¶</a></h2><blockquote>
+<p><strong>Interactive content omitted.</strong> This part of the notebook needs a running Python kernel, so it is not included in this static version. Open the notebook <a href="jupyter/notebooks/index.html?path=newton_secant.ipynb">interactively</a> or in <a href="https://colab.research.google.com/github/pazner/mth451/blob/main/newton_secant.ipynb">Colab</a> to use it.</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
 </main>
 </body>
 </html>
