@@ -19,6 +19,20 @@ dev = [
     "jupyterlite-pyodide-kernel",
     "jupyter-server>=2.21.1",
 ]
+# Converting the notebook sources (see makefile). Not in dev: JupyterLite would
+# then include jupytext's JupyterLab extension.
+convert = [
+    "jupytext>=1.19.6",
+]
 
 [tool.uv]
 package = false
+
+# The notebooks' sources are src/*.py, in jupytext's percent format; to_ipynb.py
+# converts them to ipynb/*.ipynb (see makefile). Only these notebook metadata
+# keys are kept (mkindex.pl in site/ reads lecture, title, and hide), and only
+# the tags of each cell (used by interactive.py).
+[tool.jupytext]
+formats = "py:percent"
+notebook_metadata_filter = "kernelspec,lecture,title,hide,-jupytext"
+cell_metadata_filter = "tags,-all"
