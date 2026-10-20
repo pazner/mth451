@@ -1,0 +1,528 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>MTH 451/551 Lecture 7</title>
+<!--Generated on Tue Oct 20 10:50:00 2026 by LaTeXML (version 0.8.8) http://dlmf.nist.gov/LaTeXML/.-->
+
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+<a class="back-link" href="../index.html">[Back to main course page]</a>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">MTH 451/551 
+<br class="ltx_break">Lecture 7</h1>
+<div class="ltx_authors">
+<span class="ltx_creator ltx_role_author">
+<span class="ltx_personname">Prof. W. Pazner
+</span></span>
+</div>
+
+<section id="S1" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">1 </span>Building Polynomials</h2>
+
+<div id="S1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">[Textbook reference: §3.1]</p>
+</div>
+<div id="S1.p2" class="ltx_para">
+<p class="ltx_p">Many of the methods we have seen so far have been based on the idea of approximating a function by a polynomial.
+For example, the midpoint rule, and forward, backward, and centered difference can all be seen as approximating <math id="S1.p2.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> by its secant.
+Similarly, regula falsi, Newton’s method, and secant method all use linear (tangent or secant) approximations to <math id="S1.p2.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>.
+These are just a few of the many important examples of applications of <span class="ltx_text ltx_font_bold">polynomial approximation</span>.
+Given these, it is important to understand how we can build polynomial approximants to given functions with certain properties.</p>
+</div>
+<div id="S1.p3" class="ltx_para">
+<p class="ltx_p">Let <math id="S1.p3.m1" class="ltx_Math" alttext="n\geq 0" display="inline"><mrow><mi>n</mi><mo>≥</mo><mn>0</mn></mrow></math>.
+Let <math id="S1.p3.m2" class="ltx_Math" alttext="\mathbb{P}_{n}" display="inline"><msub><mi>ℙ</mi><mi>n</mi></msub></math> denote the space of polynomials of degree at most <math id="S1.p3.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>.
+Note, this is the <span class="ltx_text ltx_font_bold ltx_font_italic">space</span> of polynomials because this forms a vector space under the usual addition and scalar multiplication operations.
+The dimension of this space is <math id="S1.p3.m4" class="ltx_Math" alttext="n+1" display="inline"><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></math>.
+The <span class="ltx_text ltx_font_bold">monomial basis</span> (or <span class="ltx_text ltx_font_italic">standard basis</span>) for <math id="S1.p3.m5" class="ltx_Math" alttext="\mathbb{P}_{n}" display="inline"><msub><mi>ℙ</mi><mi>n</mi></msub></math> is <math id="S1.p3.m6" class="ltx_Math" alttext="\{1,x,x^{2},\cdots,x^{n}\}" display="inline"><mrow><mo stretchy="false">{</mo><mn>1</mn><mo>,</mo><mi>x</mi><mo>,</mo><msup><mi>x</mi><mn>2</mn></msup><mo>,</mo><mi mathvariant="normal">⋯</mi><mo>,</mo><msup><mi>x</mi><mi>n</mi></msup><mo stretchy="false">}</mo></mrow></math>.
+The <span class="ltx_text ltx_font_italic">standard form</span> of a polynomial is expressed in terms of this basis,</p>
+<table id="S1.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex1.m1" class="ltx_Math" alttext="p(x)=\sum_{k=0}^{n}a_{k}x^{k}=a_{0}+a_{1}x+\cdots+a_{n}x^{n}." display="block"><mrow><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo rspace="0.111em">=</mo><mrow><munderover><mo movablelimits="false">∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover><mrow><msub><mi>a</mi><mi>k</mi></msub><mo>⁢</mo><msup><mi>x</mi><mi>k</mi></msup></mrow></mrow><mo>=</mo><mrow><msub><mi>a</mi><mn>0</mn></msub><mo>+</mo><mrow><msub><mi>a</mi><mn>1</mn></msub><mo>⁢</mo><mi>x</mi></mrow><mo>+</mo><mi mathvariant="normal">⋯</mi><mo>+</mo><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>⁢</mo><msup><mi>x</mi><mi>n</mi></msup></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">The largest <math id="S1.p3.m7" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math> such that <math id="S1.p3.m8" class="ltx_Math" alttext="a_{k}\neq 0" display="inline"><mrow><msub><mi>a</mi><mi>k</mi></msub><mo>≠</mo><mn>0</mn></mrow></math> is called the <span class="ltx_text ltx_font_bold">leading coefficient</span> of <math id="S1.p3.m9" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>, and we write <math id="S1.p3.m10" class="ltx_Math" alttext="\deg(p)=k" display="inline"><mrow><mrow><mi>deg</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>k</mi></mrow></math>.</p>
+</div>
+<div id="Thmdefinition1" class="ltx_theorem ltx_theorem_definition">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Definition 1</span></span><span class="ltx_text ltx_font_bold"> </span>(Root multiplicity; Textbook Definition 3.1)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmdefinition1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If <math id="Thmdefinition1.p1.m1" class="ltx_Math" alttext="p(x)=(x-r)^{k}q(x)" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msup><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mi>r</mi></mrow><mo stretchy="false">)</mo></mrow><mi>k</mi></msup><mo>⁢</mo><mi>q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> for <math id="Thmdefinition1.p1.m2" class="ltx_Math" alttext="k\in\mathbb{N}" display="inline"><mrow><mi>k</mi><mo>∈</mo><mi>ℕ</mi></mrow></math> and some polynomial <math id="Thmdefinition1.p1.m3" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math> satisfying <math id="Thmdefinition1.p1.m4" class="ltx_Math" alttext="q(r)\neq 0" display="inline"><mrow><mrow><mi>q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≠</mo><mn>0</mn></mrow></math>, we say that <math id="Thmdefinition1.p1.m5" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> is a <span class="ltx_text ltx_font_bold">root of multiplicity <math id="Thmdefinition1.p1.m6" class="ltx_Math" alttext="k" display="inline"><mi mathvariant="normal">k</mi></math></span> of <math id="Thmdefinition1.p1.m7" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>.
+When <math id="Thmdefinition1.p1.m8" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> is a root of multiplicity <math id="Thmdefinition1.p1.m9" class="ltx_Math" alttext="1" display="inline"><mn>1</mn></math>, it is called a <span class="ltx_text ltx_font_bold">simple root</span>.</span></p>
+</div>
+</div>
+<div id="S1.p4" class="ltx_para">
+<p class="ltx_p">It can be shown that <math id="S1.p4.m1" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> is a root of multiplicity <math id="S1.p4.m2" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math> of a polynomial <math id="S1.p4.m3" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> if and only if <math id="S1.p4.m4" class="ltx_Math" alttext="p^{(j)}(r)=0" display="inline"><mrow><mrow><msup><mi>p</mi><mrow><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math> for <math id="S1.p4.m5" class="ltx_Math" alttext="0\leq j\leq k-1" display="inline"><mrow><mn>0</mn><mo>≤</mo><mi>j</mi><mo>≤</mo><mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></mrow></math>, but <math id="S1.p4.m6" class="ltx_Math" alttext="p^{(k)}(r)\neq 0" display="inline"><mrow><mrow><msup><mi>p</mi><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≠</mo><mn>0</mn></mrow></math>.</p>
+</div>
+<div id="Thmtheorem1" class="ltx_theorem ltx_theorem_theorem">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Theorem 1</span></span><span class="ltx_text ltx_font_bold"> </span>(Fundamental theorem of algebra and consequences; Textbook Theorem 3.2)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmtheorem1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmtheorem1.p1.m1" class="ltx_Math" alttext="p\in\mathbb{P}_{n}" display="inline"><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mi>n</mi></msub></mrow></math> for some <math id="Thmtheorem1.p1.m2" class="ltx_Math" alttext="n\geq 1" display="inline"><mrow><mi>n</mi><mo>≥</mo><mn>1</mn></mrow></math>.
+The following hold:</span></p>
+<ol id="S1.I1" class="ltx_enumerate">
+<li id="S1.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S1.I1.i1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If </span><math id="S1.I1.i1.p1.m1" class="ltx_Math" alttext="\deg(p)=n" display="inline"><mrow><mrow><mi>deg</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>n</mi></mrow></math><span class="ltx_text ltx_font_italic"> (so </span><math id="S1.I1.i1.p1.m2" class="ltx_Math" alttext="a_{n}\neq 0" display="inline"><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>≠</mo><mn>0</mn></mrow></math><span class="ltx_text ltx_font_italic">), then </span><math id="S1.I1.i1.p1.m3" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math><span class="ltx_text ltx_font_italic"> has precisely </span><math id="S1.I1.i1.p1.m4" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math><span class="ltx_text ltx_font_italic"> roots in </span><math id="S1.I1.i1.p1.m5" class="ltx_Math" alttext="\mathbb{C}" display="inline"><mi>ℂ</mi></math><span class="ltx_text ltx_font_italic">, </span><math id="S1.I1.i1.p1.m6" class="ltx_Math" alttext="r_{1},\ldots,r_{n}" display="inline"><mrow><msub><mi>r</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>r</mi><mi>n</mi></msub></mrow></math><span class="ltx_text ltx_font_italic">, counting multiplicities.
+Furthermore,</span></p>
+<table id="S1.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex2.m1" class="ltx_Math" alttext="p(x)=a_{n}\prod_{k=1}^{n}(x-r_{k})=a_{n}(x-r_{1})\cdots(x-r_{n})." display="block"><mrow><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>⁢</mo><mrow><munderover><mo movablelimits="false" rspace="0em">∏</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><msub><mi>r</mi><mi>k</mi></msub></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><msub><mi>r</mi><mn>1</mn></msub></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi mathvariant="normal">⋯</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><msub><mi>r</mi><mi>n</mi></msub></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+</div>
+</li>
+<li id="S1.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S1.I1.i2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If </span><math id="S1.I1.i2.p1.m1" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math><span class="ltx_text ltx_font_italic"> has more than </span><math id="S1.I1.i2.p1.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math><span class="ltx_text ltx_font_italic"> roots, counting multiplicities, then </span><math id="S1.I1.i2.p1.m3" class="ltx_Math" alttext="p=0" display="inline"><mrow><mi>p</mi><mo>=</mo><mn>0</mn></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="S1.p5" class="ltx_para">
+<p class="ltx_p">Although the monomial basis is the one we are most familiar with, there are other bases that may be (much) more useful in actual computations.
+To give one motivating example, we discuss <span class="ltx_text ltx_font_bold">interpolating polynomials</span>.
+A function <math id="S1.p5.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> <span class="ltx_text ltx_font_bold">interpolates</span> points <math id="S1.p5.m2" class="ltx_Math" alttext="(x_{i},y_{i})" display="inline"><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>,</mo><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></math> if it satisfies <math id="S1.p5.m3" class="ltx_Math" alttext="f(x_{i})=y_{i}" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mi>y</mi><mi>i</mi></msub></mrow></math>.
+For a collection of distinct points <math id="S1.p5.m4" class="ltx_Math" alttext="x_{i}" display="inline"><msub><mi>x</mi><mi>i</mi></msub></math> and values <math id="S1.p5.m5" class="ltx_Math" alttext="y_{i}" display="inline"><msub><mi>y</mi><mi>i</mi></msub></math>, for <math id="S1.p5.m6" class="ltx_Math" alttext="i=0,1,\ldots,n" display="inline"><mrow><mi>i</mi><mo>=</mo><mrow><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mi>n</mi></mrow></mrow></math>, we can construct an <span class="ltx_text ltx_font_bold">interpolating polynomial</span>,</p>
+<table id="S1.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex3.m1" class="ltx_Math" alttext="p(x)=\sum_{j=0}^{n}\bigg{(}y_{j}\prod_{\begin{subarray}{c}k=0\\
+k\neq j\end{subarray}}^{n}\frac{x-x_{k}}{x_{j}-x_{k}}\bigg{)}." display="block"><mrow><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo rspace="0.111em">=</mo><mrow><munderover><mo movablelimits="false" rspace="0em">∑</mo><mrow><mi>j</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover><mrow><mo maxsize="210%" minsize="210%">(</mo><mrow><msub><mi>y</mi><mi>j</mi></msub><mo>⁢</mo><mrow><munderover><mo movablelimits="false">∏</mo><mtable rowspacing="0pt"><mtr><mtd><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow></mtd></mtr><mtr><mtd><mrow><mi>k</mi><mo>≠</mo><mi>j</mi></mrow></mtd></mtr></mtable><mi>n</mi></munderover><mfrac><mrow><mi>x</mi><mo>−</mo><msub><mi>x</mi><mi>k</mi></msub></mrow><mrow><msub><mi>x</mi><mi>j</mi></msub><mo>−</mo><msub><mi>x</mi><mi>k</mi></msub></mrow></mfrac></mrow></mrow><mo maxsize="210%" minsize="210%">)</mo></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">The interpolation property can be verified by plugging in <math id="S1.p5.m7" class="ltx_Math" alttext="x_{j}" display="inline"><msub><mi>x</mi><mi>j</mi></msub></math>, and noticing that all but one term in the sum vanish.
+In this representation, <math id="S1.p5.m8" class="ltx_Math" alttext="y_{j}" display="inline"><msub><mi>y</mi><mi>j</mi></msub></math> are the coefficients of the so-called <span class="ltx_text ltx_font_bold">Lagrange basis functions</span>.</p>
+</div>
+<div id="S1.p6" class="ltx_para">
+<ul id="S1.I2" class="ltx_itemize">
+<li id="S1.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I2.i1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Shifted monomial basis.</span> Given a number <math id="S1.I2.i1.p1.m1" class="ltx_Math" alttext="c" display="inline"><mi>c</mi></math>, the shifted monomial basis is <math id="S1.I2.i1.p1.m2" class="ltx_Math" alttext="\{1,x-c,(x-c)^{2},\ldots,(x-c)^{n}\}" display="inline"><mrow><mo stretchy="false">{</mo><mn>1</mn><mo>,</mo><mrow><mi>x</mi><mo>−</mo><mi>c</mi></mrow><mo>,</mo><msup><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mi>c</mi></mrow><mo stretchy="false">)</mo></mrow><mn>2</mn></msup><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msup><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mi>c</mi></mrow><mo stretchy="false">)</mo></mrow><mi>n</mi></msup><mo stretchy="false">}</mo></mrow></math>. This is the basis used for Taylor polynomials.</p>
+</div>
+</li>
+<li id="S1.I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I2.i2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Lagrange basis.</span> Given distinct numbers <math id="S1.I2.i2.p1.m1" class="ltx_Math" alttext="\{x_{0},\ldots,x_{n}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>x</mi><mn>0</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></math>, the Lagrange polynomials are</p>
+<table id="S1.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex4.m1" class="ltx_Math" alttext="\ell_{j}(x)=\prod_{\begin{subarray}{c}k=0\\
+k\neq j\end{subarray}}^{n}\frac{x-x_{k}}{x_{j}-x_{k}}." display="block"><mrow><mrow><mrow><msub><mi mathvariant="normal">ℓ</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo rspace="0.111em">=</mo><mrow><munderover><mo movablelimits="false">∏</mo><mtable rowspacing="0pt"><mtr><mtd><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow></mtd></mtr><mtr><mtd><mrow><mi>k</mi><mo>≠</mo><mi>j</mi></mrow></mtd></mtr></mtable><mi>n</mi></munderover><mfrac><mrow><mi>x</mi><mo>−</mo><msub><mi>x</mi><mi>k</mi></msub></mrow><mrow><msub><mi>x</mi><mi>j</mi></msub><mo>−</mo><msub><mi>x</mi><mi>k</mi></msub></mrow></mfrac></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">Each of these polynomials is of degree <math id="S1.I2.i2.p1.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>, and they satisfy the <span class="ltx_text ltx_font_italic">Kronecker delta property</span>,</p>
+<table id="S1.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex5.m1" class="ltx_Math" alttext="\ell_{j}(x_{i})=\delta_{ij}:=\begin{cases}1,&amp;\quad i=j,\\
+0,&amp;\quad i\neq j.\end{cases}" display="block"><mrow><mrow><msub><mi mathvariant="normal">ℓ</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mi>δ</mi><mrow><mi>i</mi><mo>⁢</mo><mi>j</mi></mrow></msub><mo lspace="0.278em" rspace="0.278em">:=</mo><mrow><mo>{</mo><mtable columnspacing="5pt" displaystyle="true" rowspacing="0pt"><mtr><mtd class="ltx_align_left" columnalign="left"><mrow><mn>1</mn><mo>,</mo></mrow></mtd><mtd class="ltx_align_left" columnalign="left"><mrow><mrow><mi>i</mi><mo>=</mo><mi>j</mi></mrow><mo>,</mo></mrow></mtd></mtr><mtr><mtd class="ltx_align_left" columnalign="left"><mrow><mn>0</mn><mo>,</mo></mrow></mtd><mtd class="ltx_align_left" columnalign="left"><mrow><mrow><mi>i</mi><mo>≠</mo><mi>j</mi></mrow><mo lspace="0em">.</mo></mrow></mtd></mtr></mtable></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">Note that <math id="S1.I2.i2.p1.m3" class="ltx_Math" alttext="\sum_{j=0}^{n}\ell_{j}(x)=1" display="inline"><mrow><mrow><msubsup><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></msubsup><mrow><msub><mi mathvariant="normal">ℓ</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><mn>1</mn></mrow></math>.</p>
+</div>
+</li>
+<li id="S1.I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I2.i3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Newton basis.</span> Similar to the Lagrange basis, the <span class="ltx_text ltx_font_bold">Newton polynomials</span> are given by</p>
+<table id="S1.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex6.m1" class="ltx_Math" alttext="w_{j}(x)=\prod_{k=0}^{j-1}(x-x_{k})." display="block"><mrow><mrow><mrow><msub><mi>w</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo rspace="0.111em">=</mo><mrow><munderover><mo movablelimits="false" rspace="0em">∏</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>j</mi><mo>−</mo><mn>1</mn></mrow></munderover><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><msub><mi>x</mi><mi>k</mi></msub></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">Note that <math id="S1.I2.i3.p1.m1" class="ltx_Math" alttext="\deg(w_{j})=j" display="inline"><mrow><mrow><mi>deg</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><msub><mi>w</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>j</mi></mrow></math> and <math id="S1.I2.i3.p1.m2" class="ltx_Math" alttext="w_{j}(x_{i})=0" display="inline"><mrow><mrow><msub><mi>w</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math> when <math id="S1.I2.i3.p1.m3" class="ltx_Math" alttext="j&gt;i" display="inline"><mrow><mi>j</mi><mo>&gt;</mo><mi>i</mi></mrow></math>.</p>
+</div>
+</li>
+</ul>
+</div>
+<section id="S1.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">1.1 </span>Constraints and Functionals</h3>
+
+<div id="S1.SS1.p1" class="ltx_para">
+<p class="ltx_p">Since <math id="S1.SS1.p1.m1" class="ltx_Math" alttext="\mathbb{P}_{n}" display="inline"><msub><mi>ℙ</mi><mi>n</mi></msub></math> is an <math id="S1.SS1.p1.m2" class="ltx_Math" alttext="(n+1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math>-dimensional vector space, we expect that an element of <math id="S1.SS1.p1.m3" class="ltx_Math" alttext="\mathbb{P}_{n+1}" display="inline"><msub><mi>ℙ</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub></math> can be determined by <math id="S1.SS1.p1.m4" class="ltx_Math" alttext="n+1" display="inline"><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></math> constraints.
+We will soon given conditions on a set of <math id="S1.SS1.p1.m5" class="ltx_Math" alttext="n+1" display="inline"><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></math> constraints that will guarantee that they will determine a unique polynomial.
+This will rely on the concept of a <span class="ltx_text ltx_font_bold">linear functional</span>.</p>
+</div>
+<div id="Thmdefinition2" class="ltx_theorem ltx_theorem_definition">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Definition 2</span></span><span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmdefinition2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A <span class="ltx_text ltx_font_bold">linear functional</span> on a vector space <math id="Thmdefinition2.p1.m1" class="ltx_Math" alttext="V" display="inline"><mi>V</mi></math> is a function <math id="Thmdefinition2.p1.m2" class="ltx_Math" alttext="\phi:V\to\mathbb{R}" display="inline"><mrow><mi>ϕ</mi><mo lspace="0.278em" rspace="0.278em">:</mo><mrow><mi>V</mi><mo stretchy="false">→</mo><mi>ℝ</mi></mrow></mrow></math> satisfying</span></p>
+<table id="S1.Ex7" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex7.m1" class="ltx_Math" alttext="\phi(u+v)=\phi(u)+\phi(v),\qquad\text{and}\qquad\phi(cu)=c\phi(u)," display="block"><mrow><mrow><mrow><mrow><mi>ϕ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>u</mi><mo>+</mo><mi>v</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><mrow><mi>ϕ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>+</mo><mrow><mi>ϕ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>v</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo rspace="2.167em">,</mo><mtext class="ltx_mathvariant_italic">and</mtext></mrow></mrow><mspace width="2em"></mspace><mrow><mrow><mi>ϕ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>c</mi><mo>⁢</mo><mi>u</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>c</mi><mo>⁢</mo><mi>ϕ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">for all <math id="Thmdefinition2.p1.m3" class="ltx_Math" alttext="u,v\in V" display="inline"><mrow><mrow><mi>u</mi><mo>,</mo><mi>v</mi></mrow><mo>∈</mo><mi>V</mi></mrow></math> and <math id="Thmdefinition2.p1.m4" class="ltx_Math" alttext="c\in\mathbb{R}" display="inline"><mrow><mi>c</mi><mo>∈</mo><mi>ℝ</mi></mrow></math>.</span></p>
+</div>
+</div>
+<div id="S1.SS1.p2" class="ltx_para">
+<p class="ltx_p">In other words, a functional is a linear operator from <math id="S1.SS1.p2.m1" class="ltx_Math" alttext="V" display="inline"><mi>V</mi></math> to <math id="S1.SS1.p2.m2" class="ltx_Math" alttext="\mathbb{R}" display="inline"><mi>ℝ</mi></math>.
+As two examples of linear functionals on <math id="S1.SS1.p2.m3" class="ltx_Math" alttext="\mathbb{P}_{n}" display="inline"><msub><mi>ℙ</mi><mi>n</mi></msub></math>:</p>
+</div>
+<div id="S1.SS1.p3" class="ltx_para">
+<ul id="S1.I3" class="ltx_itemize">
+<li id="S1.I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I3.i1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Evaluation at a point.</span> For <math id="S1.I3.i1.p1.m1" class="ltx_Math" alttext="c\in\mathbb{R}" display="inline"><mrow><mi>c</mi><mo>∈</mo><mi>ℝ</mi></mrow></math> and integer <math id="S1.I3.i1.p1.m2" class="ltx_Math" alttext="j\geq 0" display="inline"><mrow><mi>j</mi><mo>≥</mo><mn>0</mn></mrow></math>, <math id="S1.I3.i1.p1.m3" class="ltx_Math" alttext="\phi(p)=p^{(j)}(c)" display="inline"><mrow><mrow><mi>ϕ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msup><mi>p</mi><mrow><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.</p>
+</div>
+</li>
+<li id="S1.I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I3.i2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Integration on an interval.</span> For <math id="S1.I3.i2.p1.m1" class="ltx_Math" alttext="a&lt;b" display="inline"><mrow><mi>a</mi><mo>&lt;</mo><mi>b</mi></mrow></math> and an integer <math id="S1.I3.i2.p1.m2" class="ltx_Math" alttext="j\geq 0" display="inline"><mrow><mi>j</mi><mo>≥</mo><mn>0</mn></mrow></math>, <math id="S1.I3.i2.p1.m3" class="ltx_Math" alttext="\phi(p)=\int_{a}^{b}p(x)x^{j}\,dx" display="inline"><mrow><mrow><mi>ϕ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo rspace="0.111em">=</mo><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><msup><mi>x</mi><mi>j</mi></msup><mo lspace="0em">⁢</mo><mrow><mo rspace="0em">𝑑</mo><mi>x</mi></mrow></mrow></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S1.SS1.p4" class="ltx_para">
+<p class="ltx_p">We can verify that these are linear functionals by directly checking the definition and using linearity of the derivative and integral.</p>
+</div>
+<div id="Thmlemma1" class="ltx_theorem ltx_theorem_lemma">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Lemma 1</span></span><span class="ltx_text ltx_font_bold"> </span>(Unique determination of <math id="Thmlemma1.m1" class="ltx_Math" alttext="p\in\mathbb{P}_{n}" display="inline"><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mi>n</mi></msub></mrow></math>; Textbook Lemma 3.4)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmlemma1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Suppose that <math id="Thmlemma1.p1.m1" class="ltx_Math" alttext="\phi_{j}:\mathbb{P}_{n}\to\mathbb{R}" display="inline"><mrow><msub><mi>ϕ</mi><mi>j</mi></msub><mo lspace="0.278em" rspace="0.278em">:</mo><mrow><msub><mi>ℙ</mi><mi>n</mi></msub><mo stretchy="false">→</mo><mi>ℝ</mi></mrow></mrow></math>, <math id="Thmlemma1.p1.m2" class="ltx_Math" alttext="0\leq j\leq n" display="inline"><mrow><mn>0</mn><mo>≤</mo><mi>j</mi><mo>≤</mo><mi>n</mi></mrow></math>, are functionals.
+The following are equivalent:</span></p>
+<ol id="S1.I4" class="ltx_enumerate">
+<li id="S1.I4.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S1.I4.i1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The only </span><math id="S1.I4.i1.p1.m1" class="ltx_Math" alttext="p\in\mathbb{P}_{n}" display="inline"><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mi>n</mi></msub></mrow></math><span class="ltx_text ltx_font_italic"> for which </span><math id="S1.I4.i1.p1.m2" class="ltx_Math" alttext="\phi_{0}(p)=\phi_{1}(p)=\cdots=\phi_{n}(p)=0" display="inline"><mrow><mrow><msub><mi>ϕ</mi><mn>0</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msub><mi>ϕ</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi mathvariant="normal">⋯</mi><mo>=</mo><mrow><msub><mi>ϕ</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math><span class="ltx_text ltx_font_italic"> is </span><math id="S1.I4.i1.p1.m3" class="ltx_Math" alttext="p=0" display="inline"><mrow><mi>p</mi><mo>=</mo><mn>0</mn></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="S1.I4.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S1.I4.i2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For each set of numbers </span><math id="S1.I4.i2.p1.m1" class="ltx_Math" alttext="\{y_{0},\ldots,y_{n}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>y</mi><mn>0</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>y</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></math><span class="ltx_text ltx_font_italic">, there is a unique polynomial </span><math id="S1.I4.i2.p1.m2" class="ltx_Math" alttext="p\in\mathbb{P}_{n}" display="inline"><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mi>n</mi></msub></mrow></math><span class="ltx_text ltx_font_italic"> satisfying </span><math id="S1.I4.i2.p1.m3" class="ltx_Math" alttext="\phi_{j}(p)=y_{j}" display="inline"><mrow><mrow><msub><mi>ϕ</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mi>y</mi><mi>j</mi></msub></mrow></math><span class="ltx_text ltx_font_italic"> for each </span><math id="S1.I4.i2.p1.m4" class="ltx_Math" alttext="0\leq j\leq n" display="inline"><mrow><mn>0</mn><mo>≤</mo><mi>j</mi><mo>≤</mo><mi>n</mi></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="S1.SS1.p5" class="ltx_para">
+<p class="ltx_p">Let <math id="S1.SS1.p5.m1" class="ltx_Math" alttext="\Phi:\mathbb{P}_{n}\to\mathbb{R}^{n+1}" display="inline"><mrow><mi mathvariant="normal">Φ</mi><mo lspace="0.278em" rspace="0.278em">:</mo><mrow><msub><mi>ℙ</mi><mi>n</mi></msub><mo stretchy="false">→</mo><msup><mi>ℝ</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow></mrow></math> be the linear transformation given by <math id="S1.SS1.p5.m2" class="ltx_Math" alttext="\Phi(p)=(\phi_{0}(p),\ldots,\phi_{n}(p))" display="inline"><mrow><mrow><mi mathvariant="normal">Φ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>ϕ</mi><mn>0</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mrow><msub><mi>ϕ</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.
+The range and nullspace of <math id="S1.SS1.p5.m3" class="ltx_Math" alttext="\Phi" display="inline"><mi mathvariant="normal">Φ</mi></math> are, respectively, <math id="S1.SS1.p5.m4" class="ltx_Math" alttext="\mathcal{R}(\Phi)=\{\Phi(p):p\in\mathbb{P}_{n}\}\subset\mathbb{R}^{n+1}" display="inline"><mrow><mrow><mi class="ltx_font_mathcaligraphic">ℛ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">Φ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo stretchy="false">{</mo><mrow><mi mathvariant="normal">Φ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo rspace="0.278em" stretchy="false">)</mo></mrow></mrow><mo rspace="0.278em">:</mo><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mi>n</mi></msub></mrow><mo stretchy="false">}</mo></mrow><mo>⊂</mo><msup><mi>ℝ</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow></math> and <math id="S1.SS1.p5.m5" class="ltx_Math" alttext="\mathcal{N}(\Phi)=\{p\in\mathbb{P}_{n}:\Phi(p)=0\}\subset\mathbb{P}_{n}" display="inline"><mrow><mrow><mi class="ltx_font_mathcaligraphic">𝒩</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">Φ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo stretchy="false">{</mo><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mi>n</mi></msub></mrow><mo lspace="0.278em" rspace="0.278em">:</mo><mrow><mrow><mi mathvariant="normal">Φ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow><mo stretchy="false">}</mo></mrow><mo>⊂</mo><msub><mi>ℙ</mi><mi>n</mi></msub></mrow></math>.
+By the Rank-Nullity Theorem, <math id="S1.SS1.p5.m6" class="ltx_Math" alttext="\dim\mathcal{R}(\Phi)+\dim\mathcal{N}(\Phi)=\dim\mathbb{P}_{n}=n+1" display="inline"><mrow><mrow><mrow><mo rspace="0.167em">dim</mo><mrow><mi class="ltx_font_mathcaligraphic">ℛ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">Φ</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>+</mo><mrow><mo lspace="0em" rspace="0.167em">dim</mo><mrow><mi class="ltx_font_mathcaligraphic">𝒩</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">Φ</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo rspace="0.1389em">=</mo><mrow><mo lspace="0.1389em" rspace="0.167em">dim</mo><msub><mi>ℙ</mi><mi>n</mi></msub></mrow><mo>=</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></mrow></math>.
+The first condition is the same as saying that <math id="S1.SS1.p5.m7" class="ltx_Math" alttext="\mathcal{N}(\Phi)=\{0\}" display="inline"><mrow><mrow><mi class="ltx_font_mathcaligraphic">𝒩</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">Φ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo stretchy="false">{</mo><mn>0</mn><mo stretchy="false">}</mo></mrow></mrow></math>, from which we determine that <math id="S1.SS1.p5.m8" class="ltx_Math" alttext="\dim\mathcal{R}(\Phi)=n+1" display="inline"><mrow><mrow><mo rspace="0.167em">dim</mo><mrow><mi class="ltx_font_mathcaligraphic">ℛ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">Φ</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></mrow></math>.
+Since <math id="S1.SS1.p5.m9" class="ltx_Math" alttext="\dim(\mathbb{R}^{n+1})=n+1" display="inline"><mrow><mrow><mo rspace="0em">dim</mo><mrow><mo stretchy="false">(</mo><msup><mi>ℝ</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></mrow></math>, this implies that <math id="S1.SS1.p5.m10" class="ltx_Math" alttext="\mathcal{R}(\Phi)=\mathbb{R}^{n+1}" display="inline"><mrow><mrow><mi class="ltx_font_mathcaligraphic">ℛ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">Φ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msup><mi>ℝ</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow></math>, which is equivalent to the second condition.
+Conversely, the second condition is the same as saying that <math id="S1.SS1.p5.m11" class="ltx_Math" alttext="\operatorname{Range}(\Phi)=\mathbb{R}^{n+1}" display="inline"><mrow><mrow><mi>Range</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">Φ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msup><mi>ℝ</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow></math>, from which we determine that <math id="S1.SS1.p5.m12" class="ltx_Math" alttext="\dim(\operatorname{Nullspace}(\Phi))=0" display="inline"><mrow><mrow><mo rspace="0em">dim</mo><mrow><mo stretchy="false">(</mo><mrow><mi>Nullspace</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">Φ</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math>, i.e. <math id="S1.SS1.p5.m13" class="ltx_Math" alttext="\operatorname{Nullspace}(\Phi)=\{0\}" display="inline"><mrow><mrow><mi>Nullspace</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">Φ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo stretchy="false">{</mo><mn>0</mn><mo stretchy="false">}</mo></mrow></mrow></math>, which is equivalent to the first condition.
+∎</p>
+</div>
+</div>
+<div id="S1.SS1.p6" class="ltx_para">
+<p class="ltx_p">We give a second proof, which also provides a means of constructing the desired polynomial.
+If we take <math id="S1.SS1.p6.m1" class="ltx_Math" alttext="(b_{0},b_{1},\ldots,b_{n})" display="inline"><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mn>0</mn></msub><mo>,</mo><msub><mi>b</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></math> to be a basis for <math id="S1.SS1.p6.m2" class="ltx_Math" alttext="\mathbb{P}_{n}" display="inline"><msub><mi>ℙ</mi><mi>n</mi></msub></math>, we can recast both conditions above in terms of matrix algebra.
+Any <math id="S1.SS1.p6.m3" class="ltx_Math" alttext="p\in\mathbb{P}_{n}" display="inline"><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mi>n</mi></msub></mrow></math> is uniquely identified with a coefficient vector <math id="S1.SS1.p6.m4" class="ltx_Math" alttext="c=(c_{0},\ldots,c_{n})\in\mathbb{R}^{n+1}" display="inline"><mrow><mi>c</mi><mo>=</mo><mrow><mo stretchy="false">(</mo><msub><mi>c</mi><mn>0</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>c</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mo>∈</mo><msup><mi>ℝ</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow></math> by its unique representation with respect to the basis, <math id="S1.SS1.p6.m5" class="ltx_Math" alttext="p(x)=c_{0}b_{0}(x)+\cdots+c_{n}b_{n}(x)" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><msub><mi>c</mi><mn>0</mn></msub><mo>⁢</mo><msub><mi>b</mi><mn>0</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>+</mo><mi mathvariant="normal">⋯</mi><mo>+</mo><mrow><msub><mi>c</mi><mi>n</mi></msub><mo>⁢</mo><msub><mi>b</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>.
+Letting <math id="S1.SS1.p6.m6" class="ltx_Math" alttext="A\in\mathbb{R}^{(n+1)\times(n+1)}" display="inline"><mrow><mi>A</mi><mo>∈</mo><msup><mi>ℝ</mi><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo rspace="0.055em" stretchy="false">)</mo></mrow><mo rspace="0.222em">×</mo><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow></msup></mrow></math> be defined by <math id="S1.SS1.p6.m7" class="ltx_Math" alttext="a_{ij}=\phi_{i}(b_{j})" display="inline"><mrow><msub><mi>a</mi><mrow><mi>i</mi><mo>⁢</mo><mi>j</mi></mrow></msub><mo>=</mo><mrow><msub><mi>ϕ</mi><mi>i</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math> for <math id="S1.SS1.p6.m8" class="ltx_Math" alttext="0\leq i,j\leq n" display="inline"><mrow><mrow><mn>0</mn><mo>≤</mo><mi>i</mi></mrow><mo>,</mo><mrow><mi>j</mi><mo>≤</mo><mi>n</mi></mrow></mrow></math>, the two conditions can be rephrased as follows:</p>
+<ol id="S1.I5" class="ltx_enumerate">
+<li id="S1.I5.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S1.I5.i1.p1" class="ltx_para">
+<p class="ltx_p">The only <math id="S1.I5.i1.p1.m1" class="ltx_Math" alttext="c\in\mathbb{R}^{n+1}" display="inline"><mrow><mi>c</mi><mo>∈</mo><msup><mi>ℝ</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow></math> for which <math id="S1.I5.i1.p1.m2" class="ltx_Math" alttext="Ac=0" display="inline"><mrow><mrow><mi>A</mi><mo>⁢</mo><mi>c</mi></mrow><mo>=</mo><mn>0</mn></mrow></math> is <math id="S1.I5.i1.p1.m3" class="ltx_Math" alttext="c=0" display="inline"><mrow><mi>c</mi><mo>=</mo><mn>0</mn></mrow></math>.</p>
+</div>
+</li>
+<li id="S1.I5.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S1.I5.i2.p1" class="ltx_para">
+<p class="ltx_p">For each <math id="S1.I5.i2.p1.m1" class="ltx_Math" alttext="y\in\mathbb{R}^{n+1}" display="inline"><mrow><mi>y</mi><mo>∈</mo><msup><mi>ℝ</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow></math>, there is a unique <math id="S1.I5.i2.p1.m2" class="ltx_Math" alttext="c\in\mathbb{R}^{n+1}" display="inline"><mrow><mi>c</mi><mo>∈</mo><msup><mi>ℝ</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow></math> such that <math id="S1.I5.i2.p1.m3" class="ltx_Math" alttext="Ac=y" display="inline"><mrow><mrow><mi>A</mi><mo>⁢</mo><mi>c</mi></mrow><mo>=</mo><mi>y</mi></mrow></math>.</p>
+</div>
+</li>
+</ol>
+<p class="ltx_p">Either of these two statements (conditions) imply the other, and both imply that <math id="S1.SS1.p6.m9" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is invertible.
+Using <math id="S1.SS1.p6.m10" class="ltx_Math" alttext="c=A^{-1}y" display="inline"><mrow><mi>c</mi><mo>=</mo><mrow><msup><mi>A</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>⁢</mo><mi>y</mi></mrow></mrow></math>, we can construct <math id="S1.SS1.p6.m11" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> in terms of the basis.</p>
+</div>
+<div id="S1.SS1.p7" class="ltx_para">
+<p class="ltx_p">The Fundamental Theorem of Algebra provides the standard tool for checking Condition 1 of Lemma <a href="#Thmlemma1" title="Lemma 1 (Unique determination of 𝑝∈ℙ_𝑛; Textbook Lemma 3.4). ‣ 1.1 Constraints and Functionals ‣ 1 Building Polynomials ‣ MTH 451/551 Lecture 7" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a> for a set of functionals that employ evaluation at a point.</p>
+</div>
+<div id="Thmtheorem2" class="ltx_theorem ltx_theorem_theorem">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Theorem 2</span></span><span class="ltx_text ltx_font_bold"> </span>(Interpolating polynomial; Textbook Theorem 3.5)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmtheorem2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Suppose that <math id="Thmtheorem2.p1.m1" class="ltx_Math" alttext="\{x_{0},\ldots,x_{n}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>x</mi><mn>0</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></math> are distinct.
+For each set of numbers <math id="Thmtheorem2.p1.m2" class="ltx_Math" alttext="\{y_{0},\ldots,y_{n}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>y</mi><mn>0</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>y</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></math>, there is a unique polynomial <math id="Thmtheorem2.p1.m3" class="ltx_Math" alttext="p\in\mathbb{P}_{n}" display="inline"><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mi>n</mi></msub></mrow></math> satisfying <math id="Thmtheorem2.p1.m4" class="ltx_Math" alttext="p(x_{j})=y_{j}" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mi>y</mi><mi>j</mi></msub></mrow></math> for each <math id="Thmtheorem2.p1.m5" class="ltx_Math" alttext="j" display="inline"><mi>j</mi></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="S1.SS1.p8" class="ltx_para">
+<p class="ltx_p">We define the functionals <math id="S1.SS1.p8.m1" class="ltx_Math" alttext="\phi_{j}" display="inline"><msub><mi>ϕ</mi><mi>j</mi></msub></math> by <math id="S1.SS1.p8.m2" class="ltx_Math" alttext="\phi_{j}(p)=p(x_{j})" display="inline"><mrow><mrow><msub><mi>ϕ</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math> for <math id="S1.SS1.p8.m3" class="ltx_Math" alttext="p\in\mathbb{P}_{n}" display="inline"><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mi>n</mi></msub></mrow></math>.
+Suppose that <math id="S1.SS1.p8.m4" class="ltx_Math" alttext="p\in\mathbb{P}_{n}" display="inline"><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mi>n</mi></msub></mrow></math>, and <math id="S1.SS1.p8.m5" class="ltx_Math" alttext="\phi_{j}(p)=0" display="inline"><mrow><mrow><msub><mi>ϕ</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math> for each <math id="S1.SS1.p8.m6" class="ltx_Math" alttext="j" display="inline"><mi>j</mi></math>.
+This means that <math id="S1.SS1.p8.m7" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> has at least <math id="S1.SS1.p8.m8" class="ltx_Math" alttext="n+1" display="inline"><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></math> distinct roots, one at each <math id="S1.SS1.p8.m9" class="ltx_Math" alttext="x_{j}" display="inline"><msub><mi>x</mi><mi>j</mi></msub></math>.
+But the degree of <math id="S1.SS1.p8.m10" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> is at most <math id="S1.SS1.p8.m11" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>, so the only way that it can have more than <math id="S1.SS1.p8.m12" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> distinct roots is if it is the constant polynomial <math id="S1.SS1.p8.m13" class="ltx_Math" alttext="p=0" display="inline"><mrow><mi>p</mi><mo>=</mo><mn>0</mn></mrow></math> (by Theorem <a href="#Thmtheorem1" title="Theorem 1 (Fundamental theorem of algebra and consequences; Textbook Theorem 3.2). ‣ 1 Building Polynomials ‣ MTH 451/551 Lecture 7" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a>).
+Now we apply Lemma <a href="#Thmlemma1" title="Lemma 1 (Unique determination of 𝑝∈ℙ_𝑛; Textbook Lemma 3.4). ‣ 1.1 Constraints and Functionals ‣ 1 Building Polynomials ‣ MTH 451/551 Lecture 7" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a> to complete the proof.
+∎</p>
+</div>
+</div>
+<div id="Thmexamplex1" class="ltx_theorem ltx_theorem_examplex">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Example 1</span></span><span class="ltx_text ltx_font_bold"> </span>(Vandermonde matrix; Textbook Example 3.6)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmexamplex1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If we were to give an interpolating polynomial in terms of the monomial basis, <math id="Thmexamplex1.p1.m1" class="ltx_Math" alttext="p(x)=\sum_{j=0}^{n}a_{j}x^{j}" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo rspace="0.111em">=</mo><mrow><msubsup><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></msubsup><mrow><msub><mi>a</mi><mi>j</mi></msub><mo>⁢</mo><msup><mi>x</mi><mi>j</mi></msup></mrow></mrow></mrow></math>, the interpolation conditions, <math id="Thmexamplex1.p1.m2" class="ltx_Math" alttext="p(x_{i})=y_{i}" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mi>y</mi><mi>i</mi></msub></mrow></math> for <math id="Thmexamplex1.p1.m3" class="ltx_Math" alttext="0\leq i\leq n" display="inline"><mrow><mn>0</mn><mo>≤</mo><mi>i</mi><mo>≤</mo><mi>n</mi></mrow></math>, would naturally lead to an <math id="Thmexamplex1.p1.m4" class="ltx_Math" alttext="(n+1)\times(n+1)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo rspace="0.055em" stretchy="false">)</mo></mrow><mo rspace="0.222em">×</mo><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow></math> linear system involving a <span class="ltx_text ltx_font_bold">Vandermonde matrix</span></span></p>
+<table id="S1.Ex8" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex8.m1" class="ltx_Math" alttext="\begin{pmatrix}1&amp;x_{0}&amp;\cdots&amp;x_{0}^{n}\\
+1&amp;x_{1}&amp;\cdots&amp;x_{1}^{n}\\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+1&amp;x_{n}&amp;\cdots&amp;x_{n}^{n}\end{pmatrix}\begin{pmatrix}a_{0}\\
+a_{1}\\
+\vdots\\
+a_{n}\end{pmatrix}=\begin{pmatrix}y_{0}\\
+y_{1}\\
+\vdots\\
+y_{n}\end{pmatrix}." display="block"><mrow><mrow><mrow><mrow><mo>(</mo><mtable columnspacing="5pt" displaystyle="true" rowspacing="0pt"><mtr><mtd><mn>1</mn></mtd><mtd><msub><mi>x</mi><mn>0</mn></msub></mtd><mtd><mi mathvariant="normal">⋯</mi></mtd><mtd><msubsup><mi>x</mi><mn>0</mn><mi>n</mi></msubsup></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><msub><mi>x</mi><mn>1</mn></msub></mtd><mtd><mi mathvariant="normal">⋯</mi></mtd><mtd><msubsup><mi>x</mi><mn>1</mn><mi>n</mi></msubsup></mtd></mtr><mtr><mtd><mi mathvariant="normal">⋮</mi></mtd><mtd><mi mathvariant="normal">⋮</mi></mtd><mtd></mtd><mtd><mi mathvariant="normal">⋮</mi></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><msub><mi>x</mi><mi>n</mi></msub></mtd><mtd><mi mathvariant="normal">⋯</mi></mtd><mtd><msubsup><mi>x</mi><mi>n</mi><mi>n</mi></msubsup></mtd></mtr></mtable><mo>)</mo></mrow><mo>⁢</mo><mrow><mo>(</mo><mtable displaystyle="true" rowspacing="0pt"><mtr><mtd><msub><mi>a</mi><mn>0</mn></msub></mtd></mtr><mtr><mtd><msub><mi>a</mi><mn>1</mn></msub></mtd></mtr><mtr><mtd><mi mathvariant="normal">⋮</mi></mtd></mtr><mtr><mtd><msub><mi>a</mi><mi>n</mi></msub></mtd></mtr></mtable><mo>)</mo></mrow></mrow><mo>=</mo><mrow><mo>(</mo><mtable displaystyle="true" rowspacing="0pt"><mtr><mtd><msub><mi>y</mi><mn>0</mn></msub></mtd></mtr><mtr><mtd><msub><mi>y</mi><mn>1</mn></msub></mtd></mtr><mtr><mtd><mi mathvariant="normal">⋮</mi></mtd></mtr><mtr><mtd><msub><mi>y</mi><mi>n</mi></msub></mtd></mtr></mtable><mo>)</mo></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Similarly, using the shifted monomial basis, <math id="Thmexamplex1.p1.m5" class="ltx_Math" alttext="p(x)=\sum_{j=0}^{n}a_{j}(x-c)^{j}" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo rspace="0.111em">=</mo><mrow><msubsup><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></msubsup><mrow><msub><mi>a</mi><mi>j</mi></msub><mo>⁢</mo><msup><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mi>c</mi></mrow><mo stretchy="false">)</mo></mrow><mi>j</mi></msup></mrow></mrow></mrow></math>, we obtain the linear system</span></p>
+<table id="S1.Ex9" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex9.m1" class="ltx_Math" alttext="\begin{pmatrix}1&amp;x_{0}-c&amp;\cdots&amp;(x_{0}-c)^{n}\\
+1&amp;x_{1}-c&amp;\cdots&amp;(x_{1}-c)^{n}\\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+1&amp;x_{n}-c&amp;\cdots&amp;(x_{n}-c)^{n}\end{pmatrix}\begin{pmatrix}a_{0}\\
+a_{1}\\
+\vdots\\
+a_{n}\end{pmatrix}=\begin{pmatrix}y_{0}\\
+y_{1}\\
+\vdots\\
+y_{n}\end{pmatrix}." display="block"><mrow><mrow><mrow><mrow><mo>(</mo><mtable columnspacing="5pt" displaystyle="true" rowspacing="0pt"><mtr><mtd><mn>1</mn></mtd><mtd><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>−</mo><mi>c</mi></mrow></mtd><mtd><mi mathvariant="normal">⋯</mi></mtd><mtd><msup><mrow><mo stretchy="false">(</mo><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>−</mo><mi>c</mi></mrow><mo stretchy="false">)</mo></mrow><mi>n</mi></msup></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><mi>c</mi></mrow></mtd><mtd><mi mathvariant="normal">⋯</mi></mtd><mtd><msup><mrow><mo stretchy="false">(</mo><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><mi>c</mi></mrow><mo stretchy="false">)</mo></mrow><mi>n</mi></msup></mtd></mtr><mtr><mtd><mi mathvariant="normal">⋮</mi></mtd><mtd><mi mathvariant="normal">⋮</mi></mtd><mtd></mtd><mtd><mi mathvariant="normal">⋮</mi></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>c</mi></mrow></mtd><mtd><mi mathvariant="normal">⋯</mi></mtd><mtd><msup><mrow><mo stretchy="false">(</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>c</mi></mrow><mo stretchy="false">)</mo></mrow><mi>n</mi></msup></mtd></mtr></mtable><mo>)</mo></mrow><mo>⁢</mo><mrow><mo>(</mo><mtable displaystyle="true" rowspacing="0pt"><mtr><mtd><msub><mi>a</mi><mn>0</mn></msub></mtd></mtr><mtr><mtd><msub><mi>a</mi><mn>1</mn></msub></mtd></mtr><mtr><mtd><mi mathvariant="normal">⋮</mi></mtd></mtr><mtr><mtd><msub><mi>a</mi><mi>n</mi></msub></mtd></mtr></mtable><mo>)</mo></mrow></mrow><mo>=</mo><mrow><mo>(</mo><mtable displaystyle="true" rowspacing="0pt"><mtr><mtd><msub><mi>y</mi><mn>0</mn></msub></mtd></mtr><mtr><mtd><msub><mi>y</mi><mn>1</mn></msub></mtd></mtr><mtr><mtd><mi mathvariant="normal">⋮</mi></mtd></mtr><mtr><mtd><msub><mi>y</mi><mi>n</mi></msub></mtd></mtr></mtable><mo>)</mo></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">This approach is rarely used for practical numerical computations where interpolation is the focus, but it can be helpful in deriving finite difference approximations of derivatives of a function.
+Theorem <a href="#Thmtheorem2" title="Theorem 2 (Interpolating polynomial; Textbook Theorem 3.5). ‣ 1.1 Constraints and Functionals ‣ 1 Building Polynomials ‣ MTH 451/551 Lecture 7" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2</span></a> implies that the Vandermonde matrix is invertible.
+It is an exercise to show that, for any numbers <math id="Thmexamplex1.p1.m6" class="ltx_Math" alttext="\{z_{0},z_{1},\ldots,z_{n}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>z</mi><mn>0</mn></msub><mo>,</mo><msub><mi>z</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>z</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></math>, the corresponding Vandermonde determinant is given by</span></p>
+<table id="S1.Ex10" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex10.m1" class="ltx_Math" alttext="\begin{vmatrix}1&amp;z_{0}&amp;\cdots&amp;z_{0}^{n}\\
+1&amp;z_{1}&amp;\cdots&amp;z_{1}^{n}\\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+1&amp;z_{n}&amp;\cdots&amp;z_{n}^{n}\end{vmatrix}=\prod_{i&lt;j}(z_{j}-z_{i})=\prod_{i=0}^{n-%
+1}\prod_{j=i+1}^{n}(z_{j}-z_{i})." display="block"><mrow><mrow><mrow><mo>|</mo><mtable columnspacing="5pt" displaystyle="true" rowspacing="0pt"><mtr><mtd><mn>1</mn></mtd><mtd><msub><mi>z</mi><mn>0</mn></msub></mtd><mtd><mi mathvariant="normal">⋯</mi></mtd><mtd><msubsup><mi>z</mi><mn>0</mn><mi>n</mi></msubsup></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><msub><mi>z</mi><mn>1</mn></msub></mtd><mtd><mi mathvariant="normal">⋯</mi></mtd><mtd><msubsup><mi>z</mi><mn>1</mn><mi>n</mi></msubsup></mtd></mtr><mtr><mtd><mi mathvariant="normal">⋮</mi></mtd><mtd><mi mathvariant="normal">⋮</mi></mtd><mtd></mtd><mtd><mi mathvariant="normal">⋮</mi></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><msub><mi>z</mi><mi>n</mi></msub></mtd><mtd><mi mathvariant="normal">⋯</mi></mtd><mtd><msubsup><mi>z</mi><mi>n</mi><mi>n</mi></msubsup></mtd></mtr></mtable><mo>|</mo></mrow><mo rspace="0.111em">=</mo><mrow><munder><mo movablelimits="false" rspace="0em">∏</mo><mrow><mi>i</mi><mo>&lt;</mo><mi>j</mi></mrow></munder><mrow><mo stretchy="false">(</mo><mrow><msub><mi>z</mi><mi>j</mi></msub><mo>−</mo><msub><mi>z</mi><mi>i</mi></msub></mrow><mo stretchy="false">)</mo></mrow></mrow><mo rspace="0.111em">=</mo><mrow><munderover><mo movablelimits="false" rspace="0em">∏</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></munderover><mrow><munderover><mo movablelimits="false" rspace="0em">∏</mo><mrow><mi>j</mi><mo>=</mo><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></mrow><mi>n</mi></munderover><mrow><mo stretchy="false">(</mo><mrow><msub><mi>z</mi><mi>j</mi></msub><mo>−</mo><msub><mi>z</mi><mi>i</mi></msub></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If the numbers are distinct, this determinant is clearly non-zero.
+<math id="Thmexamplex1.p1.m7" class="ltx_Math" alttext="\blacklozenge" display="inline"><mi mathvariant="normal">◆</mi></math></span></p>
+</div>
+</div>
+<div id="Thmexamplex2" class="ltx_theorem ltx_theorem_examplex">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Example 2</span></span><span class="ltx_text ltx_font_bold"> </span>(Newton basis; Textbook Example 3.6)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmexamplex2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If the interpolating polynomial is given in the Newton basis, <math id="Thmexamplex2.p1.m1" class="ltx_Math" alttext="p(x)=\sum_{j=0}^{n}c_{j}w_{j}(x)" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo rspace="0.111em">=</mo><mrow><msubsup><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></msubsup><mrow><msub><mi>c</mi><mi>j</mi></msub><mo>⁢</mo><msub><mi>w</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>, the associated linear system is</span></p>
+<table id="S1.Ex11" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex11.m1" class="ltx_Math" alttext="\begin{pmatrix}w_{0}(x_{0})&amp;&amp;&amp;\\
+w_{0}(x_{1})&amp;w_{1}(x_{1})&amp;&amp;\\
+\vdots&amp;\vdots&amp;\ddots&amp;\\
+w_{0}(x_{n})&amp;w_{1}(x_{n})&amp;\cdots&amp;w_{n}(x_{n})\end{pmatrix}\begin{pmatrix}c_{0}%
+\\
+c_{1}\\
+\vdots\\
+c_{n}\end{pmatrix}=\begin{pmatrix}y_{0}\\
+y_{1}\\
+\vdots\\
+y_{n}\end{pmatrix}." display="block"><mrow><mrow><mrow><mrow><mo>(</mo><mtable columnspacing="5pt" displaystyle="true" rowspacing="0pt"><mtr><mtd><mrow><msub><mi>w</mi><mn>0</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mtd><mtd></mtd><mtd></mtd><mtd></mtd></mtr><mtr><mtd><mrow><msub><mi>w</mi><mn>0</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mtd><mtd><mrow><msub><mi>w</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mtd><mtd></mtd><mtd></mtd></mtr><mtr><mtd><mi mathvariant="normal">⋮</mi></mtd><mtd><mi mathvariant="normal">⋮</mi></mtd><mtd><mi mathvariant="normal">⋱</mi></mtd><mtd></mtd></mtr><mtr><mtd><mrow><msub><mi>w</mi><mn>0</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mtd><mtd><mrow><msub><mi>w</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mtd><mtd><mi mathvariant="normal">⋯</mi></mtd><mtd><mrow><msub><mi>w</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mtd></mtr></mtable><mo>)</mo></mrow><mo>⁢</mo><mrow><mo>(</mo><mtable displaystyle="true" rowspacing="0pt"><mtr><mtd><msub><mi>c</mi><mn>0</mn></msub></mtd></mtr><mtr><mtd><msub><mi>c</mi><mn>1</mn></msub></mtd></mtr><mtr><mtd><mi mathvariant="normal">⋮</mi></mtd></mtr><mtr><mtd><msub><mi>c</mi><mi>n</mi></msub></mtd></mtr></mtable><mo>)</mo></mrow></mrow><mo>=</mo><mrow><mo>(</mo><mtable displaystyle="true" rowspacing="0pt"><mtr><mtd><msub><mi>y</mi><mn>0</mn></msub></mtd></mtr><mtr><mtd><msub><mi>y</mi><mn>1</mn></msub></mtd></mtr><mtr><mtd><mi mathvariant="normal">⋮</mi></mtd></mtr><mtr><mtd><msub><mi>y</mi><mi>n</mi></msub></mtd></mtr></mtable><mo>)</mo></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">We note that the first column of this matrix consists only of ones, since <math id="Thmexamplex2.p1.m2" class="ltx_Math" alttext="w_{0}(x)=1" display="inline"><mrow><mrow><msub><mi>w</mi><mn>0</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>1</mn></mrow></math>.
+The empty space above the diagonal entries indicates that these entries are zero.
+This is because, for <math id="Thmexamplex2.p1.m3" class="ltx_Math" alttext="j&gt;i" display="inline"><mrow><mi>j</mi><mo>&gt;</mo><mi>i</mi></mrow></math>, the product</span></p>
+<table id="S1.Ex12" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex12.m1" class="ltx_Math" alttext="w_{j}(x_{i})=\prod_{k=0}^{j-1}(x_{i}-x_{k})" display="block"><mrow><mrow><msub><mi>w</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo rspace="0.111em">=</mo><mrow><munderover><mo movablelimits="false" rspace="0em">∏</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>j</mi><mo>−</mo><mn>1</mn></mrow></munderover><mrow><mo stretchy="false">(</mo><mrow><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><msub><mi>x</mi><mi>k</mi></msub></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">contains the factor <math id="Thmexamplex2.p1.m4" class="ltx_Math" alttext="(x_{i}-x_{i})=0" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mrow><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><msub><mi>x</mi><mi>i</mi></msub></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mn>0</mn></mrow></math> (since <math id="Thmexamplex2.p1.m5" class="ltx_Math" alttext="0\leq i\leq j-1" display="inline"><mrow><mn>0</mn><mo>≤</mo><mi>i</mi><mo>≤</mo><mrow><mi>j</mi><mo>−</mo><mn>1</mn></mrow></mrow></math>), so <math id="Thmexamplex2.p1.m6" class="ltx_Math" alttext="w_{j}(x_{i})=0" display="inline"><mrow><mrow><msub><mi>w</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math> whenever <math id="Thmexamplex2.p1.m7" class="ltx_Math" alttext="j&gt;i" display="inline"><mrow><mi>j</mi><mo>&gt;</mo><mi>i</mi></mrow></math>.
+Since the matrix is lower-triangular, it is straightforward to solve the system by substitution, but we will later see that the notion of divided differences provides a more efficient way of computing the coefficients.
+<math id="Thmexamplex2.p1.m8" class="ltx_Math" alttext="\blacklozenge" display="inline"><mi mathvariant="normal">◆</mi></math></span></p>
+</div>
+</div>
+<div id="Thmtheorem3" class="ltx_theorem ltx_theorem_theorem">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Theorem 3</span></span><span class="ltx_text ltx_font_bold"> </span>(Taylor polynomial; Textbook Theorem 3.7)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmtheorem3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmtheorem3.p1.m1" class="ltx_Math" alttext="c\in\mathbb{R}" display="inline"><mrow><mi>c</mi><mo>∈</mo><mi>ℝ</mi></mrow></math>.
+For each set of numbers <math id="Thmtheorem3.p1.m2" class="ltx_Math" alttext="\{y_{0},\ldots,y_{n}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>y</mi><mn>0</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>y</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></math>, there is a unique polynomial <math id="Thmtheorem3.p1.m3" class="ltx_Math" alttext="p\in\mathbb{P}_{n}" display="inline"><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mi>n</mi></msub></mrow></math> satisfying <math id="Thmtheorem3.p1.m4" class="ltx_Math" alttext="p^{(j)}(c)=y_{j}" display="inline"><mrow><mrow><msup><mi>p</mi><mrow><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mi>y</mi><mi>j</mi></msub></mrow></math> for each <math id="Thmtheorem3.p1.m5" class="ltx_Math" alttext="j" display="inline"><mi>j</mi></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="S1.SS1.p9" class="ltx_para">
+<p class="ltx_p">We define the functionals <math id="S1.SS1.p9.m1" class="ltx_Math" alttext="\phi_{j}" display="inline"><msub><mi>ϕ</mi><mi>j</mi></msub></math> by <math id="S1.SS1.p9.m2" class="ltx_Math" alttext="\phi_{j}(p)=p^{(j)}(c)" display="inline"><mrow><mrow><msub><mi>ϕ</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msup><mi>p</mi><mrow><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> for <math id="S1.SS1.p9.m3" class="ltx_Math" alttext="p\in\mathbb{P}_{n}" display="inline"><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mi>n</mi></msub></mrow></math>.
+Suppose that <math id="S1.SS1.p9.m4" class="ltx_Math" alttext="p\in\mathbb{P}_{n}" display="inline"><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mi>n</mi></msub></mrow></math>, and <math id="S1.SS1.p9.m5" class="ltx_Math" alttext="\phi_{j}(p)=0" display="inline"><mrow><mrow><msub><mi>ϕ</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math> for each <math id="S1.SS1.p9.m6" class="ltx_Math" alttext="j" display="inline"><mi>j</mi></math>.
+This means that <math id="S1.SS1.p9.m7" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> has a root of multiplicity at least <math id="S1.SS1.p9.m8" class="ltx_Math" alttext="n+1" display="inline"><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></math> at <math id="S1.SS1.p9.m9" class="ltx_Math" alttext="c" display="inline"><mi>c</mi></math>.
+But the degree of <math id="S1.SS1.p9.m10" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> is at most <math id="S1.SS1.p9.m11" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>, so it must be the constant polynomial <math id="S1.SS1.p9.m12" class="ltx_Math" alttext="p=0" display="inline"><mrow><mi>p</mi><mo>=</mo><mn>0</mn></mrow></math> (by Theorem <a href="#Thmtheorem1" title="Theorem 1 (Fundamental theorem of algebra and consequences; Textbook Theorem 3.2). ‣ 1 Building Polynomials ‣ MTH 451/551 Lecture 7" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a>).
+Now we apply Lemma <a href="#Thmlemma1" title="Lemma 1 (Unique determination of 𝑝∈ℙ_𝑛; Textbook Lemma 3.4). ‣ 1.1 Constraints and Functionals ‣ 1 Building Polynomials ‣ MTH 451/551 Lecture 7" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a> to complete the proof.
+In this case, we can verify directly that</p>
+<table id="S1.Ex13" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex13.m1" class="ltx_Math" alttext="p(x)=\sum_{j=0}^{n}\frac{y_{j}}{j!}(x-c)^{j}" display="block"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo rspace="0.111em">=</mo><mrow><munderover><mo movablelimits="false">∑</mo><mrow><mi>j</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover><mrow><mfrac><msub><mi>y</mi><mi>j</mi></msub><mrow><mi>j</mi><mo>!</mo></mrow></mfrac><mo>⁢</mo><msup><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mi>c</mi></mrow><mo stretchy="false">)</mo></mrow><mi>j</mi></msup></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">is this unique polynomial.
+∎</p>
+</div>
+</div>
+<div id="S1.SS1.p10" class="ltx_para">
+<p class="ltx_p">In particular, if <math id="S1.SS1.p10.m1" class="ltx_Math" alttext="y_{j}=f^{(j)}(c)" display="inline"><mrow><msub><mi>y</mi><mi>j</mi></msub><mo>=</mo><mrow><msup><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> for some function <math id="S1.SS1.p10.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>, then this unique polynomial is exactly the degree-<math id="S1.SS1.p10.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> Taylor polynomial of <math id="S1.SS1.p10.m4" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> centered at <math id="S1.SS1.p10.m5" class="ltx_Math" alttext="c" display="inline"><mi>c</mi></math>.</p>
+</div>
+<div id="Thmexamplex3" class="ltx_theorem ltx_theorem_examplex">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Example 3</span></span><span class="ltx_text ltx_font_bold"> </span>(Vandermonde inverse; Textbook Example 3.8)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmexamplex3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmexamplex3.p1.m1" class="ltx_Math" alttext="\{x_{0},\ldots,x_{n}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>x</mi><mn>0</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></math> be distinct numbers, and let <math id="Thmexamplex3.p1.m2" class="ltx_Math" alttext="\ell_{j}\in\mathbb{P}_{n}" display="inline"><mrow><msub><mi mathvariant="normal">ℓ</mi><mi>j</mi></msub><mo>∈</mo><msub><mi>ℙ</mi><mi>n</mi></msub></mrow></math>, <math id="Thmexamplex3.p1.m3" class="ltx_Math" alttext="0\leq j\leq n" display="inline"><mrow><mn>0</mn><mo>≤</mo><mi>j</mi><mo>≤</mo><mi>n</mi></mrow></math>, be the associated Lagrange polynomials.
+Let <math id="Thmexamplex3.p1.m4" class="ltx_Math" alttext="c" display="inline"><mi>c</mi></math> be another number, which may or may not be one of the <math id="Thmexamplex3.p1.m5" class="ltx_Math" alttext="x_{j}" display="inline"><msub><mi>x</mi><mi>j</mi></msub></math>.
+According to Theorem <a href="#Thmtheorem3" title="Theorem 3 (Taylor polynomial; Textbook Theorem 3.7). ‣ 1.1 Constraints and Functionals ‣ 1 Building Polynomials ‣ MTH 451/551 Lecture 7" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3</span></a>, we can re-express each Lagrange polynomial in the shifted monomial basis as</span></p>
+<table id="S1.Ex14" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex14.m1" class="ltx_Math" alttext="\ell_{j}(x)=\sum_{k=0}^{n}\frac{\ell_{j}^{(k)}(c)}{k!}(x-c)^{k}." display="block"><mrow><mrow><mrow><msub><mi mathvariant="normal">ℓ</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo rspace="0.111em">=</mo><mrow><munderover><mo movablelimits="false">∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover><mrow><mfrac><mrow><msubsup><mi mathvariant="normal">ℓ</mi><mi>j</mi><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></msubsup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mrow><mi>k</mi><mo>!</mo></mrow></mfrac><mo>⁢</mo><msup><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mi>c</mi></mrow><mo stretchy="false">)</mo></mrow><mi>k</mi></msup></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">This simple change of basis tells us something useful about the inverse of the Vandermonde matrix,</span></p>
+<table id="S1.Ex15" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex15.m1" class="ltx_Math" alttext="V=\begin{pmatrix}1&amp;x_{0}-c&amp;\cdots&amp;(x_{0}-c)^{n}\\
+1&amp;x_{1}-c&amp;\cdots&amp;(x_{1}-c)^{n}\\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+1&amp;x_{n}-c&amp;\cdots&amp;(x_{n}-c)^{n}\end{pmatrix}." display="block"><mrow><mrow><mi>V</mi><mo>=</mo><mrow><mo>(</mo><mtable columnspacing="5pt" displaystyle="true" rowspacing="0pt"><mtr><mtd><mn>1</mn></mtd><mtd><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>−</mo><mi>c</mi></mrow></mtd><mtd><mi mathvariant="normal">⋯</mi></mtd><mtd><msup><mrow><mo stretchy="false">(</mo><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>−</mo><mi>c</mi></mrow><mo stretchy="false">)</mo></mrow><mi>n</mi></msup></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><mi>c</mi></mrow></mtd><mtd><mi mathvariant="normal">⋯</mi></mtd><mtd><msup><mrow><mo stretchy="false">(</mo><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><mi>c</mi></mrow><mo stretchy="false">)</mo></mrow><mi>n</mi></msup></mtd></mtr><mtr><mtd><mi mathvariant="normal">⋮</mi></mtd><mtd><mi mathvariant="normal">⋮</mi></mtd><mtd></mtd><mtd><mi mathvariant="normal">⋮</mi></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>c</mi></mrow></mtd><mtd><mi mathvariant="normal">⋯</mi></mtd><mtd><msup><mrow><mo stretchy="false">(</mo><mrow><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mi>c</mi></mrow><mo stretchy="false">)</mo></mrow><mi>n</mi></msup></mtd></mtr></mtable><mo>)</mo></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Specifically, if we define the matrix <math id="Thmexamplex3.p1.m6" class="ltx_Math" alttext="U" display="inline"><mi>U</mi></math> by <math id="Thmexamplex3.p1.m7" class="ltx_Math" alttext="u_{ij}=\ell_{j}^{(i)}(c)/i!" display="inline"><mrow><msub><mi>u</mi><mrow><mi>i</mi><mo>⁢</mo><mi>j</mi></mrow></msub><mo>=</mo><mrow><mrow><msubsup><mi mathvariant="normal">ℓ</mi><mi>j</mi><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msubsup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo>/</mo><mrow><mi>i</mi><mo>!</mo></mrow></mrow></mrow></math> for <math id="Thmexamplex3.p1.m8" class="ltx_Math" alttext="0\leq i,j\leq n" display="inline"><mrow><mrow><mn>0</mn><mo>≤</mo><mi>i</mi></mrow><mo>,</mo><mrow><mi>j</mi><mo>≤</mo><mi>n</mi></mrow></mrow></math>, then the <math id="Thmexamplex3.p1.m9" class="ltx_Math" alttext="(i,j)" display="inline"><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></math> entry of <math id="Thmexamplex3.p1.m10" class="ltx_Math" alttext="VU" display="inline"><mrow><mi>V</mi><mo>⁢</mo><mi>U</mi></mrow></math> is</span></p>
+<table id="S1.Ex16" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex16.m1" class="ltx_Math" alttext="[VU]_{ij}=\sum_{k=0}^{n}(x_{i}-c)^{k}\frac{\ell_{j}^{(k)}(c)}{k!}=\ell_{j}(x_{%
+i})=\delta_{ij}." display="block"><mrow><mrow><msub><mrow><mo stretchy="false">[</mo><mrow><mi>V</mi><mo>⁢</mo><mi>U</mi></mrow><mo stretchy="false">]</mo></mrow><mrow><mi>i</mi><mo>⁢</mo><mi>j</mi></mrow></msub><mo rspace="0.111em">=</mo><mrow><munderover><mo movablelimits="false" rspace="0em">∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover><mrow><msup><mrow><mo stretchy="false">(</mo><mrow><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><mi>c</mi></mrow><mo stretchy="false">)</mo></mrow><mi>k</mi></msup><mo>⁢</mo><mfrac><mrow><msubsup><mi mathvariant="normal">ℓ</mi><mi>j</mi><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></msubsup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mrow><mi>k</mi><mo>!</mo></mrow></mfrac></mrow></mrow><mo>=</mo><mrow><msub><mi mathvariant="normal">ℓ</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mi>δ</mi><mrow><mi>i</mi><mo>⁢</mo><mi>j</mi></mrow></msub></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">This tells us that <math id="Thmexamplex3.p1.m11" class="ltx_Math" alttext="VU=I" display="inline"><mrow><mrow><mi>V</mi><mo>⁢</mo><mi>U</mi></mrow><mo>=</mo><mi>I</mi></mrow></math>, so <math id="Thmexamplex3.p1.m12" class="ltx_Math" alttext="U=V^{-1}" display="inline"><mrow><mi>U</mi><mo>=</mo><msup><mi>V</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow></math>, i.e.</span></p>
+<table id="S1.Ex17" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex17.m1" class="ltx_Math" alttext="V^{-1}=\begin{pmatrix}\ell_{0}(c)&amp;\ell_{1}(c)&amp;\cdots&amp;\ell_{n}(c)\\
+\ell_{0}^{\prime}(c)&amp;\ell_{1}^{\prime}(c)&amp;\cdots&amp;\ell_{n}^{\prime}(c)\\
+\ell_{0}^{\prime\prime}(c)/2&amp;\ell_{1}^{\prime\prime}(c)/2&amp;\cdots&amp;\ell_{n}^{%
+\prime\prime}(c)/2\\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+\ell_{0}^{(n)}(c)/n!&amp;\ell_{1}^{(n)}(c)/n!&amp;\cdots&amp;\ell_{n}^{(n)}(c)/n!\end{%
+pmatrix}." display="block"><mrow><mrow><msup><mi>V</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>=</mo><mrow><mo>(</mo><mtable columnspacing="5pt" displaystyle="true" rowspacing="0pt"><mtr><mtd><mrow><msub><mi mathvariant="normal">ℓ</mi><mn>0</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></mtd><mtd><mrow><msub><mi mathvariant="normal">ℓ</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></mtd><mtd><mi mathvariant="normal">⋯</mi></mtd><mtd><mrow><msub><mi mathvariant="normal">ℓ</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></mtd></mtr><mtr><mtd><mrow><msubsup><mi mathvariant="normal">ℓ</mi><mn>0</mn><mo>′</mo></msubsup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></mtd><mtd><mrow><msubsup><mi mathvariant="normal">ℓ</mi><mn>1</mn><mo>′</mo></msubsup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></mtd><mtd><mi mathvariant="normal">⋯</mi></mtd><mtd><mrow><msubsup><mi mathvariant="normal">ℓ</mi><mi>n</mi><mo>′</mo></msubsup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></mtd></mtr><mtr><mtd><mrow><mrow><msubsup><mi mathvariant="normal">ℓ</mi><mn>0</mn><mo>′′</mo></msubsup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo>/</mo><mn>2</mn></mrow></mtd><mtd><mrow><mrow><msubsup><mi mathvariant="normal">ℓ</mi><mn>1</mn><mo>′′</mo></msubsup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo>/</mo><mn>2</mn></mrow></mtd><mtd><mi mathvariant="normal">⋯</mi></mtd><mtd><mrow><mrow><msubsup><mi mathvariant="normal">ℓ</mi><mi>n</mi><mo>′′</mo></msubsup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo>/</mo><mn>2</mn></mrow></mtd></mtr><mtr><mtd><mi mathvariant="normal">⋮</mi></mtd><mtd><mi mathvariant="normal">⋮</mi></mtd><mtd></mtd><mtd><mi mathvariant="normal">⋮</mi></mtd></mtr><mtr><mtd><mrow><mrow><msubsup><mi mathvariant="normal">ℓ</mi><mn>0</mn><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></msubsup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo>/</mo><mrow><mi>n</mi><mo>!</mo></mrow></mrow></mtd><mtd><mrow><mrow><msubsup><mi mathvariant="normal">ℓ</mi><mn>1</mn><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></msubsup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo>/</mo><mrow><mi>n</mi><mo>!</mo></mrow></mrow></mtd><mtd><mi mathvariant="normal">⋯</mi></mtd><mtd><mrow><mrow><msubsup><mi mathvariant="normal">ℓ</mi><mi>n</mi><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></msubsup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo>/</mo><mrow><mi>n</mi><mo>!</mo></mrow></mrow></mtd></mtr></mtable><mo>)</mo></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">This relationship will be of use later for deriving some schemes for approximating derivatives.
+<math id="Thmexamplex3.p1.m13" class="ltx_Math" alttext="\blacklozenge" display="inline"><mi mathvariant="normal">◆</mi></math></span></p>
+</div>
+</div>
+<div id="S1.SS1.p11" class="ltx_para">
+<p class="ltx_p">Although most of this chapter concerns polynomial approximations for which values of the polynomial, and possibly some derivatives, are specified at given points, we will also consider polynomials that are defined in terms of integral moments, as in the following theorem.</p>
+</div>
+<div id="Thmtheorem4" class="ltx_theorem ltx_theorem_theorem">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Theorem 4</span></span><span class="ltx_text ltx_font_bold"> </span>(Least-squares approximation; Textbook Theorem 3.9)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmtheorem4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmtheorem4.p1.m1" class="ltx_Math" alttext="a,b\in\mathbb{R}" display="inline"><mrow><mrow><mi>a</mi><mo>,</mo><mi>b</mi></mrow><mo>∈</mo><mi>ℝ</mi></mrow></math> with <math id="Thmtheorem4.p1.m2" class="ltx_Math" alttext="a&lt;b" display="inline"><mrow><mi>a</mi><mo>&lt;</mo><mi>b</mi></mrow></math>.
+For each set of numbers <math id="Thmtheorem4.p1.m3" class="ltx_Math" alttext="\{y_{0},\ldots,y_{n}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>y</mi><mn>0</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>y</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></math>, there is a unique polynomial <math id="Thmtheorem4.p1.m4" class="ltx_Math" alttext="p\in\mathbb{P}_{n}" display="inline"><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mi>n</mi></msub></mrow></math> satisfying <math id="Thmtheorem4.p1.m5" class="ltx_Math" alttext="\int_{a}^{b}p(x)(x-a)^{j}\,dx=y_{j}" display="inline"><mrow><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><msup><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mi>a</mi></mrow><mo stretchy="false">)</mo></mrow><mi>j</mi></msup><mo lspace="0em">⁢</mo><mrow><mo rspace="0em">𝑑</mo><mi>x</mi></mrow></mrow></mrow><mo>=</mo><msub><mi>y</mi><mi>j</mi></msub></mrow></math> for each <math id="Thmtheorem4.p1.m6" class="ltx_Math" alttext="j" display="inline"><mi>j</mi></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="S1.SS1.p12" class="ltx_para">
+<p class="ltx_p">In this case, we take <math id="S1.SS1.p12.m1" class="ltx_Math" alttext="\phi_{j}" display="inline"><msub><mi>ϕ</mi><mi>j</mi></msub></math> to be <math id="S1.SS1.p12.m2" class="ltx_Math" alttext="\phi_{j}(p)=\int_{a}^{b}p(x)(x-a)^{j}\,dx" display="inline"><mrow><mrow><msub><mi>ϕ</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo rspace="0.111em">=</mo><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><msup><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mi>a</mi></mrow><mo stretchy="false">)</mo></mrow><mi>j</mi></msup><mo lspace="0em">⁢</mo><mrow><mo rspace="0em">𝑑</mo><mi>x</mi></mrow></mrow></mrow></mrow></math>.
+Now suppose that <math id="S1.SS1.p12.m3" class="ltx_Math" alttext="p\in\mathbb{P}_{n}" display="inline"><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mi>n</mi></msub></mrow></math>, and <math id="S1.SS1.p12.m4" class="ltx_Math" alttext="\phi_{j}(p)=0" display="inline"><mrow><mrow><msub><mi>ϕ</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math> for <math id="S1.SS1.p12.m5" class="ltx_Math" alttext="0\leq j\leq n" display="inline"><mrow><mn>0</mn><mo>≤</mo><mi>j</mi><mo>≤</mo><mi>n</mi></mrow></math>.
+Well, <math id="S1.SS1.p12.m6" class="ltx_Math" alttext="p(x)=\sum_{j=0}^{n}c_{j}(x-a)^{j}" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo rspace="0.111em">=</mo><mrow><msubsup><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></msubsup><mrow><msub><mi>c</mi><mi>j</mi></msub><mo>⁢</mo><msup><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mi>a</mi></mrow><mo stretchy="false">)</mo></mrow><mi>j</mi></msup></mrow></mrow></mrow></math> for some coefficients <math id="S1.SS1.p12.m7" class="ltx_Math" alttext="c_{j}" display="inline"><msub><mi>c</mi><mi>j</mi></msub></math>, so we see that</p>
+<table id="S1.Ex18" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex18.m1" class="ltx_Math" alttext="0=\sum_{j=0}^{n}c_{j}\phi_{j}(p)=\sum_{j=0}^{n}c_{j}\int_{a}^{b}p(x)(x-a)^{j}%
+\,dx=\int_{a}^{b}p(x)\sum_{j=0}^{n}c_{j}(x-a)^{j}\,dx=\int_{a}^{b}[p(x)]^{2}\,dx." display="block"><mrow><mrow><mn>0</mn><mo rspace="0.111em">=</mo><mrow><munderover><mo movablelimits="false">∑</mo><mrow><mi>j</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover><mrow><msub><mi>c</mi><mi>j</mi></msub><mo>⁢</mo><msub><mi>ϕ</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo rspace="0.111em">=</mo><mrow><munderover><mo movablelimits="false">∑</mo><mrow><mi>j</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover><mrow><msub><mi>c</mi><mi>j</mi></msub><mo>⁢</mo><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><msup><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mi>a</mi></mrow><mo stretchy="false">)</mo></mrow><mi>j</mi></msup><mo lspace="0em">⁢</mo><mrow><mo rspace="0em">𝑑</mo><mi>x</mi></mrow></mrow></mrow></mrow></mrow><mo rspace="0.111em">=</mo><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><munderover><mo movablelimits="false">∑</mo><mrow><mi>j</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover><mrow><msub><mi>c</mi><mi>j</mi></msub><mo>⁢</mo><msup><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mi>a</mi></mrow><mo stretchy="false">)</mo></mrow><mi>j</mi></msup><mo>⁢</mo><mi>d</mi><mo>⁢</mo><mi>x</mi></mrow></mrow></mrow></mrow><mo rspace="0.111em">=</mo><mrow><msubsup><mo rspace="0em">∫</mo><mi>a</mi><mi>b</mi></msubsup><mrow><msup><mrow><mo stretchy="false">[</mo><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow><mn>2</mn></msup><mo lspace="0em">⁢</mo><mrow><mo rspace="0em">𝑑</mo><mi>x</mi></mrow></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">Since <math id="S1.SS1.p12.m8" class="ltx_Math" alttext="p^{2}" display="inline"><msup><mi>p</mi><mn>2</mn></msup></math> is non-negative and continuous on <math id="S1.SS1.p12.m9" class="ltx_Math" alttext="[a,b]" display="inline"><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math>, the only way it can integrate to zero is if <math id="S1.SS1.p12.m10" class="ltx_Math" alttext="p^{2}=0" display="inline"><mrow><msup><mi>p</mi><mn>2</mn></msup><mo>=</mo><mn>0</mn></mrow></math> on <math id="S1.SS1.p12.m11" class="ltx_Math" alttext="[a,b]" display="inline"><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math>, which implies that <math id="S1.SS1.p12.m12" class="ltx_Math" alttext="p=0" display="inline"><mrow><mi>p</mi><mo>=</mo><mn>0</mn></mrow></math> (everywhere).
+This completes the proof.
+∎</p>
+</div>
+</div>
+</section>
+</section>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Tue Oct 20 10:50:00 2026 by <a href="http://dlmf.nist.gov/LaTeXML/" class="ltx_LaTeXML_logo"><span style="letter-spacing:-0.2em; margin-right:0.1em;">L<span class="ltx_font_smallcaps" style="position:relative; bottom:2.2pt;">a</span>T<span class="ltx_font_smallcaps" style="font-size:120%;position:relative; bottom:-0.2ex;">e</span></span><span style="font-size:90%; position:relative; bottom:-0.2ex;">XML</span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="Mascot Sammy"></a>
+</div></footer>
+</div>
+</body>
+</html>
