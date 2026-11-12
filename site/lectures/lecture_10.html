@@ -1,0 +1,238 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>MTH 451/551 Lecture 10</title>
+<!--Generated on Thu Nov 12 10:57:20 2026 by LaTeXML (version 0.8.8) http://dlmf.nist.gov/LaTeXML/.-->
+
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+<a class="back-link" href="../index.html">[Back to main course page]</a>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">MTH 451/551 
+<br class="ltx_break">Lecture 10</h1>
+<div class="ltx_authors">
+<span class="ltx_creator ltx_role_author">
+<span class="ltx_personname">Prof. W. Pazner
+</span></span>
+</div>
+
+<section id="S1" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">1 </span>Numerical Integration and Differentiation: Basic Quadrature</h2>
+
+<div id="S1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">[Textbook reference: §4.1]</p>
+</div>
+<div id="S1.p2" class="ltx_para">
+<p class="ltx_p">We previously saw the midpoint rule for approximating integrations,</p>
+<table id="S1.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex1.m1" class="ltx_Math" alttext="\int_{a}^{b}f(x)\,dx=(b-a)f\left(\frac{a+b}{2}\right)+\mathcal{O}((b-a)^{3})," display="block"><mrow><mrow><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo lspace="0.170em">⁢</mo><mrow><mo rspace="0em">𝑑</mo><mi>x</mi></mrow></mrow></mrow><mo>=</mo><mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>b</mi><mo>−</mo><mi>a</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo>(</mo><mfrac><mrow><mi>a</mi><mo>+</mo><mi>b</mi></mrow><mn>2</mn></mfrac><mo>)</mo></mrow></mrow><mo>+</mo><mrow><mi class="ltx_font_mathcaligraphic">𝒪</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mrow><mo stretchy="false">(</mo><mrow><mi>b</mi><mo>−</mo><mi>a</mi></mrow><mo stretchy="false">)</mo></mrow><mn>3</mn></msup><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">for <math id="S1.p2.m1" class="ltx_Math" alttext="f\in C^{2}[a,b]" display="inline"><mrow><mi>f</mi><mo>∈</mo><mrow><msup><mi>C</mi><mn>2</mn></msup><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></mrow></mrow></math>.
+This is one example of <span class="ltx_text ltx_font_bold">numerical quadrature</span>, which is a term that refers to the approximation of integrals through computable finite sums.
+We have focused on <span class="ltx_text ltx_font_italic">polynomial approximation</span> for good reason.
+Most of the quadratures we will considered will be based on the idea of approximation <math id="S1.p2.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> first by a polynomial <math id="S1.p2.m3" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>, and then integrating <math id="S1.p2.m4" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> exactly, so that <math id="S1.p2.m5" class="ltx_Math" alttext="\int f\approx\int p" display="inline"><mrow><mrow><mo>∫</mo><mi>f</mi></mrow><mo rspace="0.111em">≈</mo><mrow><mo>∫</mo><mi>p</mi></mrow></mrow></math>.</p>
+</div>
+<div id="Thmdefinition1" class="ltx_theorem ltx_theorem_definition">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Definition 1</span></span><span class="ltx_text ltx_font_bold"> </span>(Quadrature; Textbook Definition 4.1)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmdefinition1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For <math id="Thmdefinition1.p1.m1" class="ltx_Math" alttext="f\in C[a,b]" display="inline"><mrow><mi>f</mi><mo>∈</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></mrow></mrow></math>, a <span class="ltx_text ltx_font_bold">quadrature approximation</span> of <math id="Thmdefinition1.p1.m2" class="ltx_Math" alttext="I(f)=\int_{a}^{b}f(x)\,dx" display="inline"><mrow><mrow><mi>I</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow><mo rspace="0.111em">=</mo><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo lspace="0.170em">⁢</mo><mrow><mo rspace="0em">𝑑</mo><mi>x</mi></mrow></mrow></mrow></mrow></math> is a linear combination of values of <math id="Thmdefinition1.p1.m3" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> at distinct points <math id="Thmdefinition1.p1.m4" class="ltx_Math" alttext="\{x_{0},x_{1},\ldots,x_{n}\}\subset[a,b]" display="inline"><mrow><mrow><mo stretchy="false">{</mo><msub><mi>x</mi><mn>0</mn></msub><mo>,</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow><mo>⊂</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></mrow></math>,</span></p>
+<table id="S1.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex2.m1" class="ltx_Math" alttext="I(f)\approx Q(f)=\sum_{j=0}^{n}w_{j}f(x_{j})." display="block"><mrow><mrow><mrow><mi>I</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≈</mo><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow><mo rspace="0.111em">=</mo><mrow><munderover><mo movablelimits="false">∑</mo><mrow><mi>j</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover><mrow><msub><mi>w</mi><mi>j</mi></msub><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">We refer to the nodes <math id="Thmdefinition1.p1.m5" class="ltx_Math" alttext="x_{j}" display="inline"><msub><mi>x</mi><mi>j</mi></msub></math> as <span class="ltx_text ltx_font_bold">quadrature points</span>, and the numbers <math id="Thmdefinition1.p1.m6" class="ltx_Math" alttext="w_{j}" display="inline"><msub><mi>w</mi><mi>j</mi></msub></math> as <span class="ltx_text ltx_font_bold">quadrature weights</span>.
+We say that a quadrature <math id="Thmdefinition1.p1.m7" class="ltx_Math" alttext="Q" display="inline"><mi>Q</mi></math> is <span class="ltx_text ltx_font_bold">exact on <math id="Thmdefinition1.p1.m8" class="ltx_Math" alttext="\mathbb{P}_{m}" display="inline"><msub><mi>ℙ</mi><mi mathvariant="normal">m</mi></msub></math></span> when <math id="Thmdefinition1.p1.m9" class="ltx_Math" alttext="Q(p)=I(p)" display="inline"><mrow><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>I</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> for all <math id="Thmdefinition1.p1.m10" class="ltx_Math" alttext="p\in\mathbb{P}_{m}" display="inline"><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mi>m</mi></msub></mrow></math>.</span></p>
+</div>
+</div>
+<div id="Thmlemma1" class="ltx_theorem ltx_theorem_lemma">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Lemma 1</span></span><span class="ltx_text ltx_font_bold"> </span>(Textbook Lemma 4.2)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmlemma1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Both <math id="Thmlemma1.p1.m1" class="ltx_Math" alttext="I" display="inline"><mi>I</mi></math> and <math id="Thmlemma1.p1.m2" class="ltx_Math" alttext="Q" display="inline"><mi>Q</mi></math> are linear functionals on <math id="Thmlemma1.p1.m3" class="ltx_Math" alttext="C[a,b]" display="inline"><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></mrow></math>.
+In other words, for all <math id="Thmlemma1.p1.m4" class="ltx_Math" alttext="f,g\in C[a,b]" display="inline"><mrow><mrow><mi>f</mi><mo>,</mo><mi>g</mi></mrow><mo>∈</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></mrow></mrow></math> and <math id="Thmlemma1.p1.m5" class="ltx_Math" alttext="\alpha,\beta\in\mathbb{R}" display="inline"><mrow><mrow><mi>α</mi><mo>,</mo><mi>β</mi></mrow><mo>∈</mo><mi>ℝ</mi></mrow></math>,</span></p>
+<table id="S1.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex3.m1" class="ltx_Math" alttext="I(\alpha f+\beta g)=\alpha I(f)+\beta I(g)\quad\text{and}\quad Q(\alpha f+%
+\beta g)=\alpha Q(f)+\beta Q(g)." display="block"><mrow><mrow><mrow><mrow><mi>I</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>α</mi><mo>⁢</mo><mi>f</mi></mrow><mo>+</mo><mrow><mi>β</mi><mo>⁢</mo><mi>g</mi></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><mrow><mi>α</mi><mo>⁢</mo><mi>I</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow><mo>+</mo><mrow><mi>β</mi><mo>⁢</mo><mi>I</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mspace width="1em"></mspace><mtext class="ltx_mathvariant_italic">and</mtext></mrow></mrow><mspace width="1em"></mspace><mrow><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>α</mi><mo>⁢</mo><mi>f</mi></mrow><mo>+</mo><mrow><mi>β</mi><mo>⁢</mo><mi>g</mi></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><mi>α</mi><mo>⁢</mo><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow><mo>+</mo><mrow><mi>β</mi><mo>⁢</mo><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Consequently, <math id="Thmlemma1.p1.m6" class="ltx_Math" alttext="Q" display="inline"><mi>Q</mi></math> is exact on <math id="Thmlemma1.p1.m7" class="ltx_Math" alttext="\mathbb{P}_{m}" display="inline"><msub><mi>ℙ</mi><mi>m</mi></msub></math> if and only if <math id="Thmlemma1.p1.m8" class="ltx_Math" alttext="Q(p_{j})=I(p_{j})" display="inline"><mrow><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>p</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>I</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>p</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math> for every element of a basis <math id="Thmlemma1.p1.m9" class="ltx_Math" alttext="\{p_{0},\ldots,p_{m}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>p</mi><mn>0</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>p</mi><mi>m</mi></msub><mo stretchy="false">}</mo></mrow></math> of <math id="Thmlemma1.p1.m10" class="ltx_Math" alttext="\mathbb{P}_{m}" display="inline"><msub><mi>ℙ</mi><mi>m</mi></msub></math>.</span></p>
+</div>
+</div>
+<div id="Thmdefinition2" class="ltx_theorem ltx_theorem_definition">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Definition 2</span></span><span class="ltx_text ltx_font_bold"> </span>(Interpolatory and Newton–Cotes Quadrature; Textbook Definition 4.3)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmdefinition2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Given <math id="Thmdefinition2.p1.m1" class="ltx_Math" alttext="f\in C[a,b]" display="inline"><mrow><mi>f</mi><mo>∈</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></mrow></mrow></math> and distinct quadrature points <math id="Thmdefinition2.p1.m2" class="ltx_Math" alttext="\{x_{0},x_{1},\ldots,x_{n}\}\subset[a,b]" display="inline"><mrow><mrow><mo stretchy="false">{</mo><msub><mi>x</mi><mn>0</mn></msub><mo>,</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow><mo>⊂</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></mrow></math>, the corresponding <span class="ltx_text ltx_font_bold">interpolatory quadrature</span> is obtained by integrating the Lagrange interpolating polynomial <math id="Thmdefinition2.p1.m3" class="ltx_Math" alttext="p\in\mathbb{P}_{n}" display="inline"><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mi>n</mi></msub></mrow></math> exactly:</span></p>
+<table id="S1.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex4.m1" class="ltx_Math" alttext="Q(f)=\int_{a}^{b}p(x)\,dx=\sum_{j=0}^{n}w_{j}f(x_{j}),\qquad\text{where}\qquad
+w%
+_{j}=\int_{a}^{b}\ell_{j}(x)\,dx," display="block"><mrow><mrow><mrow><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow><mo rspace="0.111em">=</mo><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo lspace="0.170em">⁢</mo><mrow><mo rspace="0em">𝑑</mo><mi>x</mi></mrow></mrow></mrow><mo rspace="0.111em">=</mo><mrow><munderover><mo movablelimits="false">∑</mo><mrow><mi>j</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover><mrow><msub><mi>w</mi><mi>j</mi></msub><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo rspace="2.167em">,</mo><mrow><mrow><mtext class="ltx_mathvariant_italic">where</mtext><mspace width="2em"></mspace><msub><mi>w</mi><mi>j</mi></msub></mrow><mo rspace="0.111em">=</mo><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mrow><msub><mi mathvariant="normal">ℓ</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo lspace="0.170em">⁢</mo><mrow><mo rspace="0em">𝑑</mo><mi>x</mi></mrow></mrow></mrow></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">where <math id="Thmdefinition2.p1.m4" class="ltx_Math" alttext="\{\ell_{j}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi mathvariant="normal">ℓ</mi><mi>j</mi></msub><mo stretchy="false">}</mo></mrow></math> are the Lagrange polynomials for the quadrature points.
+By construction, an interpolatory quadrature is exact on <math id="Thmdefinition2.p1.m5" class="ltx_Math" alttext="\mathbb{P}_{n}" display="inline"><msub><mi>ℙ</mi><mi>n</mi></msub></math>.
+In the special case that the quadrature points are evenly spaced,</span></p>
+<table id="S1.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex5.m1" class="ltx_Math" alttext="x_{j}=a+\frac{j}{n}(b-a),\qquad 0\leq j\leq n," display="block"><mrow><mrow><mrow><msub><mi>x</mi><mi>j</mi></msub><mo>=</mo><mrow><mi>a</mi><mo>+</mo><mrow><mfrac><mi>j</mi><mi>n</mi></mfrac><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>b</mi><mo>−</mo><mi>a</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo rspace="2.167em">,</mo><mrow><mn>0</mn><mo>≤</mo><mi>j</mi><mo>≤</mo><mi>n</mi></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">the rule is called a <span class="ltx_text ltx_font_bold">(closed) Newton–Cotes quadrature</span>.</span></p>
+</div>
+</div>
+<div id="Thmlemma2" class="ltx_theorem ltx_theorem_lemma">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Lemma 2</span></span><span class="ltx_text ltx_font_bold"> </span>(Textbook Definition 4.3)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmlemma2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Any <math id="Thmlemma2.p1.m1" class="ltx_Math" alttext="(n+1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math>-point quadrature that is exact on <math id="Thmlemma2.p1.m2" class="ltx_Math" alttext="\mathbb{P}_{m}" display="inline"><msub><mi>ℙ</mi><mi>m</mi></msub></math> for some <math id="Thmlemma2.p1.m3" class="ltx_Math" alttext="m\geq n" display="inline"><mrow><mi>m</mi><mo>≥</mo><mi>n</mi></mrow></math> must be the interpolatory quadrature for its quadrature points.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="S1.p3" class="ltx_para">
+<p class="ltx_p">Let <math id="S1.p3.m1" class="ltx_Math" alttext="\{x_{i}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">}</mo></mrow></math> denote the quadrature points.
+Since <math id="S1.p3.m2" class="ltx_Math" alttext="Q" display="inline"><mi>Q</mi></math> is exact, <math id="S1.p3.m3" class="ltx_Math" alttext="Q(\ell_{j})=\int_{a}^{b}\ell_{j}(x)\,dx" display="inline"><mrow><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi mathvariant="normal">ℓ</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo rspace="0.111em">=</mo><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mrow><msub><mi mathvariant="normal">ℓ</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo lspace="0.170em">⁢</mo><mrow><mo rspace="0em">𝑑</mo><mi>x</mi></mrow></mrow></mrow></mrow></math>.
+By the definition of <math id="S1.p3.m4" class="ltx_Math" alttext="Q" display="inline"><mi>Q</mi></math>,</p>
+<table id="S1.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S1.Ex6"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S1.Ex6.m1" class="ltx_Math" alttext="\displaystyle Q(\ell_{j})" display="inline"><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi mathvariant="normal">ℓ</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S1.Ex6.m2" class="ltx_Math" alttext="\displaystyle=\sum_{k=0}^{n}w_{k}\ell_{j}(x_{k})=\sum_{k=0}^{n}w_{k}\delta_{jk%
+}=w_{j}," display="inline"><mrow><mrow><mi></mi><mo>=</mo><mrow><mstyle displaystyle="true"><munderover><mo movablelimits="false">∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover></mstyle><mrow><msub><mi>w</mi><mi>k</mi></msub><mo>⁢</mo><msub><mi mathvariant="normal">ℓ</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>k</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><mrow><mstyle displaystyle="true"><munderover><mo movablelimits="false">∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover></mstyle><mrow><msub><mi>w</mi><mi>k</mi></msub><mo>⁢</mo><msub><mi>δ</mi><mrow><mi>j</mi><mo>⁢</mo><mi>k</mi></mrow></msub></mrow></mrow><mo>=</mo><msub><mi>w</mi><mi>j</mi></msub></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">and so <math id="S1.p3.m5" class="ltx_Math" alttext="w_{j}=\int_{a}^{b}\ell_{j}(x)\,dx" display="inline"><mrow><msub><mi>w</mi><mi>j</mi></msub><mo rspace="0.111em">=</mo><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mrow><msub><mi mathvariant="normal">ℓ</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo lspace="0.170em">⁢</mo><mrow><mo rspace="0em">𝑑</mo><mi>x</mi></mrow></mrow></mrow></mrow></math>, implying that <math id="S1.p3.m6" class="ltx_Math" alttext="Q" display="inline"><mi>Q</mi></math> is interpolatory.
+∎</p>
+</div>
+</div>
+<div id="Thmtheorem1" class="ltx_theorem ltx_theorem_theorem">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Theorem 1</span></span><span class="ltx_text ltx_font_bold"> </span>(Textbook Theorem 4.4)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmtheorem1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Suppose that an <math id="Thmtheorem1.p1.m1" class="ltx_Math" alttext="(n+1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math>-point quadrature <math id="Thmtheorem1.p1.m2" class="ltx_Math" alttext="Q" display="inline"><mi>Q</mi></math> is exact on <math id="Thmtheorem1.p1.m3" class="ltx_Math" alttext="\mathbb{P}_{m}" display="inline"><msub><mi>ℙ</mi><mi>m</mi></msub></math> for some <math id="Thmtheorem1.p1.m4" class="ltx_Math" alttext="m\geq n" display="inline"><mrow><mi>m</mi><mo>≥</mo><mi>n</mi></mrow></math>.
+If <math id="Thmtheorem1.p1.m5" class="ltx_Math" alttext="q\in\mathbb{P}_{m}" display="inline"><mrow><mi>q</mi><mo>∈</mo><msub><mi>ℙ</mi><mi>m</mi></msub></mrow></math> satisfies <math id="Thmtheorem1.p1.m6" class="ltx_Math" alttext="q(x_{j})=f(x_{j})" display="inline"><mrow><mrow><mi>q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math> for <math id="Thmtheorem1.p1.m7" class="ltx_Math" alttext="0\leq j\leq n" display="inline"><mrow><mn>0</mn><mo>≤</mo><mi>j</mi><mo>≤</mo><mi>n</mi></mrow></math>, then</span></p>
+<table id="S1.Ex7" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex7.m1" class="ltx_Math" alttext="I(f)-Q(f)=I(f-q)." display="block"><mrow><mrow><mrow><mrow><mi>I</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><mrow><mi>I</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>−</mo><mi>q</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="S1.p4" class="ltx_para">
+<p class="ltx_p">By the previous lemma, if a quadrature <math id="S1.p4.m1" class="ltx_Math" alttext="Q" display="inline"><mi>Q</mi></math> of the form (4.1) is exact on <math id="S1.p4.m2" class="ltx_Math" alttext="\mathbb{P}_{m}" display="inline"><msub><mi>ℙ</mi><mi>m</mi></msub></math> for some <math id="S1.p4.m3" class="ltx_Math" alttext="m\geq n" display="inline"><mrow><mi>m</mi><mo>≥</mo><mi>n</mi></mrow></math>, then it is necessarily an interpolatory quadrature (4.2).
+Since <math id="S1.p4.m4" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math> interpolates <math id="S1.p4.m5" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> at the quadrature points, and <math id="S1.p4.m6" class="ltx_Math" alttext="Q" display="inline"><mi>Q</mi></math> is exact on <math id="S1.p4.m7" class="ltx_Math" alttext="\mathbb{P}_{m}" display="inline"><msub><mi>ℙ</mi><mi>m</mi></msub></math>, we have <math id="S1.p4.m8" class="ltx_Math" alttext="I(f)-Q(f)=I(f)-Q(q)=I(f)-I(q)=I(f-q)" display="inline"><mrow><mrow><mrow><mi>I</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><mrow><mrow><mi>I</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><mrow><mrow><mi>I</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow><mo>−</mo><mrow><mi>I</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><mrow><mi>I</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>−</mo><mi>q</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="S1.p5" class="ltx_para">
+<p class="ltx_p">The above theorem implies that the <span class="ltx_text ltx_font_italic">quadrature error</span> is given by the <span class="ltx_text ltx_font_italic">integral of the interpolation error</span>.
+Therefore, our previous results bounding the interpolation error can be used to derive error estimates for quadratures.</p>
+</div>
+<div id="Thmtheorem2" class="ltx_theorem ltx_theorem_theorem">
+<h6 class="ltx_title ltx_runin ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Theorem 2</span></span><span class="ltx_text ltx_font_bold"> </span>(Five Basic Quadrature Rules; Textbook Theorem 4.5)<span class="ltx_text ltx_font_bold">.</span>
+</h6>
+<div id="Thmtheorem2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Given a bounded interval <math id="Thmtheorem2.p1.m1" class="ltx_Math" alttext="[a,b]" display="inline"><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math>, let <math id="Thmtheorem2.p1.m2" class="ltx_Math" alttext="c=(a+b)/2" display="inline"><mrow><mi>c</mi><mo>=</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>a</mi><mo>+</mo><mi>b</mi></mrow><mo stretchy="false">)</mo></mrow><mo>/</mo><mn>2</mn></mrow></mrow></math>.
+Five basic quadrature rules, <math id="Thmtheorem2.p1.m3" class="ltx_Math" alttext="Q(f)\approx I(f)=\int_{a}^{b}f(x)\,dx" display="inline"><mrow><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≈</mo><mrow><mi>I</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow><mo rspace="0.111em">=</mo><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo lspace="0.170em">⁢</mo><mrow><mo rspace="0em">𝑑</mo><mi>x</mi></mrow></mrow></mrow></mrow></math>, together with their associated errors, are given in the table below (Textbook Table 4.1).
+For each error formula, <math id="Thmtheorem2.p1.m4" class="ltx_Math" alttext="\xi\in(a,b)" display="inline"><mrow><mi>ξ</mi><mo>∈</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+The regularity assumption on <math id="Thmtheorem2.p1.m5" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> required for each error formula is given in the final column of the table.</span></p>
+</div>
+</div>
+<div id="S1.p6" class="ltx_para">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_th_row ltx_border_t" style="padding:6.75pt 4.0pt;"><span class="ltx_text" style="font-size:90%;">Name</span></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t" style="padding:6.75pt 4.0pt;">
+<span class="ltx_text" style="font-size:90%;">Quadrature </span><math id="S1.m1" class="ltx_Math" alttext="Q(f)" display="inline"><mrow><mi mathsize="90%">Q</mi><mo>⁢</mo><mrow><mo maxsize="90%" minsize="90%">(</mo><mi mathsize="90%">f</mi><mo maxsize="90%" minsize="90%">)</mo></mrow></mrow></math>
+</th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t" style="padding:6.75pt 4.0pt;">
+<span class="ltx_text" style="font-size:90%;">Error </span><math id="S1.m2" class="ltx_Math" alttext="I(f)-Q(f)" display="inline"><mrow><mrow><mi mathsize="90%">I</mi><mo>⁢</mo><mrow><mo maxsize="90%" minsize="90%">(</mo><mi mathsize="90%">f</mi><mo maxsize="90%" minsize="90%">)</mo></mrow></mrow><mo mathsize="90%">−</mo><mrow><mi mathsize="90%">Q</mi><mo>⁢</mo><mrow><mo maxsize="90%" minsize="90%">(</mo><mi mathsize="90%">f</mi><mo maxsize="90%" minsize="90%">)</mo></mrow></mrow></mrow></math>
+</th>
+<th class="ltx_td ltx_nopad_r ltx_align_center ltx_th ltx_th_column ltx_border_t" style="padding:6.75pt 4.0pt;"><span class="ltx_text" style="font-size:90%;">Regularity</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t" style="padding:6.75pt 4.0pt;"><span class="ltx_text" style="font-size:90%;">Left Endpoint</span></th>
+<td class="ltx_td ltx_align_center ltx_border_t" style="padding:6.75pt 4.0pt;"><math id="S1.m3" class="ltx_Math" alttext="(b-a)f(a)" display="inline"><mrow><mrow><mo maxsize="90%" minsize="90%">(</mo><mrow><mi mathsize="90%">b</mi><mo mathsize="90%">−</mo><mi mathsize="90%">a</mi></mrow><mo maxsize="90%" minsize="90%">)</mo></mrow><mo>⁢</mo><mi mathsize="90%">f</mi><mo>⁢</mo><mrow><mo maxsize="90%" minsize="90%">(</mo><mi mathsize="90%">a</mi><mo maxsize="90%" minsize="90%">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_center ltx_border_t" style="padding:6.75pt 4.0pt;"><math id="S1.m4" class="ltx_Math" alttext="\dfrac{f^{\prime}(\xi)}{2}(b-a)^{2}" display="inline"><mrow><mstyle displaystyle="true"><mfrac><mrow><msup><mi mathsize="90%">f</mi><mo mathsize="90%">′</mo></msup><mo>⁢</mo><mrow><mo maxsize="90%" minsize="90%">(</mo><mi mathsize="90%">ξ</mi><mo maxsize="90%" minsize="90%">)</mo></mrow></mrow><mn mathsize="90%">2</mn></mfrac></mstyle><mo>⁢</mo><msup><mrow><mo maxsize="90%" minsize="90%">(</mo><mrow><mi mathsize="90%">b</mi><mo mathsize="90%">−</mo><mi mathsize="90%">a</mi></mrow><mo maxsize="90%" minsize="90%">)</mo></mrow><mn mathsize="90%">2</mn></msup></mrow></math></td>
+<td class="ltx_td ltx_nopad_r ltx_align_center ltx_border_t" style="padding:6.75pt 4.0pt;"><math id="S1.m5" class="ltx_Math" alttext="f\in C^{1}[a,b]" display="inline"><mrow><mi mathsize="90%">f</mi><mo mathsize="90%">∈</mo><mrow><msup><mi mathsize="90%">C</mi><mn mathsize="90%">1</mn></msup><mo>⁢</mo><mrow><mo maxsize="90%" minsize="90%">[</mo><mi mathsize="90%">a</mi><mo mathsize="90%">,</mo><mi mathsize="90%">b</mi><mo maxsize="90%" minsize="90%">]</mo></mrow></mrow></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row" style="padding:6.75pt 4.0pt;"><span class="ltx_text" style="font-size:90%;">Right Endpoint</span></th>
+<td class="ltx_td ltx_align_center" style="padding:6.75pt 4.0pt;"><math id="S1.m6" class="ltx_Math" alttext="(b-a)f(b)" display="inline"><mrow><mrow><mo maxsize="90%" minsize="90%">(</mo><mrow><mi mathsize="90%">b</mi><mo mathsize="90%">−</mo><mi mathsize="90%">a</mi></mrow><mo maxsize="90%" minsize="90%">)</mo></mrow><mo>⁢</mo><mi mathsize="90%">f</mi><mo>⁢</mo><mrow><mo maxsize="90%" minsize="90%">(</mo><mi mathsize="90%">b</mi><mo maxsize="90%" minsize="90%">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_center" style="padding:6.75pt 4.0pt;"><math id="S1.m7" class="ltx_Math" alttext="-\dfrac{f^{\prime}(\xi)}{2}(b-a)^{2}" display="inline"><mrow><mo mathsize="90%">−</mo><mrow><mstyle displaystyle="true"><mfrac><mrow><msup><mi mathsize="90%">f</mi><mo mathsize="90%">′</mo></msup><mo>⁢</mo><mrow><mo maxsize="90%" minsize="90%">(</mo><mi mathsize="90%">ξ</mi><mo maxsize="90%" minsize="90%">)</mo></mrow></mrow><mn mathsize="90%">2</mn></mfrac></mstyle><mo>⁢</mo><msup><mrow><mo maxsize="90%" minsize="90%">(</mo><mrow><mi mathsize="90%">b</mi><mo mathsize="90%">−</mo><mi mathsize="90%">a</mi></mrow><mo maxsize="90%" minsize="90%">)</mo></mrow><mn mathsize="90%">2</mn></msup></mrow></mrow></math></td>
+<td class="ltx_td ltx_nopad_r ltx_align_center" style="padding:6.75pt 4.0pt;"><math id="S1.m8" class="ltx_Math" alttext="f\in C^{1}[a,b]" display="inline"><mrow><mi mathsize="90%">f</mi><mo mathsize="90%">∈</mo><mrow><msup><mi mathsize="90%">C</mi><mn mathsize="90%">1</mn></msup><mo>⁢</mo><mrow><mo maxsize="90%" minsize="90%">[</mo><mi mathsize="90%">a</mi><mo mathsize="90%">,</mo><mi mathsize="90%">b</mi><mo maxsize="90%" minsize="90%">]</mo></mrow></mrow></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row" style="padding:6.75pt 4.0pt;"><span class="ltx_text" style="font-size:90%;">Trapezoid</span></th>
+<td class="ltx_td ltx_align_center" style="padding:6.75pt 4.0pt;"><math id="S1.m9" class="ltx_Math" alttext="\dfrac{b-a}{2}\bigl{(}f(a)+f(b)\bigr{)}" display="inline"><mrow><mstyle displaystyle="true"><mfrac><mrow><mi mathsize="90%">b</mi><mo mathsize="90%">−</mo><mi mathsize="90%">a</mi></mrow><mn mathsize="90%">2</mn></mfrac></mstyle><mo>⁢</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><mrow><mrow><mi mathsize="90%">f</mi><mo>⁢</mo><mrow><mo maxsize="90%" minsize="90%">(</mo><mi mathsize="90%">a</mi><mo maxsize="90%" minsize="90%">)</mo></mrow></mrow><mo mathsize="90%">+</mo><mrow><mi mathsize="90%">f</mi><mo>⁢</mo><mrow><mo maxsize="90%" minsize="90%">(</mo><mi mathsize="90%">b</mi><mo maxsize="90%" minsize="90%">)</mo></mrow></mrow></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_center" style="padding:6.75pt 4.0pt;"><math id="S1.m10" class="ltx_Math" alttext="-\dfrac{f^{\prime\prime}(\xi)}{12}(b-a)^{3}" display="inline"><mrow><mo mathsize="90%">−</mo><mrow><mstyle displaystyle="true"><mfrac><mrow><msup><mi mathsize="90%">f</mi><mo mathsize="90%">′′</mo></msup><mo>⁢</mo><mrow><mo maxsize="90%" minsize="90%">(</mo><mi mathsize="90%">ξ</mi><mo maxsize="90%" minsize="90%">)</mo></mrow></mrow><mn mathsize="90%">12</mn></mfrac></mstyle><mo>⁢</mo><msup><mrow><mo maxsize="90%" minsize="90%">(</mo><mrow><mi mathsize="90%">b</mi><mo mathsize="90%">−</mo><mi mathsize="90%">a</mi></mrow><mo maxsize="90%" minsize="90%">)</mo></mrow><mn mathsize="90%">3</mn></msup></mrow></mrow></math></td>
+<td class="ltx_td ltx_nopad_r ltx_align_center" style="padding:6.75pt 4.0pt;"><math id="S1.m11" class="ltx_Math" alttext="f\in C^{2}[a,b]" display="inline"><mrow><mi mathsize="90%">f</mi><mo mathsize="90%">∈</mo><mrow><msup><mi mathsize="90%">C</mi><mn mathsize="90%">2</mn></msup><mo>⁢</mo><mrow><mo maxsize="90%" minsize="90%">[</mo><mi mathsize="90%">a</mi><mo mathsize="90%">,</mo><mi mathsize="90%">b</mi><mo maxsize="90%" minsize="90%">]</mo></mrow></mrow></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row" style="padding:6.75pt 4.0pt;"><span class="ltx_text" style="font-size:90%;">Midpoint</span></th>
+<td class="ltx_td ltx_align_center" style="padding:6.75pt 4.0pt;"><math id="S1.m12" class="ltx_Math" alttext="(b-a)f(c)" display="inline"><mrow><mrow><mo maxsize="90%" minsize="90%">(</mo><mrow><mi mathsize="90%">b</mi><mo mathsize="90%">−</mo><mi mathsize="90%">a</mi></mrow><mo maxsize="90%" minsize="90%">)</mo></mrow><mo>⁢</mo><mi mathsize="90%">f</mi><mo>⁢</mo><mrow><mo maxsize="90%" minsize="90%">(</mo><mi mathsize="90%">c</mi><mo maxsize="90%" minsize="90%">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_center" style="padding:6.75pt 4.0pt;"><math id="S1.m13" class="ltx_Math" alttext="\dfrac{f^{\prime\prime}(\xi)}{24}(b-a)^{3}" display="inline"><mrow><mstyle displaystyle="true"><mfrac><mrow><msup><mi mathsize="90%">f</mi><mo mathsize="90%">′′</mo></msup><mo>⁢</mo><mrow><mo maxsize="90%" minsize="90%">(</mo><mi mathsize="90%">ξ</mi><mo maxsize="90%" minsize="90%">)</mo></mrow></mrow><mn mathsize="90%">24</mn></mfrac></mstyle><mo>⁢</mo><msup><mrow><mo maxsize="90%" minsize="90%">(</mo><mrow><mi mathsize="90%">b</mi><mo mathsize="90%">−</mo><mi mathsize="90%">a</mi></mrow><mo maxsize="90%" minsize="90%">)</mo></mrow><mn mathsize="90%">3</mn></msup></mrow></math></td>
+<td class="ltx_td ltx_nopad_r ltx_align_center" style="padding:6.75pt 4.0pt;"><math id="S1.m14" class="ltx_Math" alttext="f\in C^{2}[a,b]" display="inline"><mrow><mi mathsize="90%">f</mi><mo mathsize="90%">∈</mo><mrow><msup><mi mathsize="90%">C</mi><mn mathsize="90%">2</mn></msup><mo>⁢</mo><mrow><mo maxsize="90%" minsize="90%">[</mo><mi mathsize="90%">a</mi><mo mathsize="90%">,</mo><mi mathsize="90%">b</mi><mo maxsize="90%" minsize="90%">]</mo></mrow></mrow></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_b" style="padding:6.75pt 4.0pt;"><span class="ltx_text" style="font-size:90%;">Simpson</span></th>
+<td class="ltx_td ltx_align_center ltx_border_b" style="padding:6.75pt 4.0pt;"><math id="S1.m15" class="ltx_Math" alttext="\dfrac{b-a}{6}\bigl{(}f(a)+4f(c)+f(b)\bigr{)}" display="inline"><mrow><mstyle displaystyle="true"><mfrac><mrow><mi mathsize="90%">b</mi><mo mathsize="90%">−</mo><mi mathsize="90%">a</mi></mrow><mn mathsize="90%">6</mn></mfrac></mstyle><mo>⁢</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><mrow><mrow><mi mathsize="90%">f</mi><mo>⁢</mo><mrow><mo maxsize="90%" minsize="90%">(</mo><mi mathsize="90%">a</mi><mo maxsize="90%" minsize="90%">)</mo></mrow></mrow><mo mathsize="90%">+</mo><mrow><mn mathsize="90%">4</mn><mo>⁢</mo><mi mathsize="90%">f</mi><mo>⁢</mo><mrow><mo maxsize="90%" minsize="90%">(</mo><mi mathsize="90%">c</mi><mo maxsize="90%" minsize="90%">)</mo></mrow></mrow><mo mathsize="90%">+</mo><mrow><mi mathsize="90%">f</mi><mo>⁢</mo><mrow><mo maxsize="90%" minsize="90%">(</mo><mi mathsize="90%">b</mi><mo maxsize="90%" minsize="90%">)</mo></mrow></mrow></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_center ltx_border_b" style="padding:6.75pt 4.0pt;"><math id="S1.m16" class="ltx_Math" alttext="-\dfrac{f^{(4)}(\xi)}{90}\left(\dfrac{b-a}{2}\right)^{5}" display="inline"><mrow><mo mathsize="90%">−</mo><mrow><mstyle displaystyle="true"><mfrac><mrow><msup><mi mathsize="90%">f</mi><mrow><mo maxsize="90%" minsize="90%">(</mo><mn mathsize="90%">4</mn><mo maxsize="90%" minsize="90%">)</mo></mrow></msup><mo>⁢</mo><mrow><mo maxsize="90%" minsize="90%">(</mo><mi mathsize="90%">ξ</mi><mo maxsize="90%" minsize="90%">)</mo></mrow></mrow><mn mathsize="90%">90</mn></mfrac></mstyle><mo>⁢</mo><msup><mrow><mo>(</mo><mstyle displaystyle="true"><mfrac><mrow><mi mathsize="90%">b</mi><mo mathsize="90%">−</mo><mi mathsize="90%">a</mi></mrow><mn mathsize="90%">2</mn></mfrac></mstyle><mo>)</mo></mrow><mn mathsize="90%">5</mn></msup></mrow></mrow></math></td>
+<td class="ltx_td ltx_nopad_r ltx_align_center ltx_border_b" style="padding:6.75pt 4.0pt;"><math id="S1.m17" class="ltx_Math" alttext="f\in C^{4}[a,b]" display="inline"><mrow><mi mathsize="90%">f</mi><mo mathsize="90%">∈</mo><mrow><msup><mi mathsize="90%">C</mi><mn mathsize="90%">4</mn></msup><mo>⁢</mo><mrow><mo maxsize="90%" minsize="90%">[</mo><mi mathsize="90%">a</mi><mo mathsize="90%">,</mo><mi mathsize="90%">b</mi><mo maxsize="90%" minsize="90%">]</mo></mrow></mrow></mrow></math></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Nov 12 10:57:20 2026 by <a href="http://dlmf.nist.gov/LaTeXML/" class="ltx_LaTeXML_logo"><span style="letter-spacing:-0.2em; margin-right:0.1em;">L<span class="ltx_font_smallcaps" style="position:relative; bottom:2.2pt;">a</span>T<span class="ltx_font_smallcaps" style="font-size:120%;position:relative; bottom:-0.2ex;">e</span></span><span style="font-size:90%; position:relative; bottom:-0.2ex;">XML</span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="Mascot Sammy"></a>
+</div></footer>
+</div>
+</body>
+</html>

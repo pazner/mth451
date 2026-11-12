@@ -1,0 +1,153 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>MTH 451/551 Quiz 3 Solutions</title>
+<!--Generated on Tue Nov 10 10:39:52 2026 by LaTeXML (version 0.8.8) http://dlmf.nist.gov/LaTeXML/.-->
+
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="ltx-ulem.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+<a class="back-link" href="../index.html">[Back to main course page]</a>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document">
+<div id="p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">MTH 451/551, Fall 2026                                <span class="ltx_text ltx_font_bold" style="font-size:144%;">Solutions
+<br class="ltx_break"></span>Quiz #3, Tue., Nov. 10, 2026</p>
+</div>
+<div id="p2" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold" style="font-size:173%;">1. </span>
+
+Let <math id="p2.m1" class="ltx_Math" alttext="x_{0}=0" display="inline"><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>=</mo><mn>0</mn></mrow></math>, <math id="p2.m2" class="ltx_Math" alttext="x_{1}=1" display="inline"><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>=</mo><mn>1</mn></mrow></math>, <math id="p2.m3" class="ltx_Math" alttext="x_{2}=2" display="inline"><mrow><msub><mi>x</mi><mn>2</mn></msub><mo>=</mo><mn>2</mn></mrow></math>, and let <math id="p2.m4" class="ltx_Math" alttext="y_{0}=1" display="inline"><mrow><msub><mi>y</mi><mn>0</mn></msub><mo>=</mo><mn>1</mn></mrow></math>, <math id="p2.m5" class="ltx_Math" alttext="y_{1}=3" display="inline"><mrow><msub><mi>y</mi><mn>1</mn></msub><mo>=</mo><mn>3</mn></mrow></math>, <math id="p2.m6" class="ltx_Math" alttext="y_{2}=7" display="inline"><mrow><msub><mi>y</mi><mn>2</mn></msub><mo>=</mo><mn>7</mn></mrow></math>.
+Write down the Lagrange polynomials <math id="p2.m7" class="ltx_Math" alttext="\ell_{0}" display="inline"><msub><mi mathvariant="normal">ℓ</mi><mn>0</mn></msub></math>, <math id="p2.m8" class="ltx_Math" alttext="\ell_{1}" display="inline"><msub><mi mathvariant="normal">ℓ</mi><mn>1</mn></msub></math>, <math id="p2.m9" class="ltx_Math" alttext="\ell_{2}" display="inline"><msub><mi mathvariant="normal">ℓ</mi><mn>2</mn></msub></math> associated with the points
+<math id="p2.m10" class="ltx_Math" alttext="\{x_{0},x_{1},x_{2}\}" display="inline"><mrow><mo stretchy="false">{</mo><msub><mi>x</mi><mn>0</mn></msub><mo>,</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><msub><mi>x</mi><mn>2</mn></msub><mo stretchy="false">}</mo></mrow></math>.
+Write the formula for the interpolating polynomial <math id="p2.m11" class="ltx_Math" alttext="p\in\mathbb{P}_{2}" display="inline"><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mn>2</mn></msub></mrow></math>
+satisfying <math id="p2.m12" class="ltx_Math" alttext="p(x_{j})=y_{j}" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mi>y</mi><mi>j</mi></msub></mrow></math> for each <math id="p2.m13" class="ltx_Math" alttext="j" display="inline"><mi>j</mi></math>.
+(You do not need to expand <math id="p2.m14" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>.)</p>
+</div>
+<div id="p3" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold" style="font-size:144%;">Solution. </span>
+
+Using <math id="p3.m1" class="ltx_Math" alttext="\ell_{j}(x)=\prod_{k\neq j}\frac{x-x_{k}}{x_{j}-x_{k}}" display="inline"><mrow><mrow><msub><mi mathvariant="normal">ℓ</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo rspace="0.111em">=</mo><mrow><msub><mo>∏</mo><mrow><mi>k</mi><mo>≠</mo><mi>j</mi></mrow></msub><mfrac><mrow><mi>x</mi><mo>−</mo><msub><mi>x</mi><mi>k</mi></msub></mrow><mrow><msub><mi>x</mi><mi>j</mi></msub><mo>−</mo><msub><mi>x</mi><mi>k</mi></msub></mrow></mfrac></mrow></mrow></math>,</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S0.Ex1"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\displaystyle\ell_{0}(x)" display="inline"><mrow><msub><mi mathvariant="normal">ℓ</mi><mn>0</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex1.m2" class="ltx_Math" alttext="\displaystyle=\frac{(x-1)(x-2)}{(0-1)(0-2)}=\frac{(x-1)(x-2)}{2}," display="inline"><mrow><mrow><mi></mi><mo>=</mo><mstyle displaystyle="true"><mfrac><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mn>2</mn></mrow><mo stretchy="false">)</mo></mrow></mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><mn>0</mn><mo>−</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mn>0</mn><mo>−</mo><mn>2</mn></mrow><mo stretchy="false">)</mo></mrow></mrow></mfrac></mstyle><mo>=</mo><mstyle displaystyle="true"><mfrac><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mn>2</mn></mrow><mo stretchy="false">)</mo></mrow></mrow><mn>2</mn></mfrac></mstyle></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S0.Ex2"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\displaystyle\ell_{1}(x)" display="inline"><mrow><msub><mi mathvariant="normal">ℓ</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex2.m2" class="ltx_Math" alttext="\displaystyle=\frac{(x-0)(x-2)}{(1-0)(1-2)}=-x(x-2)," display="inline"><mrow><mrow><mi></mi><mo>=</mo><mstyle displaystyle="true"><mfrac><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mn>0</mn></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mn>2</mn></mrow><mo stretchy="false">)</mo></mrow></mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><mo>−</mo><mn>0</mn></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><mo>−</mo><mn>2</mn></mrow><mo stretchy="false">)</mo></mrow></mrow></mfrac></mstyle><mo>=</mo><mrow><mo>−</mo><mrow><mi>x</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mn>2</mn></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S0.Ex3"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\displaystyle\ell_{2}(x)" display="inline"><mrow><msub><mi mathvariant="normal">ℓ</mi><mn>2</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex3.m2" class="ltx_Math" alttext="\displaystyle=\frac{(x-0)(x-1)}{(2-0)(2-1)}=\frac{x(x-1)}{2}." display="inline"><mrow><mrow><mi></mi><mo>=</mo><mstyle displaystyle="true"><mfrac><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mn>0</mn></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><mn>2</mn><mo>−</mo><mn>0</mn></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mn>2</mn><mo>−</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow></mfrac></mstyle><mo>=</mo><mstyle displaystyle="true"><mfrac><mrow><mi>x</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow><mn>2</mn></mfrac></mstyle></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">The interpolating polynomial is</p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="p(x)=y_{0}\ell_{0}(x)+y_{1}\ell_{1}(x)+y_{2}\ell_{2}(x)=\frac{(x-1)(x-2)}{2}-3%
+x(x-2)+\frac{7x(x-1)}{2}." display="block"><mrow><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><msub><mi>y</mi><mn>0</mn></msub><mo>⁢</mo><msub><mi mathvariant="normal">ℓ</mi><mn>0</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>+</mo><mrow><msub><mi>y</mi><mn>1</mn></msub><mo>⁢</mo><msub><mi mathvariant="normal">ℓ</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>+</mo><mrow><msub><mi>y</mi><mn>2</mn></msub><mo>⁢</mo><msub><mi mathvariant="normal">ℓ</mi><mn>2</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><mrow><mrow><mfrac><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mn>2</mn></mrow><mo stretchy="false">)</mo></mrow></mrow><mn>2</mn></mfrac><mo>−</mo><mrow><mn>3</mn><mo>⁢</mo><mi>x</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mn>2</mn></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>+</mo><mfrac><mrow><mn>7</mn><mo>⁢</mo><mi>x</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>−</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow><mn>2</mn></mfrac></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">(Expanding, <math id="p3.m2" class="ltx_Math" alttext="p(x)=x^{2}+x+1" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>x</mi><mo>+</mo><mn>1</mn></mrow></mrow></math>, which indeed gives <math id="p3.m3" class="ltx_Math" alttext="p(0)=1" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>1</mn></mrow></math>, <math id="p3.m4" class="ltx_Math" alttext="p(1)=3" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>3</mn></mrow></math>, <math id="p3.m5" class="ltx_Math" alttext="p(2)=7" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>7</mn></mrow></math>).
+
+
+</p>
+</div>
+<div id="p4" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold" style="font-size:173%;">2. </span></p>
+<ol id="S0.I1" class="ltx_enumerate">
+<li id="S0.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">(a)</span> 
+<div id="S0.I1.i1.p1" class="ltx_para">
+<p class="ltx_p">Which of the following are linear functionals on <math id="S0.I1.i1.p1.m1" class="ltx_Math" alttext="\mathbb{P}_{n}" display="inline"><msub><mi>ℙ</mi><mi>n</mi></msub></math>? Give brief justifications.</p>
+<table id="S0.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tbody><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex5.m1" class="ltx_Math" alttext="\phi(p)=p(0)+p^{\prime}(1),\qquad\psi(p)=p(0)+1,\qquad\chi(p)=\big{(}p(0)\big{%
+)}^{2}." display="block"><mrow><mrow><mrow><mrow><mi>ϕ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>+</mo><mrow><msup><mi>p</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo rspace="2.167em">,</mo><mrow><mrow><mrow><mi>ψ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>+</mo><mn>1</mn></mrow></mrow><mo rspace="2.167em">,</mo><mrow><mrow><mi>χ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msup><mrow><mo maxsize="120%" minsize="120%">(</mo><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow><mn>2</mn></msup></mrow></mrow></mrow><mo lspace="0em">.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+</div>
+</li>
+<li id="S0.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">(b)</span> 
+<div id="S0.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Let <math id="S0.I1.i2.p1.m1" class="ltx_Math" alttext="\phi_{0}(p)=p(0)" display="inline"><mrow><mrow><msub><mi>ϕ</mi><mn>0</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, <math id="S0.I1.i2.p1.m2" class="ltx_Math" alttext="\phi_{1}(p)=p^{\prime}(0)" display="inline"><mrow><mrow><msub><mi>ϕ</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msup><mi>p</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, and <math id="S0.I1.i2.p1.m3" class="ltx_Math" alttext="\phi_{2}(p)=p(1)" display="inline"><mrow><mrow><msub><mi>ϕ</mi><mn>2</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow></mrow></math> for <math id="S0.I1.i2.p1.m4" class="ltx_Math" alttext="p\in\mathbb{P}_{2}" display="inline"><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mn>2</mn></msub></mrow></math>.
+Show that the only <math id="S0.I1.i2.p1.m5" class="ltx_Math" alttext="p\in\mathbb{P}_{2}" display="inline"><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mn>2</mn></msub></mrow></math> with <math id="S0.I1.i2.p1.m6" class="ltx_Math" alttext="\phi_{0}(p)=\phi_{1}(p)=\phi_{2}(p)=0" display="inline"><mrow><mrow><msub><mi>ϕ</mi><mn>0</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msub><mi>ϕ</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msub><mi>ϕ</mi><mn>2</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math> is <math id="S0.I1.i2.p1.m7" class="ltx_Math" alttext="p\equiv 0" display="inline"><mrow><mi>p</mi><mo>≡</mo><mn>0</mn></mrow></math>.
+(<span class="ltx_text ltx_font_bold">Hint:</span> what are the roots, with multiplicity, of such a <math id="S0.I1.i2.p1.m8" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>?)
+Do these functionals specify a unique polynomial?</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="p5" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold" style="font-size:144%;">Solution. </span></p>
+</div>
+<div id="p6" class="ltx_para ltx_noindent">
+<p class="ltx_p">(a)</p>
+<ul id="S0.I2" class="ltx_itemize">
+<li id="S0.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S0.I2.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="S0.I2.i1.p1.m1" class="ltx_Math" alttext="\phi" display="inline"><mi>ϕ</mi></math> is linear by linearity of evaluation and linearity of the derivative.</p>
+</div>
+</li>
+<li id="S0.I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S0.I2.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="S0.I2.i2.p1.m1" class="ltx_Math" alttext="\psi" display="inline"><mi>ψ</mi></math> is not linear, since <math id="S0.I2.i2.p1.m2" class="ltx_Math" alttext="\phi(0)=1\neq 0" display="inline"><mrow><mrow><mi>ϕ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>1</mn><mo>≠</mo><mn>0</mn></mrow></math>.</p>
+</div>
+</li>
+<li id="S0.I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S0.I2.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><math id="S0.I2.i3.p1.m1" class="ltx_Math" alttext="\chi" display="inline"><mi>χ</mi></math> is not linear, since taking <math id="S0.I2.i3.p1.m2" class="ltx_Math" alttext="p\equiv 1" display="inline"><mrow><mi>p</mi><mo>≡</mo><mn>1</mn></mrow></math>, we have <math id="S0.I2.i3.p1.m3" class="ltx_Math" alttext="\chi(2p)=4" display="inline"><mrow><mrow><mi>χ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mn>2</mn><mo>⁢</mo><mi>p</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>4</mn></mrow></math>, but <math id="S0.I2.i3.p1.m4" class="ltx_Math" alttext="2\chi(p)=2" display="inline"><mrow><mrow><mn>2</mn><mo>⁢</mo><mi>χ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>2</mn></mrow></math>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="p7" class="ltx_para ltx_noindent">
+<p class="ltx_p">(b) Suppose <math id="p7.m1" class="ltx_Math" alttext="p\in\mathbb{P}_{2}" display="inline"><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mn>2</mn></msub></mrow></math> satisfies <math id="p7.m2" class="ltx_Math" alttext="p(0)=p^{\prime}(0)=0" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msup><mi>p</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math> and <math id="p7.m3" class="ltx_Math" alttext="p(1)=0" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math>.
+Since <math id="p7.m4" class="ltx_Math" alttext="p(0)=p^{\prime}(0)=0" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msup><mi>p</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math>, <math id="p7.m5" class="ltx_Math" alttext="r=0" display="inline"><mrow><mi>r</mi><mo>=</mo><mn>0</mn></mrow></math> is a root of <math id="p7.m6" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> of multiplicity at least <math id="p7.m7" class="ltx_Math" alttext="2" display="inline"><mn>2</mn></math>,
+and since <math id="p7.m8" class="ltx_Math" alttext="p(1)=0" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow></math>, <math id="p7.m9" class="ltx_Math" alttext="r=1" display="inline"><mrow><mi>r</mi><mo>=</mo><mn>1</mn></mrow></math> is another root.
+So <math id="p7.m10" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> has at least <math id="p7.m11" class="ltx_Math" alttext="3" display="inline"><mn>3</mn></math> roots, counting multiplicities.
+Since <math id="p7.m12" class="ltx_Math" alttext="\deg(p)\leq 2" display="inline"><mrow><mrow><mi>deg</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mn>2</mn></mrow></math>, the Fundamental Theorem of Algebra implies <math id="p7.m13" class="ltx_Math" alttext="p\equiv 0" display="inline"><mrow><mi>p</mi><mo>≡</mo><mn>0</mn></mrow></math>.</p>
+</div>
+<div id="p8" class="ltx_para ltx_noindent">
+<p class="ltx_p">(Alternatively, write <math id="p8.m1" class="ltx_Math" alttext="p(x)=a_{0}+a_{1}x+a_{2}x^{2}" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msub><mi>a</mi><mn>0</mn></msub><mo>+</mo><mrow><msub><mi>a</mi><mn>1</mn></msub><mo>⁢</mo><mi>x</mi></mrow><mo>+</mo><mrow><msub><mi>a</mi><mn>2</mn></msub><mo>⁢</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></mrow></mrow></math>.
+Then <math id="p8.m2" class="ltx_Math" alttext="p(0)=a_{0}=0" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mn>0</mn></mrow></math> and <math id="p8.m3" class="ltx_Math" alttext="p^{\prime}(0)=a_{1}=0" display="inline"><mrow><mrow><msup><mi>p</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mi>a</mi><mn>1</mn></msub><mo>=</mo><mn>0</mn></mrow></math>, so <math id="p8.m4" class="ltx_Math" alttext="p(1)=a_{2}=0" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mi>a</mi><mn>2</mn></msub><mo>=</mo><mn>0</mn></mrow></math>.)</p>
+</div>
+<div id="p9" class="ltx_para ltx_noindent">
+<p class="ltx_p">By Lemma 3.4, for any numbers <math id="p9.m1" class="ltx_Math" alttext="y_{0},y_{1},y_{2}" display="inline"><mrow><msub><mi>y</mi><mn>0</mn></msub><mo>,</mo><msub><mi>y</mi><mn>1</mn></msub><mo>,</mo><msub><mi>y</mi><mn>2</mn></msub></mrow></math>, there is a unique <math id="p9.m2" class="ltx_Math" alttext="p\in\mathbb{P}_{2}" display="inline"><mrow><mi>p</mi><mo>∈</mo><msub><mi>ℙ</mi><mn>2</mn></msub></mrow></math> with
+<math id="p9.m3" class="ltx_Math" alttext="p(0)=y_{0}" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mi>y</mi><mn>0</mn></msub></mrow></math>, <math id="p9.m4" class="ltx_Math" alttext="p^{\prime}(0)=y_{1}" display="inline"><mrow><mrow><msup><mi>p</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mi>y</mi><mn>1</mn></msub></mrow></math>, and <math id="p9.m5" class="ltx_Math" alttext="p(1)=y_{2}" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mi>y</mi><mn>2</mn></msub></mrow></math>.
+(Explicitly, <math id="p9.m6" class="ltx_Math" alttext="p(x)=y_{0}+y_{1}x+(y_{2}-y_{0}-y_{1})x^{2}" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msub><mi>y</mi><mn>0</mn></msub><mo>+</mo><mrow><msub><mi>y</mi><mn>1</mn></msub><mo>⁢</mo><mi>x</mi></mrow><mo>+</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><msub><mi>y</mi><mn>2</mn></msub><mo>−</mo><msub><mi>y</mi><mn>0</mn></msub><mo>−</mo><msub><mi>y</mi><mn>1</mn></msub></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></mrow></mrow></math>.)
+
+
+</p>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Tue Nov 10 10:39:52 2026 by <a href="http://dlmf.nist.gov/LaTeXML/" class="ltx_LaTeXML_logo"><span style="letter-spacing:-0.2em; margin-right:0.1em;">L<span class="ltx_font_smallcaps" style="position:relative; bottom:2.2pt;">a</span>T<span class="ltx_font_smallcaps" style="font-size:120%;position:relative; bottom:-0.2ex;">e</span></span><span style="font-size:90%; position:relative; bottom:-0.2ex;">XML</span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="Mascot Sammy"></a>
+</div></footer>
+</div>
+</body>
+</html>
