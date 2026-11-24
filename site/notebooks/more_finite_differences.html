@@ -7798,7 +7798,7 @@ a.anchor-link {
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <a class="back-link" href="../index.html">[Back to main course page]</a>
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bd588fac">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42e041a4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7811,8 +7811,8 @@ D_1 f(x) = \frac{f(x+h)-f(x-h)}{2h}, \qquad
 D_2 f(x) = \frac{f(x+h)-2f(x)+f(x-h)}{h^2}.
 $$
 We measure the maximum error on $n$ equally spaced points in $[0, 2\pi)$,
-with $h = 2\pi/n$. Doubling $n$ halves $h$, so the observed order is
-$p = \log_2(E_{\mathrm{prev}}/E)$.</p>
+with $h = 2\pi/n$. We double $n$ each time (which halves $h$) and so the
+observed order of convergence is $p = \log_2(E_{\mathrm{prev}}/E)$.</p>
 </div>
 </div>
 </div>
@@ -7838,7 +7838,7 @@ $p = \log_2(E_{\mathrm{prev}}/E)$.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1fbb2872">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9433329a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7846,7 +7846,7 @@ $p = \log_2(E_{\mathrm{prev}}/E)$.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">header</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="s1">'points'</span><span class="si">:</span><span class="s2">&gt;6</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">'h'</span><span class="si">:</span><span class="s2">&gt;8</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">'first error'</span><span class="si">:</span><span class="s2">&gt;12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">'p'</span><span class="si">:</span><span class="s2">&gt;5</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">'second error'</span><span class="si">:</span><span class="s2">&gt;12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">'p'</span><span class="si">:</span><span class="s2">&gt;5</span><span class="si">}</span><span class="s2">"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">header</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="s1">'points'</span><span class="si">:</span><span class="s2">&gt;6</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">'h'</span><span class="si">:</span><span class="s2">&gt;8</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">'1st deriv error'</span><span class="si">:</span><span class="s2">&gt;12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">'p'</span><span class="si">:</span><span class="s2">&gt;2</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">'2nd deriv error'</span><span class="si">:</span><span class="s2">&gt;12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">'p'</span><span class="si">:</span><span class="s2">&gt;2</span><span class="si">}</span><span class="s2">"</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"-"</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">header</span><span class="p">))</span>
 
@@ -7874,7 +7874,7 @@ $p = \log_2(E_{\mathrm{prev}}/E)$.</p>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>points        h |  first error     p | second error     p
+<pre>points        h | 1st deriv error  p | 2nd deriv error  p
 ---------------------------------------------------------
      8   0.7854 |    9.968e-02       |    5.036e-02      
     16   0.3927 |    2.550e-02  1.97 |    1.279e-02  1.98
